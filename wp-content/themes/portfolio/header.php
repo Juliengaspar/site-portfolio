@@ -1,3 +1,10 @@
+<?php /* Template Name: header */?>
+<?php
+$acceuilLink = get_field('accueil__link');
+$projetLink = get_field('projet__link');
+$aProposProjetLink = get_field('a__propos__projet__link');
+$contactLink = get_field('contact__link');
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -11,6 +18,48 @@
 
 </head>
 <body>
+<h1 class="hidden">titre invisible</h1>
+
+<nav>
+    <ul>
+        <?php if (!empty($acceuilLink)): ?>
+        <li>
+            <a title="<?= $acceuilLink['title'] ?>"
+               target="<?= $acceuilLink['target'] ?>"
+               href="<?= $acceuilLink['url'] ?>">
+                <?= $acceuilLink['title'] ?>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if (!empty($projetLink)): ?>
+        <li>
+            <a title="<?= $projetLink['title'] ?>"
+               target="<?= $projetLink['target'] ?>"
+               href="<?= $projetLink['url'] ?>">
+                <?= $projetLink['title'] ?>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if (!empty($aProposProjetLink)): ?>
+        <li>
+            <a title="<?= $aProposProjetLink['title'] ?>"
+               target="<?= $aProposProjetLink['target'] ?>"
+               href="<?= $aProposProjetLink['url'] ?>">
+                <?= $aProposProjetLink['title'] ?>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if (!empty($contactLink)): ?>
+        <li>
+            <a title="<?= $contactLink['title'] ?>"
+               target="<?= $contactLink['target'] ?>"
+               href="<?= $contactLink['url'] ?>">
+                <?= $contactLink['title'] ?>
+            </a>
+        </li>
+        <?php endif; ?>
+    </ul>
+</nav>
 
 </body>
 </html>
