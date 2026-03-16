@@ -36,3 +36,39 @@ function dw_asset(string $file): string {
     }
     return '';
 }
+// Déclaration des menus dans wordpress
+register_nav_menu('header', 'Le menu de navigation principal qui se trouve en haut de la page');
+register_nav_menu('footer', 'Le menu de navigation de fin de page');
+
+function hepl_execute_contact_form()
+{
+    $config = [
+        //on vas récupérer le name d'un nonce(jeton de sécuriter) que nous avecs crée dans le template du formulaire
+        'nonce_field'=>'contact_nonce',
+        //on vas récupérer l’action d'un formulaoire qui contient le nonce
+        'nonce_identifier'=>'hepl_contact_nonce',
+    ];//contenir tous les jetons de sécuriser
+    (new ContactForm($config, $_POST))->sanitize([
+        'name'=>'text_field',
+        'email'=>'email_field',
+        'object'=>'text_field',
+        'message'=>'textarea_field',
+    ])
+        ->validate([
+            'name'=>['required'],
+            'email'=>['required', 'email'],//verifier si la chaine n'est pa vide et si c'est bien un emial qui est bien entrée
+            'object'=>[],//peux etres vide null
+            'message'=>['required'],
+        ])
+        ->save(
+        //Julien Gaspar - julien.gaspar@student.hepl.be - Objet du message
+            title: fn($data) => $data['name'] . ' - ' .$data['email'] . ' -  ' . $data['object'],//la valeur du title avec une fonction anonyme avec une tableaux contenat la valeur du champs name
+            content: fn($data) => $data['message'],//le contenu de la message
+        )//stoker les message de de formulaire
+        ->send(
+            title: fn($data) => 'Nouveaux message de ' . $data['name'],
+            content: fn($data) => 'Nom complet :  ' . $data['name'] .PHP_EOL . 'Adresse mail: ' . $data['email'] . PHP_EOL . 'Objet: ' . $data['object'] . PHP_EOL . 'Message: ' . $data['message'],
+        )//message envoyer par l'utilisateur par mail
+        ->feedback();//les parrametres passer dans le constructor qui permetre de verifier les donner envoyer et apres de valider les reponser avec une autre methode puis les sauvgarder puis les envoyer a l'utilisateur et envoi un feedback si on a bien tous remplis et si pas d'erreur
+
+}
