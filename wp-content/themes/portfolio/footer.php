@@ -15,15 +15,18 @@ $footerCopyrinthe = get_field('copyright__footer');
 ?>
 
 <footer>
+    <h2>footer</h2>
 <section>
-    <div>
-        <img src="<?= $footerImg['url'] ?>" alt="<?= $footerImg['alt'] ?>"  width="<?= $footerImg['width'] ?>" height="<?= $footerImg['height'] ?>" />
-    </div>
+<!--    <div>-->
+<!--        <img src="--><?php //= $footerImg['url'] ?><!--" alt="--><?php //= $footerImg['alt'] ?><!--"  width="--><?php //= $footerImg['width'] ?><!--" height="--><?php //= $footerImg['height'] ?><!--" />-->
+<!--    </div>-->
     <div>
     <h2>
+        <?php var_dump($footerTitle); ?>
         <?php if (!empty($footerTitle)): ?>
                <?php echo $footerTitle; ?>
         <?php endif; ?>
+               <?php echo "pas de valeur"; ?>
     </h2>
         <p>
             <?php if (!empty($footerTitle)): ?>

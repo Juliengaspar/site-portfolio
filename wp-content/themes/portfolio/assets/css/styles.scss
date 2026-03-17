@@ -1,4 +1,5 @@
-body{
-  background-color: white;
-  color: black;
-}
+@use 'general/reset.css';
+@use 'general/general';
+@use 'general/footer';
+@use 'general/header';
+

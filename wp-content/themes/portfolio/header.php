@@ -14,14 +14,15 @@ $contactLink = get_field('contact__link');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= get_the_title()?></title>
     <link rel="stylesheet" type="text/css" href="<?=dw_asset('css')?>">
-    <script src="<?= dw_asset('js')?>" defer ></script>
+    <script src="<?= dw_asset('js')?>"  defer type="module" ></script>
 
 </head>
 <body>
-<h1 class="hidden">titre invisible</h1>
+<h1 class="title">titre invisible</h1>
 
 <nav>
     <ul>
+        <li><?php get_field('accueil__link') ?></li>
         <?php if (!empty($acceuilLink)): ?>
         <li>
             <a title="<?= $acceuilLink['title'] ?>"
@@ -60,6 +61,3 @@ $contactLink = get_field('contact__link');
         <?php endif; ?>
     </ul>
 </nav>
-
-</body>
-</html>
