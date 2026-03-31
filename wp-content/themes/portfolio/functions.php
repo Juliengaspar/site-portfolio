@@ -1,4 +1,7 @@
 <?php
+
+include ('core/theme/configuration.php');
+
 // Gutenberg est le nouvel éditeur de contenu propre à Wordpress
 // il ne nous intéresse pas pour l'utilisation du thème que nous
 // allons créer. On va donc le désactiver :
@@ -71,4 +74,15 @@ function hepl_execute_contact_form()
         )//message envoyer par l'utilisateur par mail
         ->feedback();//les parrametres passer dans le constructor qui permetre de verifier les donner envoyer et apres de valider les reponser avec une autre methode puis les sauvgarder puis les envoyer a l'utilisateur et envoi un feedback si on a bien tous remplis et si pas d'erreur
 
+}
+//fonction pour les chaine de traduction perssonalisées
+
+//charger la fonction de dommaine
+//charger les traduction existantes
+load_theme_textdomain('hepl-trad', get_template_directory() . '/locales');
+//Crée un endroits ou il y a tous les traduction
+function __hepl($translation): ?string
+{
+    //fonction lancer en arriers plans
+    return __($translation, 'hepl-trad');
 }

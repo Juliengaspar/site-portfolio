@@ -1,19 +1,19 @@
-# Ignore tout par défaut
 *
 # Autoriser git
 
+!readme.md
 !.gitignore
-# Autoriser wp-content
 !wp-content/
 wp-content/*
-# Autoriser le thème uniquement
 !wp-content/themes/
 wp-content/themes/*
 !wp-content/themes/portfolio
 !wp-content/themes/portfolio/*
-!wp-content/themes/portfolio/**/**
+!wp-content/themes/portfolio/**/*
+wp-content/themes/portfolio/node_modules
+wp-content/themes/portfolio/public
+wp-content/themes/portfolio/public/*
 node_modules
-# Config front
 !postcss.config.js
 !vite.config.js
 !package.json

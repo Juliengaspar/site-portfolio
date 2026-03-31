@@ -100,6 +100,8 @@ $footerCopyrinthe = get_field('copyright__footer');
     <?php endif; ?>
 </h2>
 </section>
+    <strong>©2026</strong> Site  réalisé par Julien gaspar
+
 </footer>
 </body>
 </html>

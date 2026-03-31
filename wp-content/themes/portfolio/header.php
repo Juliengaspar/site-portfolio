@@ -18,6 +18,20 @@ $contactLink = get_field('contact__link');
 
 </head>
 <body>
+<h1 class="sro"><?= get_the_title()?> - Wordpresse Demon 201</h1>
+<nav> <!-- Menu de navigation par Wordpress -->
+    <h2 class="sro">Menu de navigation</h2>
+    <?php
+    wp_nav_menu([
+            'theme_location' => 'header',
+            'container' => false,
+            'menu_class' => 'ul-container',
+            'container_class' => 'div-container',
+    ]);
+    ?>
+</nav><!--
+//appeler la fonction pour afficher Menu de navigation custom
+//on a plus de contrôle à 100%  avec cet methode et plus facile a le structure-->
 <h1 class="title">titre invisible</h1>
 
 <nav>
@@ -61,3 +75,12 @@ $contactLink = get_field('contact__link');
         <?php endif; ?>
     </ul>
 </nav>
+<nav>
+<ul class="navigation__list">
+
+</ul>
+</nav>
+<?php
+//affiche les 2 lange
+//pll_the_languages(['show_flags'=>1, 'show_name'=>0]);
+?>
