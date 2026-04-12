@@ -1,9 +1,15 @@
+# Ignore tout
 *
 !readme.md
+# Autoriser fichiers utiles
 !.gitignore
+# Autoriser wp-content
 !wp-content/
+# Bloquer tout dedans
 wp-content/*
+# Autoriser themes
 !wp-content/themes/
+# Bloquer tous les themes
 wp-content/themes/*
 !wp-content/themes/portfolio
 !wp-content/themes/portfolio/*
@@ -11,7 +17,15 @@ wp-content/themes/*
 wp-content/themes/portfolio/node_modules
 wp-content/themes/portfolio/public
 wp-content/themes/portfolio/public/*
-node_modules
+# Ignorer node_modules
+node_modules/
+wp-content/themes/dw/node_modules/
 !postcss.config.js
 !vite.config.js
 !package.json
+
+!wp-content/themes/portfolio/
+!wp-content/themes/portfolio/**
+
+# Ignorer build
+wp-content/themes/dw/public/

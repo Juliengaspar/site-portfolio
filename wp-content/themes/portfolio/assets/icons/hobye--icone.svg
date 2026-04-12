@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50.12">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #e64342;
+      }
+
+      .cls-1, .cls-3 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+        font-size: 2px;
+      }
+
+      .cls-4, .cls-3 {
+        fill: #1d1d1b;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-6 {
+        fill: #e8c27d;
+      }
+    </style>
+  </defs>
+  <ellipse cx="12.95" cy="26.11" rx="12.05" ry="14.02"/>
+  <ellipse class="cls-2" cx="38.31" cy="26.11" rx="11.69" ry="14.02"/>
+  <path class="cls-6" d="M36,40.36l-9.05-10.28s1.44,4.88.6,6.19-8.54,8.69-8.54,8.69c0,0,2.5,4.95,4.09,3.55s7.19-9.21,7.19-9.21c0,0,4.76.31,5.7,1.06Z"/>
+  <path class="cls-6" d="M23.53,30.74l-7.79,9.48s3-1.5,4.32-.66,7.98,9.95,7.98,9.95c0,0,4.69-3.28,3.28-4.88s-7.66-8.92-7.66-8.92c0,0-.88-4.04-.13-4.97Z"/>
+  <g>
+    <circle class="cls-5" cx="25.72" cy="8.76" r="8.63"/>
+    <path class="cls-4" d="M25.72,17.52c-4.83,0-8.76-3.93-8.76-8.76S20.89,0,25.72,0s8.76,3.93,8.76,8.76-3.93,8.76-8.76,8.76ZM25.72.25c-4.69,0-8.51,3.82-8.51,8.51s3.82,8.51,8.51,8.51,8.51-3.82,8.51-8.51S30.41.25,25.72.25Z"/>
+  </g>
+  <polygon class="cls-4" points="24.06 4.36 24.28 5.02 24.97 5.02 24.41 5.43 24.62 6.09 24.06 5.68 23.5 6.09 23.71 5.43 23.15 5.02 23.85 5.02 24.06 4.36"/>
+  <polygon class="cls-4" points="27.36 4.36 27.57 5.02 28.27 5.02 27.71 5.43 27.92 6.09 27.36 5.68 26.8 6.09 27.01 5.43 26.45 5.02 27.14 5.02 27.36 4.36"/>
+  <polygon class="cls-4" points="25.88 3.24 26.1 3.9 26.79 3.9 26.23 4.31 26.44 4.97 25.88 4.56 25.32 4.97 25.53 4.31 24.97 3.9 25.67 3.9 25.88 3.24"/>
+  <text class="cls-3" transform="translate(23.46 8.64) rotate(-21.37)"><tspan x="0" y="0">N</tspan></text>
+  <text class="cls-3" transform="translate(24.66 8.2) rotate(-12.49)"><tspan x="0" y="0">i</tspan></text>
+  <text class="cls-3" transform="translate(25.06 8.1) rotate(-7.25)"><tspan x="0" y="0">t</tspan></text>
+  <text class="cls-3" transform="translate(25.7 8.04) rotate(-1.17)"><tspan x="0" y="0">t</tspan></text>
+  <text class="cls-3" transform="translate(26.3 8) rotate(6.29)"><tspan x="0" y="0">a</tspan></text>
+  <text class="cls-3" transform="translate(27.2 8.1) rotate(14.68)"><tspan x="0" y="0">k</tspan></text>
+  <text class="cls-1" transform="translate(24.07 11.87)"><tspan x="0" y="0">40+</tspan></text>
+  <rect class="cls-4" x="22.73" y="6.59" width="6.11" height=".25"/>
+  <rect class="cls-4" x="22.73" y="8.63" width="6.11" height=".25"/>
+</svg>

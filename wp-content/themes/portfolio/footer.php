@@ -1,107 +1,75 @@
 <?php /* Template Name: footer */?>
 <?php
-$footerImg = get_field('logo__footer__img');
-$footerTitle = get_field('title__footer');
-$footerContact = get_field('contact__footer');
-$footerTitleLinks = get_field('title__navigations');
+$footerImg = get_field('logo__footer__img', 'option');
+$footerTitle = get_field('title__footer', 'option');
+$footerContact = get_field('contact__footer', 'option');
+$footerTitleLinks = get_field('title__navigations', 'option');
 $footerLinksAcceuil = get_field('acceuil__link');
 $footerLinksprojets = get_field('projets__link');
 $footerLinksApropos = get_field('a__propos__link');
 $footerLinksContact = get_field('contact__link');
-$footerButton = get_field('contact__link__button');
-$footerCopyrinthe = get_field('copyright__footer');
+$footerButton = get_field('contact__link__button', 'option');
+$footerCopyrinthe = get_field('copyright__footer', 'option');
 
 
 ?>
 
 <footer>
-    <h2>footer</h2>
-<section>
-<!--    <div>-->
-<!--        <img src="--><?php //= $footerImg['url'] ?><!--" alt="--><?php //= $footerImg['alt'] ?><!--"  width="--><?php //= $footerImg['width'] ?><!--" height="--><?php //= $footerImg['height'] ?><!--" />-->
-<!--    </div>-->
+    <?php
+    if( $footerImg ): ?>
     <div>
-    <h2>
-        <?php var_dump($footerTitle); ?>
-        <?php if (!empty($footerTitle)): ?>
-               <?php echo $footerTitle; ?>
+        <img src="<?php echo esc_url($footerImg['url']); ?>" alt="<?php echo esc_attr($footerImg['alt']); ?>">
+    </div>
+    <?php endif; ?>
+<section>
+    <h2> <?php if (!empty($footerTitle)): ?>
+            <?php echo $footerTitle; ?>
         <?php endif; ?>
-               <?php echo "pas de valeur"; ?>
-    </h2>
-        <p>
+        <?php echo "pas de valeur"; ?></h2>
+    <div>
             <?php if (!empty($footerTitle)): ?>
                 <?php echo $footerContact; ?>
             <?php endif; ?>
-        </p>
     </div>
+
+</section>
     <section>
         <h3>
             <?php if (!empty($footerTitleLinks)): ?>
                 <?php echo $footerTitleLinks; ?>
             <?php endif; ?>
         </h3>
-        <ul>
-            <?php if (!empty($footerLinksAcceuil)): ?>
-                <li>
-                    <a title="<?= $footerLinksAcceuil['title'] ?>"
-                       target="<?= $footerLinksAcceuil['target'] ?>"
-                       href="<?= $footerLinksAcceuil['url'] ?>">
-                        <?= $footerLinksAcceuil['title'] ?>
-                    </a>
-                </li>
-            <?php endif; ?>
-            <?php if (!empty($footerLinksprojets)): ?>
-                <li>
-                    <a title="<?= $footerLinksprojets['title'] ?>"
-                       target="<?= $footerLinksprojets['target'] ?>"
-                       href="<?= $footerLinksprojets['url'] ?>">
-                        <?= $footerLinksprojets['title'] ?>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-            <?php if (!empty($footerLinksApropos)): ?>
-                <li>
-                    <a title="<?= $footerLinksApropos['title'] ?>"
-                       target="<?= $footerLinksApropos['target'] ?>"
-                       href="<?= $footerLinksApropos['url'] ?>">
-                        <?= $footerLinksApropos['title'] ?>
-                    </a>
-                </li>
-            <?php endif; ?>
-            <?php if (!empty($footerLinksContact)): ?>
-                <li>
-                    <a title="<?= $footerLinksContact['title'] ?>"
-                       target="<?= $footerLinksContact['target'] ?>"
-                       href="<?= $footerLinksContact['url'] ?>">
-                        <?= $footerLinksContact['title'] ?>
-                    </a>
-                </li>
-            <?php endif; ?>
-        </ul>
+        <?php
+        wp_nav_menu([
+                'theme_location' => 'footer-fr',
+                'container' => false,
+                'menu_class' => 'ul-container',
+                'container_class' => 'div-container',
+        ]);
+        ?>
     </section>
     <section>
         <h3>
-                <?php if (!empty($footerButton)): ?>
-                        <a title="<?= $footerButton['title'] ?>"
-                           target="<?= $footerButton['target'] ?>"
-                           href="<?= $footerButton['url'] ?>">
-                            <?= $footerButton['title'] ?>
-                        </a>
-                <?php endif; ?>
-            </h3>
+            <?php if (!empty($footerButton)): ?>
+                <a title="<?= $footerButton['title'] ?>"
+                   target="<?= $footerButton['target'] ?>"
+                   href="<?= $footerButton['url'] ?>">
+                    <?= $footerButton['title'] ?>
+                </a>
+            <?php endif; ?>
+        </h3>
     </section>
+    <section>
+        <h2>
+            <?php if (!empty($footerCopyrinthe)): ?>
+                <?php echo $footerCopyrinthe; ?>
+            <?php endif; ?>
+        </h2>
+        <p>
+        <strong>©2026</strong> Site  réalisé par Julien gaspar
+        </p>
 
-</section>
-<section>
-<h2>
-    <?php if (!empty($footerCopyrinthe)): ?>
-        <?php echo $footerCopyrinthe; ?>
-    <?php endif; ?>
-</h2>
-</section>
-    <strong>©2026</strong> Site  réalisé par Julien gaspar
-
+    </section>
 </footer>
 </body>
 </html>

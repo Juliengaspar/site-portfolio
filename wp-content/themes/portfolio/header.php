@@ -23,7 +23,7 @@ $contactLink = get_field('contact__link');
     <h2 class="sro">Menu de navigation</h2>
     <?php
     wp_nav_menu([
-            'theme_location' => 'header',
+            'theme_location' => 'header-fr',
             'container' => false,
             'menu_class' => 'ul-container',
             'container_class' => 'div-container',

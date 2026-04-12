@@ -86,3 +86,17 @@ function __hepl($translation): ?string
     //fonction lancer en arriers plans
     return __($translation, 'hepl-trad');
 }
+function custom_mime_types($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'custom_mime_types');
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page([
+        'page_title' => 'Footer',
+        'menu_title' => 'Footer',
+        'menu_slug'  => 'footer-settings',
+        'capability' => 'edit_posts',
+        'redirect'   => false
+    ]);
+}
