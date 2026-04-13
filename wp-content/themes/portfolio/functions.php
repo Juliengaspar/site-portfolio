@@ -100,3 +100,6 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'   => false
     ]);
 }
+add_image_size('sqaure-small', 400, 400, true );//nom /size/recadrage;
+add_image_size('sqaure-medium', 800, 800, true );//nom /size/recadrage;
+add_image_size('sqaure-large', 1200, 1200, true );//nom /size/recadrage;
