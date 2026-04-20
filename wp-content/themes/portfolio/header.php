@@ -9,11 +9,13 @@ $contactLink = get_field('contact__link');
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="site crée avec woordpresse pour mon portfolio poour le cours de design web de deuxiéme années a l'hepl" />
+    <meta name="description" content="site crée avec woordpresse pour mon portfolio pour le cours de design web de deuxiéme années a l'hepl" />
     <meta name="keywords" content="référencement,SEO,balise meta keywords, help, portfolio, julien, gaspar, woordpresse, developeur, UX, UI, ">    <title><?= get_the_title()?></title>
+    <meta name="author" content="Julien Gaspar">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?=dw_asset('css')?>">
     <script src="<?= dw_asset('js')?>"  defer type="module" ></script>
 
