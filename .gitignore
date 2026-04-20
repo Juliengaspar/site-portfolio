@@ -16,7 +16,6 @@ wp-content/themes/*
 !wp-content/themes/portfolio/**/*
 !wp-content/themes/portfolio/
 !wp-content/themes/portfolio/**
-
 # Ignorer build
 wp-content/themes/portfolio/public/
 wp-content/themes/portfolio/public/**/*
@@ -31,5 +30,4 @@ wp-content/themes/portfolio/node_modules/
 !postcss.config.js
 !vite.config.js
 !package.json
-
-
+/wp-content/themes/portfolio/assets/text/

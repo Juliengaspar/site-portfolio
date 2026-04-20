@@ -12,7 +12,8 @@ $contactLink = get_field('contact__link');
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= get_the_title()?></title>
+    <meta name="description" content="site crée avec woordpresse pour mon portfolio poour le cours de design web de deuxiéme années a l'hepl" />
+    <meta name="keywords" content="référencement,SEO,balise meta keywords, help, portfolio, julien, gaspar, woordpresse, developeur, UX, UI, ">    <title><?= get_the_title()?></title>
     <link rel="stylesheet" type="text/css" href="<?=dw_asset('css')?>">
     <script src="<?= dw_asset('js')?>"  defer type="module" ></script>
 
@@ -80,6 +81,20 @@ $contactLink = get_field('contact__link');
 
 </ul>
 </nav>
+
+<?php if(!is_front_page()): ?>
+<nav>
+    ss
+    <h2>Fil d'ariane</h2>
+    <ul>
+        <li>s
+            <a href="<?= home_url() ?>">Accueil</a>
+            ->
+            <p><?= get_the_title() ?></p>
+        </li>
+    </ul>
+</nav>
+<?php endif; ?>
 <?php
 //affiche les 2 lange
 //pll_the_languages(['show_flags'=>1, 'show_name'=>0]);
