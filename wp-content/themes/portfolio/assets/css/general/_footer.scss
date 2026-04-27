@@ -1,0 +1,141 @@
+@use "../general/general" as *;
+
+// Footer styles
+.footer {
+  background-color: $background__footer;
+  color: $white;
+  padding: 3rem 1rem;
+  margin-top: auto;
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  // Logo
+  .footer__logo {
+    max-width: 150px;
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      margin: 0 auto;
+    }
+  }
+
+  // Info section
+  .footer__info {
+    .footer__title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer__contact {
+      font-style: normal;
+      line-height: 1.6;
+      color: $white;
+
+      a {
+        color: $white;
+        text-decoration: none;
+
+        &:hover {
+          border-bottom: 1px solid $white;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Navigation
+  .footer__nav {
+    .footer__nav-title {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer__menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.75rem;
+
+        a {
+          color: $white;
+          text-decoration: none;
+          display: inline-block;
+
+          &:hover {
+            color: $white;
+            border-bottom: 1px solid $white;
+          }
+        }
+      }
+    }
+  }
+
+  // Bouton CTA
+  .footer__cta {
+    .footer__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $principale__color__blue;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #000000;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // Copyright
+  .footer__bottom {
+    background-color: $principale__color__blue;
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba($white, 0.1);
+
+    .copyright-text {
+      font-size: 0.875rem;
+      color: rgba($white, 0.8);
+      margin: 0;
+    }
+  }
+}
+
+// Accessibilité
+@media (prefers-reduced-motion: reduce) {
+  .footer * {
+    transition: none !important;
+  }
+}

@@ -1,9 +1,8 @@
 <?php /* Template Name: header */?>
 <?php
-$acceuilLink = get_field('accueil__link');
-$projetLink = get_field('projet__link');
-$aProposProjetLink = get_field('a__propos__projet__link');
-$contactLink = get_field('contact__link');
+$headerImg = get_field('logo__jg', 'option');
+$acceuilLink = get_field('link__site', 'option');
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -24,6 +23,26 @@ $contactLink = get_field('contact__link');
 <h1 class="sro"><?= get_the_title()?> - Wordpresse Demon 201</h1>
 <nav> <!-- Menu de navigation par Wordpress -->
     <h2 class="sro">Menu de navigation</h2>
+    <section>
+    <?php if ($headerImg): ?>
+        <div class="footer__logo">
+            <img
+                    src="<?= esc_url($headerImg['url']); ?>"
+                    alt="<?= esc_attr($headerImg['alt'] ?: 'Logo du site'); ?>"
+                    loading="lazy"
+            >
+        </div>
+    <?php endif; ?>
+        <?php if (!empty($acceuilLink)) : ?>
+            <h2 class="nav__title">
+                <a
+                        href="<?= esc_url($acceuilLink['url']); ?>"
+                        target="<?= esc_attr($acceuilLink['target'] ?: '_self'); ?>"
+                >
+                    <?= esc_html($acceuilLink['title']); ?>
+                </a>
+            </h2>
+        <?php endif; ?>    </section>
     <?php
     wp_nav_menu([
             'theme_location' => 'header-fr',
@@ -36,54 +55,6 @@ $contactLink = get_field('contact__link');
 //appeler la fonction pour afficher Menu de navigation custom
 //on a plus de contrôle à 100%  avec cet methode et plus facile a le structure-->
 <h1 class="title">titre invisible</h1>
-
-<nav>
-    <ul>
-        <li><?php get_field('accueil__link') ?></li>
-        <?php if (!empty($acceuilLink)): ?>
-        <li>
-            <a title="<?= $acceuilLink['title'] ?>"
-               target="<?= $acceuilLink['target'] ?>"
-               href="<?= $acceuilLink['url'] ?>">
-                <?= $acceuilLink['title'] ?>
-            </a>
-        </li>
-        <?php endif; ?>
-        <?php if (!empty($projetLink)): ?>
-        <li>
-            <a title="<?= $projetLink['title'] ?>"
-               target="<?= $projetLink['target'] ?>"
-               href="<?= $projetLink['url'] ?>">
-                <?= $projetLink['title'] ?>
-            </a>
-        </li>
-        <?php endif; ?>
-        <?php if (!empty($aProposProjetLink)): ?>
-        <li>
-            <a title="<?= $aProposProjetLink['title'] ?>"
-               target="<?= $aProposProjetLink['target'] ?>"
-               href="<?= $aProposProjetLink['url'] ?>">
-                <?= $aProposProjetLink['title'] ?>
-            </a>
-        </li>
-        <?php endif; ?>
-        <?php if (!empty($contactLink)): ?>
-        <li>
-            <a title="<?= $contactLink['title'] ?>"
-               target="<?= $contactLink['target'] ?>"
-               href="<?= $contactLink['url'] ?>">
-                <?= $contactLink['title'] ?>
-            </a>
-        </li>
-        <?php endif; ?>
-    </ul>
-</nav>
-<nav>
-<ul class="navigation__list">
-
-</ul>
-</nav>
-
 <?php if(!is_front_page()): ?>
 <nav>
     ss

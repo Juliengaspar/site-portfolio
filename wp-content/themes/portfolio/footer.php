@@ -1,75 +1,82 @@
-<?php /* Template Name: footer */?>
 <?php
 $footerImg = get_field('logo__footer__img', 'option');
 $footerTitle = get_field('title__footer', 'option');
 $footerContact = get_field('contact__footer', 'option');
 $footerTitleLinks = get_field('title__navigations', 'option');
-$footerLinksAcceuil = get_field('acceuil__link');
-$footerLinksprojets = get_field('projets__link');
-$footerLinksApropos = get_field('a__propos__link');
-$footerLinksContact = get_field('contact__link');
 $footerButton = get_field('contact__link__button', 'option');
-$footerCopyrinthe = get_field('copyright__footer', 'option');
-
-
+$footerCopyright = get_field('copyright__footer', 'option');
 ?>
 
-<footer>
-    <?php
-    if( $footerImg ): ?>
-    <div>
-        <img src="<?php echo esc_url($footerImg['url']); ?>" alt="<?php echo esc_attr($footerImg['alt']); ?>">
-    </div>
-    <?php endif; ?>
-<section>
-    <h2> <?php if (!empty($footerTitle)): ?>
-            <?php echo $footerTitle; ?>
+<footer class="footer" role="contentinfo">
+    <div class="footer__container">
+
+        <!-- Logo -->
+        <?php if ($footerImg): ?>
+            <div class="footer__logo">
+                <img
+                        src="<?= esc_url($footerImg['url']); ?>"
+                        alt="<?= esc_attr($footerImg['alt'] ?: 'Logo du site'); ?>"
+                        loading="lazy"
+                >
+            </div>
         <?php endif; ?>
-        <?php echo "pas de valeur"; ?></h2>
-    <div>
-            <?php if (!empty($footerTitle)): ?>
-                <?php echo $footerContact; ?>
+
+        <!-- Infos -->
+        <div class="footer__info">
+            <?php if ($footerTitle): ?>
+                <h2 class="footer__title"><?= esc_html($footerTitle); ?></h2>
             <?php endif; ?>
+
+            <?php if ($footerContact): ?>
+                <p class="footer__contact">
+                    <?= wp_kses_post($footerContact); ?>
+                </p>
+            <?php endif; ?>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="footer__nav" aria-label="Navigation du footer">
+            <?php if ($footerTitleLinks): ?>
+                <h2 class="footer__nav-title"><?= esc_html($footerTitleLinks); ?></h2>
+            <?php endif; ?>
+
+            <?php
+            wp_nav_menu([
+                    'theme_location' => 'footer-fr',
+                    'container' => false,
+                    'menu_class' => 'footer__menu',
+            ]);
+            ?>
+        </nav>
+
+        <!-- Bouton -->
+        <?php if ($footerButton): ?>
+            <div class="footer__cta">
+                <a
+                        class="footer__button"
+                        href="<?= esc_url($footerButton['url']); ?>"
+                        target="<?= esc_attr($footerButton['target'] ?: '_self'); ?>"
+                        title="<?= esc_attr($footerButton['title']); ?>"
+                >
+                    <?= esc_html($footerButton['title']); ?>
+                </a>
+            </div>
+        <?php endif; ?>
+
     </div>
 
-</section>
-    <section>
-        <h3>
-            <?php if (!empty($footerTitleLinks)): ?>
-                <?php echo $footerTitleLinks; ?>
-            <?php endif; ?>
-        </h3>
-        <?php
-        wp_nav_menu([
-                'theme_location' => 'footer-fr',
-                'container' => false,
-                'menu_class' => 'ul-container',
-                'container_class' => 'div-container',
-        ]);
-        ?>
-    </section>
-    <section>
-        <h3>
-            <?php if (!empty($footerButton)): ?>
-                <a title="<?= $footerButton['title'] ?>"
-                   target="<?= $footerButton['target'] ?>"
-                   href="<?= $footerButton['url'] ?>">
-                    <?= $footerButton['title'] ?>
-                </a>
-            <?php endif; ?>
-        </h3>
-    </section>
-    <section>
-        <h2>
-            <?php if (!empty($footerCopyrinthe)): ?>
-                <?php echo $footerCopyrinthe; ?>
-            <?php endif; ?>
-        </h2>
-        <p>
-        <strong>©2026</strong> Site  réalisé par Julien gaspar
-        </p>
+    <!-- Copyright -->
+    <div class="footer__bottom">
+        <?php if ($footerCopyright): ?>
+            <p><?= esc_html($footerCopyright); ?></p>
+        <?php endif; ?>
 
-    </section>
+        <p class="copyright-text">
+            <strong>© <?= date('Y'); ?></strong> <?= $footerCopyright ?>>
+        </p>
+    </div>
 </footer>
+
+<?php wp_footer(); ?>
 </body>
 </html>

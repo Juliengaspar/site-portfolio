@@ -91,15 +91,74 @@ function custom_mime_types($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'custom_mime_types');
+
 if( function_exists('acf_add_options_page') ) {
-    acf_add_options_page([
-        'page_title' => 'Footer',
-        'menu_title' => 'Footer',
-        'menu_slug'  => 'footer-settings',
+
+    // Page parente
+    $parent = acf_add_options_page([
+        'page_title' => 'Options du thème',
+        'menu_title' => 'Options',
+        'menu_slug'  => 'theme-options',
         'capability' => 'edit_posts',
-        'redirect'   => false
+        'redirect'   => false,
+        'icon_url'   => 'dashicons-admin-settings', // Icône dans le menu
+        'position'   => 58 // Position dans le menu admin
+    ]);
+
+    // Sous-page Header
+    acf_add_options_page([
+        'page_title'  => 'Header',
+        'menu_title'  => 'Header',
+        'menu_slug'   => 'header-settings',
+        'parent_slug' => $parent['menu_slug'], // Rattachement au parent
+        'capability'  => 'edit_posts',
+        'redirect'    => false
+    ]);
+
+    // Sous-page Footer
+    acf_add_options_page([
+        'page_title'  => 'Footer',
+        'menu_title'  => 'Footer',
+        'menu_slug'   => 'footer-settings',
+        'parent_slug' => $parent['menu_slug'],
+        'capability'  => 'edit_posts',
+        'redirect'    => false
     ]);
 }
+
+
+
+// 1. Création du Custom Post Type "Projets"
+function creer_cpt_projets() {
+    register_post_type('projet', [
+        'label' => 'Projets',
+        'description' => 'Tous mes projets de portfolio',
+        'menu_position' => 2,
+        'menu_icon' => 'dashicons-portfolio',
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'projets'],
+        'supports' => ['title', 'excerpt', 'thumbnail'],
+    ]);
+}
+add_action('init', 'creer_cpt_projets');
+
+// 2. Création de la Taxonomie "Type de projet" (cases à cocher)
+function creer_taxonomie_type_projet() {
+    register_taxonomy('type_projet', 'projet', [
+        'label' => 'Types de projet',
+        'labels' => [
+            'name' => 'Types de projet',
+            'singular_name' => 'Type de projet',
+            'menu_name' => 'Types de projet',
+        ],
+        'hierarchical' => true, // true = cases à cocher (comme les catégories), false = étiquettes (comme les tags)
+        'public' => true,
+        'show_admin_column' => true, // Affiche une colonne dans la liste des projets
+        'rewrite' => ['slug' => 'type-projet'], // URL : /type-projet/web/
+    ]);
+}
+add_action('init', 'creer_taxonomie_type_projet');
 add_image_size('sqaure-small', 400, 400, true );//nom /size/recadrage;
 add_image_size('sqaure-medium', 800, 800, true );//nom /size/recadrage;
 add_image_size('sqaure-large', 1200, 1200, true );//nom /size/recadrage;

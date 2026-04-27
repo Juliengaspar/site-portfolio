@@ -6,12 +6,12 @@ $allLinkProjet = get_field('link__all__projet');
 
 ?>
 <?php get_header(); ?>
-<h2><?=  get_field('title__page')?></h2>
-<section>
-    <h3>
+<h2 class="title__page"><?=  get_field('title__page')?></h2>
+<section class="profile">
+    <h3 class="profile__name">
     <?= get_field('name')?> 
     </h3>
-    <div>
+    <div class="profile__detail">
         <?= get_field('descriptions')?>
     </div>
 </section>
@@ -19,20 +19,22 @@ $allLinkProjet = get_field('link__all__projet');
            <?php if( have_rows('liste__projets') ): ?>
 
             <section class="liste-projets">
-                <h3><?= $titleListeProjet ?></h3>
+                <h3 class="projets__title"><?= $titleListeProjet ?></h3>
                 <?php while( have_rows('liste__projets') ): the_row(); ?>
 
                     <section class="projet">
 
-                        <h4><?php the_sub_field('title__projet'); ?></h4>
+                        <h4 class="projet__title"><?php the_sub_field('title__projet'); ?></h4>
 
-                        <p><?php the_sub_field('description__projet'); ?></p>
+                        <p class="projet__description"><?php the_sub_field('description__projet'); ?></p>
 
-                        <?php
-                        $image = get_sub_field('projet__img');
-                        if( $image ): ?>
-                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                        <?php endif; ?>
+                        <div class="projet__img">
+                            <?php
+                            $image = get_sub_field('projet__img');
+                            if( $image ): ?>
+                                <img class="img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            <?php endif; ?>
+                        </div>
 
                         <?php
                         $lien = get_sub_field(' link__projet ');
