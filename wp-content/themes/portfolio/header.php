@@ -10,7 +10,7 @@ $acceuilLink = get_field('link__site', 'option');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="site crée avec woordpresse pour mon portfolio pour le cours de design web de deuxiéme années a l'hepl" />
+    <meta name="description" content="Création d’un site portfolio réalisé avec WordPress dans le cadre du cours de design web de deuxième année à la Haute École de la Province de Liège (HEPL)." />
     <meta name="keywords" content="référencement,SEO,balise meta keywords, help, portfolio, julien, gaspar, woordpresse, developeur, UX, UI, ">    <title><?= get_the_title()?></title>
     <meta name="author" content="Julien Gaspar">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@ $acceuilLink = get_field('link__site', 'option');
 </head>
 <body>
 <h1 class="sro"><?= get_the_title()?> - Wordpresse Demon 201</h1>
-<nav> <!-- Menu de navigation par Wordpress -->
+<nav class="navigation__bars"> <!-- Menu de navigation par Wordpress -->
     <h2 class="sro">Menu de navigation</h2>
     <section>
     <?php if ($headerImg): ?>
@@ -54,7 +54,6 @@ $acceuilLink = get_field('link__site', 'option');
 </nav><!--
 //appeler la fonction pour afficher Menu de navigation custom
 //on a plus de contrôle à 100%  avec cet methode et plus facile a le structure-->
-<h1 class="title">titre invisible</h1>
 <?php if(!is_front_page()): ?>
 <nav>
     ss

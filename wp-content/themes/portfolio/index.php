@@ -3,16 +3,36 @@
 $titleListeProjet = get_field('title__projet');
 $isteProjet = get_field('liste__projets');
 $allLinkProjet = get_field('link__all__projet');
+$photoProfile = get_field('img__profile');
+
+$titlePage = get_field('title__page');
+$name = get_field('name');
+$description = get_field('descriptions');
 
 ?>
 <?php get_header(); ?>
+    <main id="main-content">
 <h2 class="title__page"><?=  get_field('title__page')?></h2>
-<section class="profile">
-    <h3 class="profile__name">
-    <?= get_field('name')?> 
+<section class="profile" aria-labelledby="profile-title">
+    <h3 id="profile-title" class="sr-only">
+    <?= $name?>
     </h3>
-    <div class="profile__detail">
-        <?= get_field('descriptions')?>
+    <div class="profile__content">
+
+            <p class="profile__description">
+                <?= ($description); ?>
+            </p>
+
+        <div class="profile__image">
+            <?php if ($photoProfile): ?>
+                <img
+                        src="<?= esc_url($photoProfile['url']); ?>"
+                        alt="<?= esc_attr($photoProfile['alt'] ?: 'Photo de profil'); ?>"
+                        loading="lazy"
+                >
+            <?php endif; ?>
+        </div>
+
     </div>
 </section>
 
@@ -52,4 +72,5 @@ $allLinkProjet = get_field('link__all__projet');
 
         <?php endif; ?>
     </section>
+</main>
 <?php get_footer(); ?>
