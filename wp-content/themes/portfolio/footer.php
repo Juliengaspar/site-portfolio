@@ -70,10 +70,6 @@ $footerCopyright = get_field('copyright__footer', 'option');
         <?php if ($footerCopyright): ?>
             <p><?= esc_html($footerCopyright); ?></p>
         <?php endif; ?>
-
-        <p class="copyright-text">
-            <strong>© <?= date('Y'); ?></strong> <?= $footerCopyright ?>>
-        </p>
     </div>
 </footer>
 

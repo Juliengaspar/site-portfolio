@@ -1,0 +1,188 @@
+@use "../general/general" as *;
+
+
+.proflie {
+  display: block;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+
+  &__title {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 5%;
+    text-align: center;
+  }
+}
+
+// Competences
+#title__competence {
+  font-size: clamp(2rem, 6vw, 6.25rem);
+  font-family: "Poppins", serif;
+  font-weight: bold;
+  margin: 15% auto;
+  width: 80%;
+  text-align: center;
+}
+
+.competences {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: $principale__color__blue;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__img {
+    background-color: $white;
+    width: 80px;
+    height: auto;
+  }
+}
+
+// Soft Skills (1 colonne sur mobile)
+.softSkillsContainer {
+  padding: 2rem 1rem;
+
+  > h2 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.softSkillsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.softSkill {
+  background: $white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+}
+
+.softSkill__imageWrapper {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  img {
+    max-width: 64px;
+    height: auto;
+  }
+}
+
+.softSkill__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.parcours {
+  padding: 3rem 1.5rem;
+  background: $bg;
+
+  &__title {
+    font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+// Passion (mobile)
+.passion__content__description {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: $principale__color__blue;
+  padding: 2rem 1rem;
+
+  &__text {
+    color: $white;
+    text-align: center;
+  }
+}
+
+// ============================================
+// TABLETTE (min-width: 768px)
+// ============================================
+@media (min-width: 768px) {
+  .softSkillsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .parcours__card {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .passion__content__description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+// ============================================
+// DESKTOP (min-width: 1024px)
+// ============================================
+@media (min-width: 1024px) {
+  .proflie {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    &__title {
+      text-align: left;
+    }
+  }
+
+  .softSkillsContainer {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .softSkillsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .parcours {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    &__timeline {
+      display: grid;
+      grid-template-columns: 1fr 2px 1fr;
+      gap: 2rem;
+
+      &::before {
+        content: "";
+        grid-column: 2;
+        width: 2px;
+        background: repeating-linear-gradient(to bottom, $principale__color__blue, $principale__color__blue 8px, transparent 8px, transparent 16px);
+      }
+    }
+  }
+}

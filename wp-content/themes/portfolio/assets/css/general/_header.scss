@@ -1,3 +1,5 @@
+@use "./general" as *;
+
 /* Accessibilité */
 a {
   cursor: pointer;
@@ -17,7 +19,18 @@ a {
     margin: 0;
     font-size: 16px;
     box-sizing: border-box;
-
+    background-color: $background;
+  }
+  .title{
+    font-size: 6.25rem;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+  }
+  .ul-container ul{
+    display: flex;
+    gap: 1rem;
   }
   /* Navigation */
   .navigation__bars {
@@ -45,6 +58,9 @@ a {
         height: auto;
         display: block;
     }
+  }
+  .sectionMargin{
+    margin: 5%;
   }
 }
 
