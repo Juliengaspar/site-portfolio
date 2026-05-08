@@ -37,70 +37,92 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 ?>
 
 <title><?= $title ?></title>
-<section>
-    <h2 class="form__titile"><?= $title ?></h2>
+<main class="contact-page">
 
-    <section class="forme__message">
-        <div class="info__form">
-            <h3 class="titile__bloc__form"><?php the_field("titile__page__form"); ?></h3>
-            <p class="text__form"><?php the_field("text__form"); ?></p>
-        </div>
+    <h2 class="contact-page__title title"><?= esc_html($title); ?></h2>
 
-        <?php if (!empty($success)): ?>
-            <p style="color:<?php echo strpos($success, '✅') !== false ? 'green' : 'red'; ?>;"><?php echo $success; ?></p>
-        <?php endif; ?>
+    <section class="contact-page__container">
 
-        <section class="contact">
-            <form class="form" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
+        <!-- FORMULAIRE -->
+        <section class="contact-form">
 
-                <div class="form__elements" id="form__last__name">
-                    <label for="lastName">Nom <span>*</span></label>
-                    <input type="text" name="lastName" id="lastName" value="<?php echo esc_attr($_POST['lastName'] ?? ''); ?>">
-                    <?php if (isset($errors['lastName'])): ?><p class="field__error"><?php echo $errors['lastName']; ?></p><?php endif; ?>
+            <header class="contact-form__header">
+                <h3 class="contact-form__title" ><?php the_field("titile__page__form"); ?></h3>
+                <p><?php the_field("text__form"); ?></p>
+            </header>
+
+            <?php if (!empty($success)): ?>
+                <p class="form__success"><?= esc_html($success); ?></p>
+            <?php endif; ?>
+
+            <form method="post" novalidate>
+
+                <div class="form__group">
+                    <label for="lastName">Nom *</label>
+                    <input type="text" name="lastName" id="lastName" value="<?= esc_attr($_POST['lastName'] ?? '') ?>">
+                    <?php if (isset($errors['lastName'])): ?>
+                        <span class="error"><?= $errors['lastName']; ?></span>
+                    <?php endif; ?>
                 </div>
 
-                <div class="form__elements" id="form__first__name">
-                    <label for="firstName">Prénom <span>*</span></label>
-                    <input type="text" name="firstName" id="firstName" value="<?php echo esc_attr($_POST['firstName'] ?? ''); ?>">
-                    <?php if (isset($errors['firstName'])): ?><p class="field__error"><?php echo $errors['firstName']; ?></p><?php endif; ?>
+                <div class="form__group">
+                    <label for="firstName">Prénom *</label>
+                    <input type="text" name="firstName" id="firstName" value="<?= esc_attr($_POST['firstName'] ?? '') ?>">
                 </div>
 
-                <div class="form__elements" id="form__email">
-                    <label for="email">Email <span>*</span></label>
-                    <input type="email" name="email" id="email" value="<?php echo esc_attr($_POST['email'] ?? ''); ?>">
-                    <?php if (isset($errors['email'])): ?><p class="field__error"><?php echo $errors['email']; ?></p><?php endif; ?>
+                <div class="form__group">
+                    <label for="email">Email *</label>
+                    <input type="email" name="email" id="email" value="<?= esc_attr($_POST['email'] ?? '') ?>">
                 </div>
 
-                <div class="form__elements" id="form__sujet">
-                    <label for="subjetMessage">Sujet</label>
-                    <select id="subjetMessage" name="subjetMessage">
-                        <option>Proposition de projet ou collaboration</option>
-                        <option>Demande d’informations supplémentaires</option>
-                        <option>Opportunité d’embauche (CDI, CDD, stage…)</option>
-                        <option>Autre (précisez dans le message)</option>
+                <div class="form__group">
+                    <label for="subjectMessage">Sujet</label>
+                    <select name="subjectMessage" id="subjectMessage">
+                        <option>Collaboration</option>
+                        <option>Informations</option>
+                        <option>Emploi</option>
+                        <option>Autre</option>
                     </select>
                 </div>
 
-                <div class="form__elements" id="form__message">
-                    <label for="message">Message <span>*</span></label>
-                    <textarea id="message" name="message" rows="5"><?php echo esc_textarea($_POST['message'] ?? ''); ?></textarea>
-                    <?php if (isset($errors['message'])): ?><p class="field__error"><?php echo $errors['message']; ?></p><?php endif; ?>
+                <div class="form__group">
+                    <label for="message">Message *</label>
+                    <textarea name="message" id="message"><?= esc_textarea($_POST['message'] ?? '') ?></textarea>
                 </div>
 
-                <p class="form__elements"><span>*</span> Champs obligatoires</p>
+                <p class="form__note">* Champs obligatoires</p>
 
-                <button class="submit" type="submit" name="envoyer">Envoyer</button>
+                <button type="submit" name="envoyer" class="btn-submit">
+                    Envoyer
+                </button>
+
             </form>
-
-            <section class="coordonnees">
-                <h3 class="coordonnee">Coordonnées</h3>
-                <ul>
-                    <li class="coordonnee__info" id="email"><?php the_field("email"); ?></li>
-                    <li class="coordonnee__info" id="number__tel"><?php the_field("number__tel"); ?></li>
-                    <li class="coordonnee__info" id="adresse"><?php the_field("adresse"); ?></li>
-                </ul>
-            </section>
         </section>
+
+        <!-- COORDONNÉES -->
+        <aside class="contact-info">
+
+            <?php $img = get_field('form__picture'); ?>
+            <?php if ($img): ?>
+                <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>">
+            <?php endif; ?>
+
+            <h3><?= get_field('title__reseaux__sociaux'); ?></h3>
+
+            <ul>
+
+                <li id="email">
+                    <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
+                        <use xlink:href="#Icone__tel"></use>
+                    </svg>
+                    <?= get_field("email"); ?></li>
+                <li id="tel"><?= get_field("number__tel"); ?></li>
+                <li id="adresse"><?= get_field("adresse"); ?></li>
+            </ul>
+
+        </aside>
+
     </section>
-</section>
+
+</main>
 <?php get_footer(); ?>

@@ -1,69 +1,96 @@
+<?php get_header(); ?>
+
 <?php
-/**
- * Template de la galerie - Affiche TOUS les projets en grille
- * Fichier : archive-projet.php
- * URL : /projets/
- */
+$current_filter = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : 'all';
+$tax_query = array();
 
-get_header(); ?>
+if ($current_filter !== 'all') {
+    $tax_query = array(
+            array(
+                    'taxonomy' => 'type_projet',
+                    'field'    => 'slug',
+                    'terms'    => $current_filter,
+            )
+    );
+}
 
-    <main id="main" class="site-main" role="main">
+global $wp_query;
+if (!empty($tax_query)) {
+    $wp_query->set('tax_query', $tax_query);
+    $wp_query->get_posts();
+}
+?>
 
-        <!-- En-tête de la galerie -->
-        <section class="gallery-hero">
-            <div class="container">
-                <h1>Mes Projets</h1>
-                <p>Découvrez l'ensemble de mes réalisations</p>
-            </div>
-        </section>
+    <section class="projets-container">
+        <h2 class="projets-titre"><?php echo get_the_archive_title(); ?></h2>
 
-        <!-- Filtres Web/3D/2D (UNIQUEMENT sur la galerie) -->
-        <section class="filters-section">
-            <div class="container">
-                <div class="filters-wrapper">
-                    <button class="filter-btn active" data-filter="all">Tous</button>
-                    <button class="filter-btn" data-filter="web">Web</button>
-                    <button class="filter-btn" data-filter="3d">3D</button>
-                    <button class="filter-btn" data-filter="2d">2D</button>
+        <!-- FILTRES -->
+        <div class="filtres">
+            <?php
+            $filtres = array('all' => 'Tous', 'web' => 'Web', '2d' => '2D', '3d' => '3D');
+            $current_url = get_post_type_archive_link('projet');
+
+            foreach ($filtres as $slug => $label) :
+                $active_class = ($current_filter === $slug) ? 'active' : '';
+                $filter_url = ($slug === 'all') ? $current_url : add_query_arg('filter', $slug, $current_url);
+                ?>
+                <a href="<?php echo esc_url($filter_url); ?>" class="filtre-link <?php echo $active_class; ?>">
+                    <?php echo esc_html($label); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- GRILLE DES PROJETS -->
+        <div class="grid-projets">
+            <?php if (have_posts()) : ?>
+                <?php while (have_posts()) : the_post();
+                    $terms = get_the_terms(get_the_ID(), 'type_projet');
+                    $img_project = get_field('img_project');
+                    $link_project = get_field('link_project');
+                    $description_project = get_field('description_project');
+                    ?>
+                    <div class="carte">
+                        <?php if ($img_project) : ?>
+                            <div class="carte-image">
+                                <img src="<?php echo esc_url($img_project['url']); ?>" alt="<?php echo esc_attr($img_project['alt']); ?>">
+                            </div>
+                        <?php else : ?>
+                            <div class="carte-image carte-image--placeholder">
+                                <?php the_post_thumbnail('medium'); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <h3 class="carte-titre"><?php the_title(); ?></h3>
+
+                        <?php if ($description_project) : ?>
+                            <div class="carte-description"><?php echo wp_kses_post($description_project); ?></div>
+                        <?php else : ?>
+                            <p class="carte-excerpt"><?php the_excerpt(); ?></p>
+                        <?php endif; ?>
+
+                        <?php if ($link_project) : ?>
+                            <a href="<?php echo esc_url($link_project['url']); ?>" class="btn" target="<?php echo esc_attr($link_project['target']); ?>">
+                                <?php echo esc_html($link_project['title'] ?: 'Découvrir'); ?>
+                            </a>
+                        <?php else : ?>
+                            <a href="<?php the_permalink(); ?>" class="btn">Découvrir</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endwhile; ?>
+
+                <!-- PAGINATION -->
+                <div class="pagination">
+                    <?php echo paginate_links(array(
+                            'prev_text' => '«',
+                            'next_text' => '»',
+                            'add_args'  => array('filter' => $current_filter),
+                    )); ?>
                 </div>
-            </div>
-        </section>
 
-        <!-- GRILLE des projets (PLUSIEURS projets) -->
-        <section class="projects-grid-section">
-            <div class="container">
-                <div class="projects-grid">
-
-                    <?php if (have_posts()) : ?>
-                        <?php while (have_posts()) : the_post(); ?>
-
-                            <article class="project-card">
-                                <a href="<?php the_permalink(); ?>" class="project-card__link">
-
-                                    <figure class="project-card__image-wrapper">
-                                        <?php the_post_thumbnail('medium_large'); ?>
-                                    </figure>
-
-                                    <div class="project-card__content">
-                                        <h2><?php the_title(); ?></h2>
-                                        <p><?php echo get_the_excerpt(); ?></p>
-
-                                        <!-- BOUTON DÉCOUVRIR qui mène vers single-projet.php -->
-                                        <span class="project-card__cta">
-                                        Découvrir →
-                                    </span>
-                                    </div>
-
-                                </a>
-                            </article>
-
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
+            <?php else : ?>
+                <p class="projets-vide">Aucun projet trouvé.</p>
+            <?php endif; ?>
+        </div>
+    </section>
 
 <?php get_footer(); ?>

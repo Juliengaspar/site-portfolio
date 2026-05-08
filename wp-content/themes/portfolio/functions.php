@@ -40,9 +40,19 @@ function dw_asset(string $file): string {
     return '';
 }
 // Déclaration des menus dans wordpress
-register_nav_menu('header', 'Le menu de navigation principal qui se trouve en haut de la page');
-register_nav_menu('footer', 'Le menu de navigation de fin de page');
+// Déclaration des menus dans wordpress
+function enregistrer_tous_menus() {
+    register_nav_menus([
+        // Version Française
+        'header-fr' => 'Header - Français',
+        'footer-fr' => 'Footer - Français',
 
+        // Version Anglaise
+        'header-en' => 'Header - English',
+        'footer-en' => 'Footer - English',
+    ]);
+}
+add_action('after_setup_theme', 'enregistrer_tous_menus');
 function hepl_execute_contact_form()
 {
     $config = [
@@ -137,7 +147,9 @@ function creer_cpt_projets() {
         'menu_icon' => 'dashicons-portfolio',
         'public' => true,
         'has_archive' => true,
-        'rewrite' => ['slug' => 'projets'],
+        'rewrite' => array(
+            'slug' => 'projets',
+        ),
         'supports' => ['title', 'excerpt', 'thumbnail'],
     ]);
 }
@@ -159,6 +171,7 @@ function creer_taxonomie_type_projet() {
     ]);
 }
 add_action('init', 'creer_taxonomie_type_projet');
+
 add_image_size('sqaure-small', 400, 400, true );//nom /size/recadrage;
 add_image_size('sqaure-medium', 800, 800, true );//nom /size/recadrage;
 add_image_size('sqaure-large', 1200, 1200, true );//nom /size/recadrage;

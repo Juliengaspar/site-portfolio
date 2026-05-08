@@ -42,7 +42,7 @@ $footerCopyright = get_field('copyright__footer', 'option');
 
             <?php
             wp_nav_menu([
-                    'theme_location' => 'footer-fr',
+                    'theme_location' => 'footer',
                     'container' => false,
                     'menu_class' => 'footer__menu',
             ]);

@@ -6,7 +6,7 @@ a {
   text-decoration: none;
 
   &:focus {
-    outline: 2px solid #2d4bff;
+    outline: 2px solid $principale__color__blue;
     outline-offset: 2px;
   }
 }
@@ -31,17 +31,19 @@ a {
   .ul-container ul{
     display: flex;
     gap: 1rem;
+    position: relative;
+    align-items: flex-start;
   }
   /* Navigation */
   .navigation__bars {
+    display: flex;
     position: fixed; // 🔥 le plus important
-    top: 0;
-    left: 0;
     width: 100%;
-    z-index: 1000;
-
+    margin: auto 0;
+    z-index: 999;
     background: rgba(205, 205, 205, 0.6) !important; // ou semi-transparent pour effet moderne
     padding: 1rem 2rem;
+    inset: 1.2% 0 auto;
 
     // option effet glass (moderne)
     backdrop-filter:blur(20px) saturate(180%);
