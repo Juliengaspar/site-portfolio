@@ -1,7 +1,7 @@
 <?php /* Template Name: Apropos */?>
 
 <?php get_header(); ?>
-<section class="about__me sectionMargin">
+<main id="main" class="about__me sectionMargin">
     <?php
     $titlePage = get_field('title__page');
     $AbouteMeTitle = get_field('title__a__propos');
@@ -31,18 +31,37 @@
         </section>
 
 
-        <!-- Compétences -->
-        <section>
-            <h2 class="title sectionMargin" id="title__competence ">Mes compétences</h2>
+    <!-- Compétences -->
+    <section class="competenceSection">
+        <h2 class="title sectionMargin" id="title__competence">
+            Mes hard skills
+        </h2>
+
+        <?php $galerie = get_field('galerie__picture__competence'); ?>
+
+        <?php if ($galerie) : ?>
             <div class="competences">
-                <?php $galerie = get_field('galerie__picture__competence'); ?>
-                <?php if ($galerie) : ?>
+
+                <div class="competences__track">
+
+                    <!-- Première série -->
                     <?php foreach ($galerie as $image) : ?>
-                        <img class="competences__img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                        <div class="competences__item">
+                            <img
+                                    class="competences__img"
+                                    src="<?php echo esc_url($image['url']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>"
+                            >
+                        </div>
                     <?php endforeach; ?>
-                <?php endif; ?>
+
+
+
+                </div>
+
             </div>
-        </section>
+        <?php endif; ?>
+    </section>
     <section class="softSkillsContainer">
         <?php
         $titleSoftSkill = get_field('soft__Skills__title');
@@ -151,6 +170,6 @@
             </section>
 
         </section>
-</section>
+</main>
 
 <?php get_footer(); ?>

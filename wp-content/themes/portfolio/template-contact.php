@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 ?>
 
 <title><?= $title ?></title>
-<main class="contact-page">
+<main id="main" class="contact-page">
 
     <h2 class="contact-page__title title"><?= esc_html($title); ?></h2>
 

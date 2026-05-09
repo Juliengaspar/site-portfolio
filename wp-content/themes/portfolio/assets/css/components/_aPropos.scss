@@ -14,29 +14,68 @@
     text-align: center;
   }
 }
-
-// Competences
+// TITRE
 #title__competence {
-  font-size: clamp(2rem, 6vw, 6.25rem);
+  font-size:2rem;
+  text-align: left;
   font-family: "Poppins", serif;
   font-weight: bold;
-  margin: 15% auto;
   width: 80%;
-  text-align: center;
 }
 
+// SECTION COMPETENCES
 .competences {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  width: 100%;
+  overflow: hidden;
   background-color: $principale__color__blue;
-  gap: 1rem;
-  padding: 1rem;
+  padding: 2rem 0;
+  position: relative;
 
-  &__img {
+  // Piste qui défile
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: max-content;
+
+    animation: scrollCompetence 20s linear infinite;
+  }
+
+  // Carte image
+  &__item {
+    flex-shrink: 0;
+
     background-color: $white;
-    width: 80px;
+
+    border-radius: 15px;
+
+    padding: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // Image responsive
+  &__img {
+    width: clamp(50px, 8vw, 120px);
     height: auto;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+// ===============================
+// ANIMATION INFINIE
+// ===============================
+
+@keyframes scrollCompetence {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }
 

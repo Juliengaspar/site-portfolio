@@ -1,96 +1,127 @@
-<?php get_header(); ?>
-
 <?php
-$current_filter = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : 'all';
-$tax_query = array();
+get_header(); ?>
+<?php
 
-if ($current_filter !== 'all') {
-    $tax_query = array(
-            array(
-                    'taxonomy' => 'type_projet',
-                    'field'    => 'slug',
-                    'terms'    => $current_filter,
-            )
-    );
-}
-
-global $wp_query;
-if (!empty($tax_query)) {
-    $wp_query->set('tax_query', $tax_query);
-    $wp_query->get_posts();
-}
 ?>
 
-    <section class="projets-container">
-        <h2 class="projets-titre"><?php echo get_the_archive_title(); ?></h2>
+    <main id="main" class="site-main" role="main">
 
-        <!-- FILTRES -->
-        <div class="filtres">
-            <?php
-            $filtres = array('all' => 'Tous', 'web' => 'Web', '2d' => '2D', '3d' => '3D');
-            $current_url = get_post_type_archive_link('projet');
+        <section class="projects-archive">
+            <div class="container">
 
-            foreach ($filtres as $slug => $label) :
-                $active_class = ($current_filter === $slug) ? 'active' : '';
-                $filter_url = ($slug === 'all') ? $current_url : add_query_arg('filter', $slug, $current_url);
-                ?>
-                <a href="<?php echo esc_url($filter_url); ?>" class="filtre-link <?php echo $active_class; ?>">
-                    <?php echo esc_html($label); ?>
-                </a>
-            <?php endforeach; ?>
-        </div>
+                <h2 class="archive-title">Nos Projets</h2>
 
-        <!-- GRILLE DES PROJETS -->
-        <div class="grid-projets">
-            <?php if (have_posts()) : ?>
-                <?php while (have_posts()) : the_post();
-                    $terms = get_the_terms(get_the_ID(), 'type_projet');
-                    $img_project = get_field('img_project');
-                    $link_project = get_field('link_project');
-                    $description_project = get_field('description_project');
-                    ?>
-                    <div class="carte">
-                        <?php if ($img_project) : ?>
-                            <div class="carte-image">
-                                <img src="<?php echo esc_url($img_project['url']); ?>" alt="<?php echo esc_attr($img_project['alt']); ?>">
-                            </div>
-                        <?php else : ?>
-                            <div class="carte-image carte-image--placeholder">
-                                <?php the_post_thumbnail('medium'); ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <h3 class="carte-titre"><?php the_title(); ?></h3>
-
-                        <?php if ($description_project) : ?>
-                            <div class="carte-description"><?php echo wp_kses_post($description_project); ?></div>
-                        <?php else : ?>
-                            <p class="carte-excerpt"><?php the_excerpt(); ?></p>
-                        <?php endif; ?>
-
-                        <?php if ($link_project) : ?>
-                            <a href="<?php echo esc_url($link_project['url']); ?>" class="btn" target="<?php echo esc_attr($link_project['target']); ?>">
-                                <?php echo esc_html($link_project['title'] ?: 'Découvrir'); ?>
-                            </a>
-                        <?php else : ?>
-                            <a href="<?php the_permalink(); ?>" class="btn">Découvrir</a>
-                        <?php endif; ?>
-                    </div>
-                <?php endwhile; ?>
-
-                <!-- PAGINATION -->
-                <div class="pagination">
-                    <?php echo paginate_links(array(
-                            'prev_text' => '«',
-                            'next_text' => '»',
-                            'add_args'  => array('filter' => $current_filter),
-                    )); ?>
+                <!-- Filtres par type de projet -->
+                <div class="projects-filters">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="2d">2D</button>
+                    <button class="filter-btn" data-filter="3d">3D</button>
                 </div>
 
-            <?php else : ?>
-                <p class="projets-vide">Aucun projet trouvé.</p>
-            <?php endif; ?>
-        </div>
-    </section>
+                <!-- Grille des projets -->
+                <div class="projects-grid" id="projects-grid">
+                    <?php
+                    // Requête pour récupérer tous les projets
+                    $args = array(
+                            'post_type' => 'projet',
+                            'posts_per_page' => -1,
+                            'orderby' => 'date',
+                            'order' => 'DESC'
+                    );
+
+                    $projects_query = new WP_Query($args);
+
+                    if ($projects_query->have_posts()) :
+                        while ($projects_query->have_posts()) : $projects_query->the_post();
+                            $imgProjets = get_field('img__project');
+
+
+                            // Récupérer les types de projet
+                            $project_types = get_the_terms(get_the_ID(), 'type_projet');
+                            $type_classes = array();
+
+                            if ($project_types && !is_wp_error($project_types)) {
+                                foreach ($project_types as $type) {
+                                    $type_classes[] = strtolower($type->name);
+                                }
+                            }
+                            ?>
+
+                            <article class="project-card <?php echo implode(' ', $type_classes); ?>"
+                                     data-types="<?php echo implode(',', $type_classes); ?>">
+                                <?php if($imgProjets): ?>
+
+                                    <img
+                                            src="<?= $imgProjets['url']; ?>"
+                                            alt="<?= $imgProjets['alt']; ?>"
+                                    >
+
+                                <?php endif; ?>                                <?php if (has_post_thumbnail()) : ?>
+                                    <div class="project-card-image">
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="project-card-content">
+
+                                    <h2 class="project-card-title">
+                                        <?php the_title(); ?>
+                                    </h2>
+
+                                    <div class="project-card-excerpt">
+                                        <?php echo get_the_excerpt(); ?>
+                                    </div>
+
+                                    <a href="<?php the_permalink(); ?>" class="button">
+                                        Decouvrir →
+                                    </a>
+                                </div>
+                            </article>
+
+                        <?php endwhile;
+                        wp_reset_postdata();
+                    else : ?>
+                        <p class="no-projects">Aucun projet trouvé.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Filtrage des projets en JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Mettre à jour la classe active sur les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filtrer les projets
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const cardTypes = card.getAttribute('data-types');
+                            if (cardTypes && cardTypes.includes(filterValue)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
 <?php get_footer(); ?>

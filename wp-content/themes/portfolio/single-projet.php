@@ -1,111 +1,239 @@
 <?php
 /**
- * Template du détail d'un projet - Affiche UN SEUL projet en détail
- * Fichier : single-projet.php
- * URL : /projets/plai/ (ou autre nom de projet)
+ * Template pour l'affichage d'un projet individuel
+ * Page détaillée d'un projet du portfolio
+ *
+ * @package Portfolio
  */
 
-get_header(); ?>
+get_header();
+?>
 
-    <main id="main" class="site-main" role="main">
+    <main id="main" class="single-projet" role="main">
+        <?php while (have_posts()) : the_post(); ?>
+        <?php
+            $titlePage = get_field('title__projet');
+            $imgPage = get_field('projet__img');
+            $descriptionPage = get_field('projet__description');
+            ?>
+        <h2 class="title"><?= $titlePage ?></h2>
 
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <!-- Hero Section avec titre et contexte -->
+            <header class="projet-hero" aria-labelledby="projet-title">
+                <h3><?= get_the_title() ?></h3>
 
-            <!-- Hero du projet -->
-            <section class="project-hero">
-                <div class="container">
+                <div>
+                    <?php if($imgPage): ?>
 
-                    <!-- Badge du type (Web/3D/2D) -->
-                    <?php
-                    $project_types = get_the_terms(get_the_ID(), 'type_projet');
-                    if ($project_types && !is_wp_error($project_types)) : ?>
-                        <div class="project-badges">
-                            <?php foreach ($project_types as $type) : ?>
-                                <span class="badge badge--<?php echo esc_attr(strtolower($type->name)); ?>">
-                                <?php echo esc_html($type->name); ?>
-                            </span>
-                            <?php endforeach; ?>
-                        </div>
+                        <img
+                                src="<?= $imgPage['url']; ?>"
+                                alt="<?= $imgPage['alt']; ?>"
+                        >
+
                     <?php endif; ?>
-
-                    <h1 class="project-title"><?php the_title(); ?></h1>
-
-                </div>
-            </section>
-
-            <!-- Contenu détaillé du projet -->
-            <section class="project-content">
-                <div class="container">
-
-                    <!-- Image principale -->
-                    <?php if (has_post_thumbnail()) : ?>
-                        <div class="project-featured-image">
-                            <?php the_post_thumbnail('large'); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Description détaillée (WYSIWYG ACF) -->
-                    <div class="project-description">
-                        <?php
-                        // Si vous utilisez ACF pour le contenu détaillé
-                        $detailed_content = get_field('description_detaillee');
-                        if ($detailed_content) {
-                            echo $detailed_content;
-                        } else {
-                            // Sinon, affiche le contenu de l'éditeur classique
-                            the_content();
-                        }
-                        ?>
+                    <div>
+                        <?= $descriptionPage?>
                     </div>
+                </div>
+                <div class="projet-hero__container">
 
-                    <!-- Galerie d'images ACF (optionnel) -->
-                    <?php
-                    $gallery = get_field('galerie_projet');
-                    if ($gallery) : ?>
-                        <div class="project-gallery">
-                            <h2>Galerie d'images</h2>
-                            <div class="gallery-grid">
-                                <?php foreach ($gallery as $image) : ?>
-                                    <img src="<?php echo esc_url($image['url']); ?>"
-                                         alt="<?php echo esc_attr($image['alt']); ?>">
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Liens utiles -->
-                    <?php
-                    $project_link = get_field('lien_du_projet');
-                    if ($project_link) : ?>
-                        <div class="project-links">
-                            <a href="<?php echo esc_url($project_link); ?>"
-                               class="btn-primary"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                Voir le projet en ligne →
-                            </a>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Navigation entre projets (précédent/suivant) -->
-                    <nav class="project-navigation">
-                        <div class="nav-previous">
-                            <?php previous_post_link('%link', '← Projet précédent'); ?>
-                        </div>
-                        <div class="nav-back">
-                            <a href="<?php echo get_post_type_archive_link('projet'); ?>">
-                                ← Retour à la galerie
-                            </a>
-                        </div>
-                        <div class="nav-next">
-                            <?php next_post_link('%link', 'Projet suivant →'); ?>
+                    <!-- Fil d'Ariane (breadcrumb) -->
+                    <nav class="breadcrumb" aria-label="Vous êtes ici :">
+                        <div class="container">
+                            <ol class="breadcrumb__list">
+                                <li class="breadcrumb__item">
+                                    <a href="<?php echo home_url(); ?>" class="breadcrumb__link">Accueil</a>
+                                </li>
+                                <li class="breadcrumb__item">
+                                    <a href="<?php echo get_post_type_archive_link('projet'); ?>" class="breadcrumb__link">
+                                        Projets
+                                    </a>
+                                </li>
+                                <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+                                    <?php the_title(); ?>
+                                </li>
+                            </ol>
                         </div>
                     </nav>
 
-                </div>
-            </section>
 
-        <?php endwhile; endif; ?>
+                </div>
+            </header>
+
+            <!-- Contenu principal du projet -->
+            <article class="projet-content" id="projet-content">
+                <div class="container">
+                    <div class="projet-content__grid">
+
+                        <!-- Section principale : Description -->
+                        <div class="projet-description">
+                            <div class="projet-section">
+                                <h2 class="projet-section__title">Contexte & Objectifs</h2>
+                                <div class="projet-section__content prose">
+                                    <?php the_content(); ?>
+                                </div>
+                            </div>
+
+                            <!-- Champs personnalisés ACF ou avancés -->
+                            <?php
+                            $challenge = get_post_meta(get_the_ID(), 'challenge', true);
+                            $solution = get_post_meta(get_the_ID(), 'solution', true);
+                            $resultats = get_post_meta(get_the_ID(), 'resultats', true);
+                            ?>
+
+                            <?php if ($challenge) : ?>
+                                <div class="projet-section">
+                                    <h2 class="projet-section__title">🎯 Défi & Objectifs</h2>
+                                    <div class="projet-section__content prose">
+                                        <?php echo wp_kses_post($challenge); ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($solution) : ?>
+                                <div class="projet-section">
+                                    <h2 class="projet-section__title">💡 Solution apportée</h2>
+                                    <div class="projet-section__content prose">
+                                        <?php echo wp_kses_post($solution); ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($resultats) : ?>
+                                <div class="projet-section">
+                                    <h2 class="projet-section__title">📊 Résultats & Impact</h2>
+                                    <div class="projet-section__content prose">
+                                        <?php echo wp_kses_post($resultats); ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Galerie d'images -->
+                            <?php
+                            $gallery = get_post_meta(get_the_ID(), 'projet_gallery', true);
+                            if ($gallery) :
+                                $gallery_ids = explode(',', $gallery);
+                                if (!empty($gallery_ids)) : ?>
+                                    <div class="projet-gallery">
+                                        <h2 class="projet-section__title">📸 Galerie du projet</h2>
+                                        <div class="gallery-grid">
+                                            <?php foreach ($gallery_ids as $image_id) :
+                                                $image_url = wp_get_attachment_image_url($image_id, 'medium_large');
+                                                $image_full = wp_get_attachment_image_url($image_id, 'full');
+                                                $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+                                                ?>
+                                                <a href="<?php echo esc_url($image_full); ?>" class="gallery-item" data-lightbox="projet-gallery">
+                                                    <img src="<?php echo esc_url($image_url); ?>"
+                                                         alt="<?php echo esc_attr($image_alt ?: get_the_title()); ?>"
+                                                         loading="lazy">
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endif;
+                            endif; ?>
+                        </div>
+
+                        <!-- Sidebar : Technologies & Compétences -->
+                        <aside class="projet-sidebar" aria-label="Informations techniques">
+
+                            <!-- Technologies utilisées -->
+                            <?php
+                            $technologies = get_post_meta(get_the_ID(), 'technologies', true);
+                            if ($technologies) :
+                                $tech_list = explode(',', $technologies);
+                                ?>
+                                <div class="sidebar-widget">
+                                    <h3 class="sidebar-widget__title">🛠️ Technologies utilisées</h3>
+                                    <div class="tags-list">
+                                        <?php foreach ($tech_list as $tech) : ?>
+                                            <span class="tag"><?php echo esc_html(trim($tech)); ?></span>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Compétences / Rôle -->
+                            <?php
+                            $competences = get_post_meta(get_the_ID(), 'competences', true);
+                            if ($competences) :
+                                $comp_list = explode(',', $competences);
+                                ?>
+                                <div class="sidebar-widget">
+                                    <h3 class="sidebar-widget__title">✨ Compétences mobilisées</h3>
+                                    <ul class="skills-list">
+                                        <?php foreach ($comp_list as $comp) : ?>
+                                            <li><?php echo esc_html(trim($comp)); ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Liens utiles -->
+
+
+                            <!-- Partager -->
+                            <div class="sidebar-widget">
+                                <h3 class="sidebar-widget__title">📤 Partager</h3>
+                                <div class="share-buttons">
+                                    <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                                       class="share-btn share-btn--twitter" target="_blank" rel="noopener noreferrer">
+                                        Twitter
+                                    </a>
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
+                                       class="share-btn share-btn--linkedin" target="_blank" rel="noopener noreferrer">
+                                        LinkedIn
+                                    </a>
+                                </div>
+                            </div>
+
+                        </aside>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Projets similaires -->
+            <?php
+            $related_args = array(
+                    'post_type' => 'projet',
+                    'posts_per_page' => 3,
+                    'post__not_in' => array(get_the_ID()),
+                    'orderby' => 'rand'
+            );
+
+
+
+            $related = new WP_Query($related_args);
+
+            if ($related->have_posts()) : ?>
+                <section class="projets-similaires" aria-labelledby="related-title">
+                    <div class="container">
+                        <h2 id="related-title" class="section-title">Projets similaires</h2>
+                        <div class="related-grid">
+                            <?php while ($related->have_posts()) : $related->the_post(); ?>
+                                <article class="related-card">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <div class="related-card__image">
+                                            <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="related-card__content">
+                                        <h3 class="related-card__title">
+                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        </h3>
+                                        <a href="<?php the_permalink(); ?>" class="related-card__link">
+                                            Découvrir →
+                                        </a>
+                                    </div>
+                                </article>
+                            <?php endwhile; ?>
+                        </div>
+                    </div>
+                </section>
+            <?php endif;
+            wp_reset_postdata(); ?>
+
+        <?php endwhile; ?>
 
     </main>
 
