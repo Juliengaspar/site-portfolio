@@ -51,13 +51,14 @@ get_header(); ?>
                             <article class="project-card <?php echo implode(' ', $type_classes); ?>"
                                      data-types="<?php echo implode(',', $type_classes); ?>">
                                 <?php if($imgProjets): ?>
-
-                                    <img
+                                <div class="projet__img">
+                                    <img class="projet__img__img"
                                             src="<?= $imgProjets['url']; ?>"
                                             alt="<?= $imgProjets['alt']; ?>"
                                     >
 
                                 <?php endif; ?>                                <?php if (has_post_thumbnail()) : ?>
+                                </div>
                                     <div class="project-card-image">
                                         <a href="<?php the_permalink(); ?>">
                                             <?php the_post_thumbnail('medium'); ?>
@@ -72,7 +73,7 @@ get_header(); ?>
                                     </h2>
 
                                     <div class="project-card-excerpt">
-                                        <?php echo get_the_excerpt(); ?>
+                                        <?php echo get_field('description__project'); ?>
                                     </div>
 
                                     <a href="<?php the_permalink(); ?>" class="button">

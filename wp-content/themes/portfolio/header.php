@@ -1,8 +1,5 @@
 <?php /* Template Name: header */?>
-
-
-
-    <svg width="0" height="0" class="hidden">
+    <svg width="0" height="0" class="">
         <symbol id="Perseverance" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
             <defs></defs>
             <polygon points="2.85 30.96 2.15 30.25 7.26 25.13 12.73 25.13 18.06 10.1 20.93 18.41 26.03 4.52 31.33 19.73 30.39 20.06 26 7.49 20.9 21.39 18.04 13.12 13.43 26.13 7.68 26.13 2.85 30.96"></polygon>

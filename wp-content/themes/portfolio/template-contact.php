@@ -55,28 +55,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                 <p class="form__success"><?= esc_html($success); ?></p>
             <?php endif; ?>
 
-            <form method="post" novalidate>
+            <form  action="#"  method="post" class="form" novalidate>
 
                 <div class="form__group">
-                    <label for="lastName">Nom *</label>
-                    <input type="text" name="lastName" id="lastName" value="<?= esc_attr($_POST['lastName'] ?? '') ?>">
+                    <label for="lastName" class="form__group__label">Nom <span class="form__note">*</span></label>
+                    <input type="text" name="lastName" id="lastName" class="form__group__input" value="<?= esc_attr($_POST['lastName'] ?? '') ?>" placeholder="Votre nom de famille">
                     <?php if (isset($errors['lastName'])): ?>
                         <span class="error"><?= $errors['lastName']; ?></span>
                     <?php endif; ?>
                 </div>
 
                 <div class="form__group">
-                    <label for="firstName">Prénom *</label>
-                    <input type="text" name="firstName" id="firstName" value="<?= esc_attr($_POST['firstName'] ?? '') ?>">
+                    <label for="firstName" class="form__group__label">Prénom <span class="form__note">*</span></label>
+                    <input type="text" name="firstName" id="firstName" class="form__group__input" value="<?= esc_attr($_POST['firstName'] ?? '') ?>" placeholder="votre prenom">
                 </div>
 
                 <div class="form__group">
-                    <label for="email">Email *</label>
-                    <input type="email" name="email" id="email" value="<?= esc_attr($_POST['email'] ?? '') ?>">
+                    <label for="email" class="form__group__label">Email <span class="form__note">*</span></label>
+                    <input type="email" name="email" id="email" class="form__group__input" value="<?= esc_attr($_POST['email'] ?? '') ?>" placeholder="entrez votre adresse mail">
                 </div>
 
                 <div class="form__group">
-                    <label for="subjectMessage">Sujet</label>
+                    <label for="subjectMessage" class="form__group__label">Sujet</label>
                     <select name="subjectMessage" id="subjectMessage">
                         <option>Collaboration</option>
                         <option>Informations</option>
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                 </div>
 
                 <div class="form__group">
-                    <label for="message">Message *</label>
+                    <label for="message" class="form__group__label">Message <span class="form__note">*</span></label>
                     <textarea name="message" id="message"><?= esc_textarea($_POST['message'] ?? '') ?></textarea>
                 </div>
 
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 
             <?php $img = get_field('form__picture'); ?>
             <?php if ($img): ?>
-                <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>">
+                <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>" class="contact-info__img">
             <?php endif; ?>
 
             <h3><?= get_field('title__reseaux__sociaux'); ?></h3>
@@ -113,11 +113,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 
                 <li id="email">
                     <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
-                        <use xlink:href="#Icone__tel"></use>
+                        <use xlink:href="#email"></use>
                     </svg>
                     <?= get_field("email"); ?></li>
-                <li id="tel"><?= get_field("number__tel"); ?></li>
-                <li id="adresse"><?= get_field("adresse"); ?></li>
+                <li id="tel">
+                    <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
+                        <use xlink:href="#Icone__tel"></use>
+                    </svg>
+                    <?= get_field("number__tel"); ?></li>
+                <li id="adresse">
+                    <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
+                        <use xlink:href="#Icone__adresse"></use>
+                    </svg>
+                    <?= get_field("adresse"); ?></li>
             </ul>
 
         </aside>
