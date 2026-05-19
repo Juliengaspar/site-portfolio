@@ -9,9 +9,58 @@
 @media (min-width: 1024px) {
 
   .title__page{
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 5% auto;
+  }
+  .profile__content__description{
+    background-color: $black;
+    color: $white;
+    height: auto;
+    margin: 2.5%;
+  }  .profile__content__description h2{
+         font-weight: 500;
+        font-size: 1.5rem;
+  }
+  .profile__content__description p{
+        font-size: 1rem;
+  }
+.liste-projets{
+  display: grid;
 
+  // crée automatiquement les colonnes
+  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+
+  gap: 5rem;
+
+  width: 100%;
+  padding: 5%;
+  &__projets__title{
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    font-size: 2rem;
+  }
+ &__projet{
+   background-color: $white;
+   padding: 1rem;
+   border-radius: 2rem;
+ }
+  &__singel-title{
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 2.5% auto;
+  }
+  &__projet-description{
+    font-size: 1rem;
+    text-align: center;
+    margin: 2.5% auto;
   }
 
+}
   // ACCESSIBILITÉ (screen reader)
   .sr-only {
     position: absolute;
@@ -55,8 +104,6 @@
 
   // SECTION PROJETS
   .liste-projets {
-    padding: 2rem 1rem;
-    text-align: center;
 
     .projets__title {
       font-size: 1.6rem;
@@ -65,9 +112,6 @@
     }
 
     // GRID
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
 
     // CARTE PROJET
     .projet {
@@ -153,6 +197,7 @@
   .profile__content {
     flex-direction: row;
     justify-content: center;
+    gap: 20%;
   }
 
   .projects__grid {
