@@ -1,7 +1,7 @@
 <?php /* Template Name: Apropos */?>
 
 <?php get_header(); ?>
-<main id="main" class="about__me sectionMargin">
+<main id="main" class="about__me main">
     <?php
     $titlePage = get_field('title__page');
     $AbouteMeTitle = get_field('title__a__propos');
@@ -160,8 +160,8 @@
                         </div>
                     <?php else: ?>
                         <div class="passion__image">
-                            <p style="color: red; border: 1px solid red; padding: 10px;">
-                                ⚠️ Image manquante : Vérifiez le champ ACF "hobbies__image"
+                            <p  class="passion__image__error" style="color: red; border: 1px solid red; padding: 10px;">
+                                Image manquante : Vérifiez le champ ACF "hobbies__image"
                             </p>
                         </div>
                     <?php endif; ?>

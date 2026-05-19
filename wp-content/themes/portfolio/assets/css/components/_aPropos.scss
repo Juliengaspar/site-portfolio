@@ -64,10 +64,29 @@
     display: block;
   }
 }
+.passion__content {
 
-// ===============================
+  &__description {
+    flex-direction: column;
+    text-align: center;
+
+    &__text {
+      width: 100%;
+    }
+  }
+}
+
+.passion__image {
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    border-radius: 18px;
+  }
+}
+
+
 // ANIMATION INFINIE
-// ===============================
 
 @keyframes scrollCompetence {
   from {
@@ -145,21 +164,18 @@
 
 // Passion (mobile)
 .passion__content__description {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 2rem;
   background-color: $principale__color__blue;
   padding: 2rem 1rem;
 
   &__text {
     color: $white;
-    text-align: center;
   }
+
 }
 
-// ============================================
 // TABLETTE (min-width: 768px)
-// ============================================
 @media (min-width: 768px) {
   .softSkillsGrid {
     display: grid;
@@ -206,7 +222,65 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
+  .passion__content {
+    width: 100%;
+    padding: 4rem 2rem;
+    color: $black;
 
+    .title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #d6e9ff;
+      letter-spacing: 1px;
+    }
+
+    &__description {
+      display: grid;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      &__text {
+        flex: 1;
+
+        p {
+          font-size: 1.1rem;
+          line-height: 1.9;
+          color: #e3edf7;
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+  .passion__image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 24px;
+      transition: transform 0.4s ease;
+    }
+
+    img:hover {
+      transform: scale(1.03);
+    }
+
+    &__error{
+      color: $error-color;
+      border: 1px solid $error-color;
+      padding: 2rem;
+    }
+  }
   .parcours {
     max-width: 1280px;
     margin: 0 auto;
