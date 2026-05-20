@@ -51,7 +51,7 @@ get_header(); ?>
                             <article class="project-card <?php echo implode(' ', $type_classes); ?>"
                                      data-types="<?php echo implode(',', $type_classes); ?>">
                                 <?php if($imgProjets): ?>
-                                <div class="projet__img">
+                                <div class="project-card__img">
                                     <img class="projet__img__img"
                                             src="<?= $imgProjets['url']; ?>"
                                             alt="<?= $imgProjets['alt']; ?>"
@@ -59,16 +59,16 @@ get_header(); ?>
 
                                 <?php endif; ?>                                <?php if (has_post_thumbnail()) : ?>
                                 </div>
-                                    <div class="project-card-image">
+                                    <div class="project-card__link">
                                         <a href="<?php the_permalink(); ?>">
                                             <?php the_post_thumbnail('medium'); ?>
                                         </a>
                                     </div>
                                 <?php endif; ?>
 
-                                <div class="project-card-content">
+                                <div class="project-card__content">
 
-                                    <h2 class="project-card-title">
+                                    <h2 class="project-card__title">
                                         <?php the_title(); ?>
                                     </h2>
 
@@ -76,8 +76,8 @@ get_header(); ?>
                                         <?php echo get_field('description__project'); ?>
                                     </div>
 
-                                    <a href="<?php the_permalink(); ?>" class="button">
-                                        Decouvrir →
+                                    <a href="<?php the_permalink(); ?>" class="project-card__btn">
+                                        Decouvrir
                                     </a>
                                 </div>
                             </article>

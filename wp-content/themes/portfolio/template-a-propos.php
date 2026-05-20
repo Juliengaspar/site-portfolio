@@ -113,7 +113,7 @@
         <!-- Parcours scolaire -->
         <?php if( have_rows('liste__parcours') ): ?>
 
-            <section class="parcours sectionMargin">
+            <section class="parcours">
                 <h2 class="parcours__title"><?php the_field('parcours__title'); ?></h2>
 
                 <?php while( have_rows('liste__parcours') ): the_row();
@@ -123,18 +123,16 @@
                     $ecole = get_sub_field('name__school');
                     $explication = get_sub_field('explication--parcours');
                     ?>
-
-                    <div class="parcours-item">
+                <article class="parcours__carts">
+                    <section class="parcours-item">
                         <h3><?= $filiere; ?></h3>
                         <span class="date"><?= $date; ?></span>
                         <p class="ecole"><?= $ecole; ?></p>
+                    </section>
                         <div class="description"><?= $explication; ?></div>
-                    </div>
-
+                </article>
                 <?php endwhile; ?>
-
             </section>
-
         <?php endif; ?>
 
         <!-- Passions -->
@@ -153,14 +151,13 @@
                     <?php if( $description ): ?>
                         <div class="passion__content__description__text"><?php echo wp_kses_post($description); ?></div>
                     <?php endif; ?>
-                    <?php if( $image_loisir && !empty($image_loisir['url']) ): ?>
+                    <?php if( $image_loisir ): ?>
                         <div class="passion__image">
-                            <img src="<?php echo esc_url($image_loisir['url']); ?>"
-                                 alt="<?php echo esc_attr($image_loisir['alt']); ?>">
+                            <img src="<?php echo esc_url($image_loisir['url']); ?>" alt="<?php echo esc_attr($image_loisir['alt']); ?>">
                         </div>
                     <?php else: ?>
                         <div class="passion__image">
-                            <p  class="passion__image__error" style="color: red; border: 1px solid red; padding: 10px;">
+                            <p  class="passion__image__error">
                                 Image manquante : Vérifiez le champ ACF "hobbies__image"
                             </p>
                         </div>

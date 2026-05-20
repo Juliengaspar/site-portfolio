@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-    <main id="main" class="single-projet" role="main">
+    <main id="main" class="single-projet main" role="main">
         <?php while (have_posts()) : the_post(); ?>
         <?php
             $titlePage = get_field('title__projet');
@@ -20,18 +20,15 @@ get_header();
 
             <!-- Hero Section avec titre et contexte -->
             <header class="projet-hero" aria-labelledby="projet-title">
-                <h3><?= get_the_title() ?></h3>
+                <h3 class="projet-hero__title"><?= get_the_title() ?></h3>
 
-                <div>
+                <div class="projet-hero__contenu">
                     <?php if($imgPage): ?>
 
-                        <img
-                                src="<?= $imgPage['url']; ?>"
-                                alt="<?= $imgPage['alt']; ?>"
-                        >
+                        <img src="<?= $imgPage['url']; ?>" alt="<?= $imgPage['alt']; ?>" class="projet-hero__img">
 
                     <?php endif; ?>
-                    <div>
+                    <div class="projet-hero__description">
                         <?= $descriptionPage?>
                     </div>
                 </div>

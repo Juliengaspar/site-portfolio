@@ -31,7 +31,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
+  gap: 5rem;
 }
 
 /* Cartes projet */
@@ -41,6 +41,7 @@
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
+  padding: 1rem;
 }
 
 .project-card:hover {
@@ -65,6 +66,14 @@
   padding: 20px;
   height: auto;
   width: auto;
+  margin: 5% auto;
+}
+.project-card__btn{
+  text-align: center;
+  padding: 01rem;
+  background-color: $principale__color__blue;
+  color: $white;
+  margin: 5% auto;
 }
 
 /* Badges */
@@ -80,4 +89,5 @@
   font-weight: bold;
   margin-right: 5px;
 }
+
 
