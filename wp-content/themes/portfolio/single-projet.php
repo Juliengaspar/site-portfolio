@@ -16,7 +16,7 @@ get_header();
             $imgPage = get_field('projet__img');
             $descriptionPage = get_field('projet__description');
             ?>
-        <h2 class="title"><?= $titlePage ?></h2>
+        <h2 class="singel__projet__title title"><?= $titlePage ?></h2>
 
             <!-- Hero Section avec titre et contexte -->
             <header class="projet-hero" aria-labelledby="projet-title">

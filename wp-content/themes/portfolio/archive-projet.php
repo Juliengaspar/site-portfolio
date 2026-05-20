@@ -4,7 +4,7 @@ get_header(); ?>
 
 ?>
 
-    <main id="main" class="site-main" role="main">
+    <main id="main" class="site-main main" role="main">
 
         <section class="projects-archive">
             <div class="container">
@@ -51,7 +51,7 @@ get_header(); ?>
                             <article class="project-card <?php echo implode(' ', $type_classes); ?>"
                                      data-types="<?php echo implode(',', $type_classes); ?>">
                                 <?php if($imgProjets): ?>
-                                <div class="project-card__img">
+                                <div class="projet__img">
                                     <img class="projet__img__img"
                                             src="<?= $imgProjets['url']; ?>"
                                             alt="<?= $imgProjets['alt']; ?>"
@@ -66,20 +66,20 @@ get_header(); ?>
                                     </div>
                                 <?php endif; ?>
 
-                                <div class="project-card__content">
+                                <section class="project-card__content">
 
-                                    <h2 class="project-card__title">
+                                    <h3 class="project-card__title">
                                         <?php the_title(); ?>
-                                    </h2>
+                                    </h3>
 
-                                    <div class="project-card-excerpt">
+                                    <div class="project-card-exemple">
                                         <?php echo get_field('description__project'); ?>
                                     </div>
 
                                     <a href="<?php the_permalink(); ?>" class="project-card__btn">
                                         Decouvrir
                                     </a>
-                                </div>
+                                </section>
                             </article>
 
                         <?php endwhile;

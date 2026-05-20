@@ -7,11 +7,10 @@
   margin-top: auto;
 
   .footer__container {
-    max-width: 1200px;
-    margin:0  2.5%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    padding: 1rem;
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -93,7 +92,7 @@
   // Bouton CTA
   .footer__cta {
     .footer__button {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       background-color: $principale__color__blue;
@@ -104,7 +103,7 @@
       transition: background-color 0.2s;
 
       &:hover {
-        background-color: #000000;
+        background-color: #76f3e0;
       }
 
       @media (max-width: 768px) {
@@ -118,10 +117,8 @@
   // Copyright
   .footer__bottom {
     background-color: $principale__color__blue;
-    margin: 2rem 0;
     text-align: center;
-    padding-top: 1rem;
-    border-top: 1px solid rgba($white, 0.1);
+    padding: 1rem;
 
     .copyright-text {
       font-size: 0.875rem;
