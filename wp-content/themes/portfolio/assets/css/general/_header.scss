@@ -1,8 +1,29 @@
 @use "./general" as *;
 //pour tous les page
+body{
+  background-color: $background;
+}
+
 .main{
- // margin: 5%;
   padding: 5%;
+}
+
+.title{
+  font-size: $big__title;
+  background-color: $black;
+  color: $white;
+  width: 100vw;
+  margin-right: -5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+}
+
+.subtitle{
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 5%;
 }
 /* ============================================
    HEADER & NAVIGATION
@@ -50,16 +71,8 @@
 
 
 
-  a {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: $principale__color__blue;
-    text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+
 
 
 /* Container du menu */
@@ -87,17 +100,10 @@ display: flex;
 top: 5px;
 }
 
-/* ============================================
-   BREADCRUMB (Fil d'ariane)
-   ============================================ */
-
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
 /* Tablette */
 @media (max-width: 1023px) {
+
+
   .navigation__bars {
     flex-direction: column;
     padding: 0.75rem 1rem;
@@ -126,7 +132,7 @@ top: 5px;
   .navigation__bars {
     position: relative;
     backdrop-filter: none;
-    background: white !important;
+    background:$background;
   }
 
   .ul-container ul {

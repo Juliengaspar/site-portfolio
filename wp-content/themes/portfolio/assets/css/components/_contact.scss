@@ -7,7 +7,6 @@
 .form{
   background-color: $light-gray;
   padding: 30px;
-  margin-left: -5%;
 }
 .contact-info{
   position: relative;
@@ -34,18 +33,16 @@ max-width: 100%;
     display: flex;
     flex-direction: column;
     padding: 30px;
-    width: calc(100% + 20px);
+    width: 100%;
     margin-bottom: 5%;
   }
   .form__group{
-    padding-left: 20px;
     margin-bottom: 5%;
     width: 100%;
     color: $black;
-    height: 10%;
     &__label{
       display: block;
-      font-size: 1rem;
+      font-size: 2rem;
     }
     &__input{
       background-color: $white;
@@ -55,6 +52,7 @@ max-width: 100%;
       field-sizing: content;
       min-width: 100px;
       max-width: 400px;
+      padding: 5%;
     }
     #message{
     background-color: $white;
@@ -185,14 +183,14 @@ max-width: 100%;
     width: 100%;
 
     &:hover {
-      background-color: $secondary-color;
+      background-color: #76f3e0;
     }
 
     &:active {
       transform: translateY(1px);
     }
   }
-  span, .form__note{
+   .form__note{
     color: $error-color;
   }
 
@@ -263,28 +261,18 @@ max-width: 100%;
     width: 50px;
     height: 50px;
   }
+
+  .liste__folowing{
+    display: block;
+
+  }
+  .liste__folowing div{
+    max-width: 50px;
+    height: auto;
+    background-color: $white;
+
+  }
 }
 @media (min-width: 725px) {
   
 }
-
-/*
-
-    @include responsive(mobile) {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    @include responsive(tablet) {
-      gap: 2rem;
-    }
-    @include responsive(mobile) {
-      padding: 1.5rem;
-    }
-
-
-
-    @include responsive(mobile) {
-      padding: 1.5rem;
-    }
-*/

@@ -33,7 +33,7 @@
 
     <!-- Compétences -->
     <section class="competenceSection">
-        <h2 class="title sectionMargin" id="title__competence">
+        <h2 class="" id="title__competence">
             Mes hard skills
         </h2>
 
@@ -47,29 +47,24 @@
                     <!-- Première série -->
                     <?php foreach ($galerie as $image) : ?>
                         <div class="competences__item">
-                            <img
-                                    class="competences__img"
-                                    src="<?php echo esc_url($image['url']); ?>"
-                                    alt="<?php echo esc_attr($image['alt']); ?>"
-                            >
+                            <img class="competences__img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
                         </div>
                     <?php endforeach; ?>
-
-
-
                 </div>
-
             </div>
         <?php endif; ?>
     </section>
     <section class="softSkillsContainer">
+        <h2 class="subtitle" id="title__competence">
+            Mes soft skills
+        </h2>
         <?php
         $titleSoftSkill = get_field('soft__Skills__title');
         $listeSoftSkill = get_field('liste__soft__skill');
         ?>
 
         <?php if ($titleSoftSkill) : ?>
-            <h2><?= esc_html($titleSoftSkill) ?></h2>
+            <h2 class="softSkillsContainer__subtitle subtitle"><?= esc_html($titleSoftSkill) ?></h2>
         <?php endif; ?>
 
         <?php if (have_rows('liste__soft__skill')) : ?>
@@ -114,7 +109,7 @@
         <?php if( have_rows('liste__parcours') ): ?>
 
             <section class="parcours">
-                <h2 class="parcours__title"><?php the_field('parcours__title'); ?></h2>
+                <h2 class="parcours__subtitle subtitle"><?php the_field('parcours__title'); ?></h2>
 
                 <?php while( have_rows('liste__parcours') ): the_row();
 
@@ -145,7 +140,7 @@
 
             <section class="passion__content">
                 <?php if( $titre ): ?>
-                    <h2 class="title"><?php echo esc_html($titre); ?></h2>
+                    <h2 class="passion__content__subtile subtitle"><?=$titre; ?></h2>
                 <?php endif; ?>
                 <div class="passion__content__description">
                     <?php if( $description ): ?>
@@ -163,9 +158,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-
             </section>
-
         </section>
 </main>
 

@@ -2,7 +2,6 @@
 <?php
 $titleListeProjet = get_field('title__projet');
 $isteProjet = get_field('liste__projets');
-$allLinkProjet = get_field('link__all__projet');
 $photoProfile = get_field('img__profile');
 
 $titlePage = get_field('title__page');
@@ -43,7 +42,7 @@ $description = get_field('descriptions');
 
                     <section class="liste-projets__projet">
 
-                        <div class="liste-projets__projet__img">
+                        <div class="liste-projets__img">
                             <?php
                             $image = get_sub_field('projet__img');
                             if( $image ): ?>
@@ -53,14 +52,15 @@ $description = get_field('descriptions');
                         <h4 class="liste-projets__singel-title"><?php the_sub_field('title__projet'); ?></h4>
 
                         <p class="liste-projets__projet-description"><?php the_sub_field('description__projet'); ?></p>
-
-
                         <?php
-                        $lien = get_sub_field(' link__projet ');
-                        if( $lien ): ?>
-                            <a href="<?php echo esc_url($lien); ?>" class="btn">Voir le projet</a>
-                        <?php endif; ?>
+                        $liensProjet = get_sub_field('link__projet');
 
+                         if($liensProjet): ?>
+                            <div class="liste-projets__btn">
+                                <a href="<?=$liensProjet['url']?>"  title=" <?= $liensProjet['title']; ?>" class="liste-projets__links"><?= $liensProjet['title']; ?></a>
+                            </div>
+
+                        <?php endif; ?>
                     </section>
 
                 <?php endwhile; ?>
@@ -71,5 +71,22 @@ $description = get_field('descriptions');
 
         <?php endif; ?>
     </section>
+        <section>
+            <h2 class="redirections btn">
+
+                <?php
+                $lien = get_field('link__all__projet');
+                ?>
+
+                <?php if($lien): ?>
+
+                    <a href="<?=$lien['url']?>"  title=" <?= $lien['title']; ?>" class="redirections__link">
+                        <?= $lien['title']; ?>
+                    </a>
+
+                <?php endif; ?>
+
+            </h2>
+        </section>
 </main>
 <?php get_footer(); ?>

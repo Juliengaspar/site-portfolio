@@ -9,7 +9,7 @@ get_header(); ?>
         <section class="projects-archive">
             <div class="container">
 
-                <h2 class="archive-title">Nos Projets</h2>
+                <h2 class="archive-title title" >Nos Projets</h2>
 
                 <!-- Filtres par type de projet -->
                 <div class="projects-filters">

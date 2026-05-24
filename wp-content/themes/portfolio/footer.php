@@ -5,6 +5,8 @@ $footerContact = get_field('contact__footer', 'option');
 $footerTitleLinks = get_field('title__navigations', 'option');
 $footerButton = get_field('contact__link__button', 'option');
 $footerCopyright = get_field('copyright__footer', 'option');
+$footerFollowTitle = get_field('title__folow', 'option');
+$footerFollowimgs = get_field('galerie__folow', 'option');
 ?>
 
 <footer class="footer" role="contentinfo">
@@ -62,6 +64,14 @@ $footerCopyright = get_field('copyright__footer', 'option');
                 </a>
             </div>
         <?php endif; ?>
+        <section class="liste__folowing">
+            <h3><?= $footerFollowTitle ?></h3>
+            <?php foreach ($footerFollowimgs as $footerFollowimg) : ?>
+                <div class="liste__folowing__contenu">
+                    <img class="liste__folowing__img" src="<?php echo esc_url($footerFollowimg['url']); ?>" alt="<?php echo esc_attr($footerFollowimg['alt']); ?>" title="<?php echo esc_attr($footerFollowimg['title']); ?>">
+                </div>
+            <?php endforeach; ?>
+        </section>
 
     </div>
 

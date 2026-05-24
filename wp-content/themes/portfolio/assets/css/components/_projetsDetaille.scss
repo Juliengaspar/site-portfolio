@@ -1,16 +1,7 @@
 @use "../general/general" as *;
 
 @media (min-width: 1024px) {
-  .main h2{
-    font-size: $big__title;
-    background-color: $black;
-    color: $white;
-    width: 100vw;
-    margin-left: calc(-5% - 8px);
-    padding: 3rem;
-    margin-right: -5%;
-    text-align: center;
-  }
+
 
   .projet-hero{
     margin: 5%;
