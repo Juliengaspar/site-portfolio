@@ -11,7 +11,7 @@ $description = get_field('descriptions');
 ?>
 <?php get_header(); ?>
     <main class="main">
-<h2 class="title__page"><?=  get_field('title__page')?></h2>
+<h2 class="title__page title"><?=  get_field('title__page')?></h2>
 <section class="profile" aria-labelledby="profile-title">
     <h3 id="profile-title" class="sr-only">
     <?= $name?>

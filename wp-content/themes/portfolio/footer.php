@@ -64,13 +64,14 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
                 </a>
             </div>
         <?php endif; ?>
-        <section class="liste__folowing">
+        <section class="footer__liste__folowing">
             <h3><?= $footerFollowTitle ?></h3>
+
+                <div class="footer__liste__folowing__contenu">
             <?php foreach ($footerFollowimgs as $footerFollowimg) : ?>
-                <div class="liste__folowing__contenu">
                     <img class="liste__folowing__img" src="<?php echo esc_url($footerFollowimg['url']); ?>" alt="<?php echo esc_attr($footerFollowimg['alt']); ?>" title="<?php echo esc_attr($footerFollowimg['title']); ?>">
-                </div>
             <?php endforeach; ?>
+                </div>
         </section>
 
     </div>

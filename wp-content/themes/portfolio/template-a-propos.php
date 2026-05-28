@@ -12,7 +12,7 @@
 
         <section class="proflie">
             <div>
-            <h3 class="proflie__title"><?= $AbouteMeTitle ?></h3>
+            <h3 class="proflie__title subtitle"><?= $AbouteMeTitle ?></h3>
             <div class="proflie__text"><?= $AbouteMeText ?></div>
             </div>
                 <div class="proflie__image">
@@ -108,8 +108,8 @@
         <!-- Parcours scolaire -->
         <?php if( have_rows('liste__parcours') ): ?>
 
-            <section class="parcours">
                 <h2 class="parcours__subtitle subtitle"><?php the_field('parcours__title'); ?></h2>
+            <section class="parcours">
 
                 <?php while( have_rows('liste__parcours') ): the_row();
 

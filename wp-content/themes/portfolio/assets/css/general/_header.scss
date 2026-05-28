@@ -8,22 +8,24 @@ body{
   padding: 5%;
 }
 
-.title{
-  font-size: $big__title;
-  background-color: $black;
-  color: $white;
-  width: 100vw;
-  margin-right: -5%;
-  padding-left: 5%;
-  padding-right: 5%;
-  text-align: center;
+.title {
+    font-size: $big__title;
+    background-color: $black;
+    color: $white;
+
+    width: 100%;
+    text-align: center;
+
+    padding: 5%;
+    margin: 5% 0;
+
 }
 
 .subtitle{
   text-align: left;
   font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 5%;
+  margin-bottom: 2.5%;
 }
 /* ============================================
    HEADER & NAVIGATION
@@ -31,17 +33,25 @@ body{
 
 /* Structure principale */
 .navigation__bars {
-  display: inline;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px) saturate(180%);
-  padding: 1rem 2rem;
+
+  padding: 1rem 3rem;
+
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+
   transition: all 0.3s ease;
+  margin-top: 1%;
 
   // Scroll effect (optionnel)
   &.scrolled {
@@ -49,6 +59,10 @@ body{
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
+}
+.navigation__bars section {
+  display: flex;
+  align-items: center;
 }
 
 /* Logo */
@@ -59,7 +73,7 @@ body{
 
   img {
     width: auto;
-    height: 50px;
+    height: 70px;
     display: block;
     transition: transform 0.2s ease;
 
@@ -69,37 +83,56 @@ body{
   }
 }
 
+// MENU
 
-
-
-
-
-
-/* Container du menu */
 .div-container {
   display: flex;
   align-items: center;
 }
 
-/* Liste UL du menu */
 .ul-container {
-display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  align-content: stretch;
-  gap: 8px;
-}
-.ul-container a{
-  color: $black;
-  font-size: 1rem;
-  font-weight: 500;
-}
-.ul-container a:hover{
-top: 5px;
-}
+  display: flex;
+  align-items: center;
 
+  gap: 2rem;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: $black;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+      border-bottom: 1px solid $black;
+    }
+  }
+
+  // Dernier bouton
+  li:last-child {
+    background-color: $black;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+
+    a {
+      color: $white;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      border-bottom: 1px solid $white;
+    }
+  }
+}
 /* Tablette */
 @media (max-width: 1023px) {
 

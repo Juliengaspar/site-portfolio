@@ -109,25 +109,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 
             <h3><?= get_field('title__reseaux__sociaux'); ?></h3>
 
-            <ul>
+            <ul class="ico
 
-                <li id="email">
-                    <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
+            <?php $img = get_field('form__picture'); ?>
+            <?php if ($img): ?>
+                <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>" class="contact-info__img">
+        <?php endif; ?>
+
+            <h3><?= get_field('title__reseaux__sociaux'); ?></h3>
+
+            <ul class="icones">
+                <li id="email" class="icones__liste">
+                    <svg class="icon" aria-hidden="true">
                         <use xlink:href="#email"></use>
                     </svg>
-                    <?= get_field("email"); ?></li>
-                <li id="tel">
-                    <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
+                    <span><?= get_field("email"); ?></span>
+                </li>
+                <li id="tel" class="icones__liste">
+                    <svg class="icon" aria-hidden="true">
                         <use xlink:href="#Icone__tel"></use>
                     </svg>
-                    <?= get_field("number__tel"); ?></li>
-                <li id="adresse">
-                    <svg class="icon" aria-hidden="true" focusable="false" width="50px" height="50px">
+                    <span><?= get_field("number__tel"); ?></span>
+                </li>
+
+                <li id="adresse" class="icones__liste">
+                    <svg class="icon" aria-hidden="true">
                         <use xlink:href="#Icone__adresse"></use>
                     </svg>
-                    <?= get_field("adresse"); ?></li>
+                    <span><?= get_field("adresse"); ?></span>
+                </li>
             </ul>
-
         </aside>
 
     </section>

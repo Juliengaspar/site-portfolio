@@ -9,22 +9,20 @@
 @media (min-width: 1024px) {
 
   .title__page{
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    margin: 5% auto;
   }
   .profile__content__description{
     background-color: $black;
     color: $white;
     height: auto;
     margin: 2.5%;
+    padding: 1rem;
   }  .profile__content__description h2{
-         font-weight: 500;
-        font-size: 1.5rem;
+        font-size: 2rem;
+         margin: 5% 0;
   }
   .profile__content__description p{
         font-size: 1rem;
+         margin: 5% 0;
   }
 .liste-projets{
   display: grid;
@@ -175,6 +173,7 @@
       background-color: $primary;
       color: white;
       padding: 0.5rem 1rem;
+      margin: 5% 0;
       border-radius: 8px;
       text-decoration: none;
       font-size: 0.85rem;
@@ -196,8 +195,8 @@
     }
   }
   .redirections{
-    width: 15%;
-    margin: 5% auto;
+    width: 25%;
+    margin: 0 auto;
       padding: 1rem;
     text-align: center;
     background-color: $principale__color__blue;
