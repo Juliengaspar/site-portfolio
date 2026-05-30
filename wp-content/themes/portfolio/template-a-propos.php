@@ -1,7 +1,7 @@
 <?php /* Template Name: Apropos */?>
 
 <?php get_header(); ?>
-<main id="main" class="about__me main">
+<main id="main" class="about__me main"     itemscope itemtype="https://schema.org/Person">
     <?php
     $titlePage = get_field('title__page');
     $AbouteMeTitle = get_field('title__a__propos');
@@ -12,8 +12,8 @@
 
         <section class="proflie">
             <div>
-            <h3 class="proflie__title subtitle"><?= $AbouteMeTitle ?></h3>
-            <div class="proflie__text"><?= $AbouteMeText ?></div>
+            <h3 class="proflie__title subtitle" itemprop="name"><?= $AbouteMeTitle ?></h3>
+            <div class="proflie__text" itemprop="description"><?= $AbouteMeText ?></div>
             </div>
                 <div class="proflie__image">
                     <!-- Image d'introduction -->
@@ -24,7 +24,7 @@
                     if ($image) :
                         ?>
                         <div class="photo_profile">
-                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" itemprop="image">
                         </div>
                     <?php endif; ?>
                 </div>
@@ -32,11 +32,10 @@
 
 
     <!-- Compétences -->
-    <section class="competenceSection">
-        <h2 class="" id="title__competence">
+    <section class="competenceSection"   aria-labelledby="title__competence">
+        <h2 class="competenceSection__title" id="title__competence" >
             Mes hard skills
         </h2>
-
         <?php $galerie = get_field('galerie__picture__competence'); ?>
 
         <?php if ($galerie) : ?>
@@ -54,7 +53,7 @@
             </div>
         <?php endif; ?>
     </section>
-    <section class="softSkillsContainer">
+    <section class="softSkillsContainer" aria-labelledby="title__softskills">
         <h2 class="subtitle" id="title__competence">
             Mes soft skills
         </h2>
@@ -75,7 +74,7 @@
                     $imgSkill = get_sub_field('soft__skill__image');
                     ?>
 
-                    <article class="softSkill">
+                    <article class="softSkill" itemscope itemtype="https://schema.org/DefinedTerm">
                         <?php if ($imgSkill && !empty($imgSkill['url'])) : ?>
                             <div class="softSkill__imageWrapper">
                                 <img
@@ -83,16 +82,17 @@
                                         alt="<?= esc_attr($imgSkill['alt'] ?? 'Icône pour ' . $titleSkill) ?>"
                                         class="softSkill__img"
                                         loading="lazy"
+                                        itemprop="image"
                                 >
                             </div>
                         <?php endif; ?>
 
                         <?php if ($titleSkill) : ?>
-                            <h3 class="softSkill__title"><?= esc_html($titleSkill) ?></h3>
+                            <h3 class="softSkill__title" itemprop="name"><?= esc_html($titleSkill) ?></h3>
                         <?php endif; ?>
 
                         <?php if ($textSkill) : ?>
-                            <div class="softSkill__description">
+                            <div class="softSkill__description" itemprop="description">
                                 <?= wp_kses_post($textSkill) ?>
                             </div>
                         <?php endif; ?>
@@ -109,7 +109,7 @@
         <?php if( have_rows('liste__parcours') ): ?>
 
                 <h2 class="parcours__subtitle subtitle"><?php the_field('parcours__title'); ?></h2>
-            <section class="parcours">
+            <section class="parcours" aria-labelledby="parcours-title">
 
                 <?php while( have_rows('liste__parcours') ): the_row();
 
@@ -118,20 +118,20 @@
                     $ecole = get_sub_field('name__school');
                     $explication = get_sub_field('explication--parcours');
                     ?>
-                <article class="parcours__carts">
+                <article class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
                     <section class="parcours-item">
-                        <h3><?= $filiere; ?></h3>
-                        <span class="date"><?= $date; ?></span>
-                        <p class="ecole"><?= $ecole; ?></p>
+                        <h3 class="parcours__carts__title" itemprop="name"><?= $filiere; ?></h3>
+                        <span class="parcours__carts__date date"   itemprop="date"> <?= $date; ?></span>
+                        <p class="parcours__carts__ecole ecole"><?= $ecole; ?></p>
                     </section>
-                        <div class="description"><?= $explication; ?></div>
+                        <div class="description"  itemprop="description"><?= $explication; ?></div>
                 </article>
                 <?php endwhile; ?>
             </section>
         <?php endif; ?>
 
         <!-- Passions -->
-        <section class="passion__me sectionMargin">
+        <section class="passion__me sectionMargin" aria-labelledby="passion-title">
             <?php
             $titre = get_field('title__hobbie');
             $description = get_field('desctiption__title');
@@ -140,11 +140,11 @@
 
             <section class="passion__content">
                 <?php if( $titre ): ?>
-                    <h2 class="passion__content__subtile subtitle"><?=$titre; ?></h2>
+                    <h2 class="passion__content__subtile subtitle" ><?=$titre; ?></h2>
                 <?php endif; ?>
                 <div class="passion__content__description">
                     <?php if( $description ): ?>
-                        <div class="passion__content__description__text"><?php echo wp_kses_post($description); ?></div>
+                        <div class="passion__content__description__text"     itemprop="description"><?php echo wp_kses_post($description); ?></div>
                     <?php endif; ?>
                     <?php if( $image_loisir ): ?>
                         <div class="passion__image">

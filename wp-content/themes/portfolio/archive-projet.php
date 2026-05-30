@@ -4,15 +4,15 @@ get_header(); ?>
 
 ?>
 
-    <main id="main" class="site-main main" role="main">
+    <main id="main" class="site-main main" role="main" itemscope itemtype="https://schema.org/CollectionPage">
 
-        <section class="projects-archive">
+        <section class="projects-archive" aria-labelledby="projects-title">
             <div class="container">
 
-                <h2 class="archive-title title" >Nos Projets</h2>
+                <h2 class="archive-title title" itemprop="headline" >Nos Projets</h2>
 
                 <!-- Filtres par type de projet -->
-                <div class="projects-filters">
+                <div class="projects-filters" role="group" aria-label="Filtrer les projets">
                     <button class="filter-btn active" data-filter="all">Tous</button>
                     <button class="filter-btn" data-filter="web">Web</button>
                     <button class="filter-btn" data-filter="2d">2D</button>
@@ -20,7 +20,7 @@ get_header(); ?>
                 </div>
 
                 <!-- Grille des projets -->
-                <div class="projects-grid" id="projects-grid">
+                <div class="projects-grid" id="projects-grid" itemscope itemtype="https://schema.org/ItemList">
                     <?php
                     // Requête pour récupérer tous les projets
                     $args = array(
@@ -48,19 +48,17 @@ get_header(); ?>
                             }
                             ?>
 
-                            <article class="project-card <?php echo implode(' ', $type_classes); ?>"
+                            <article class="project-card <?php echo implode(' ', $type_classes); ?>" itemscope itemtype="https://schema.org/CreativeWork" itemprop="itemListElement"
                                      data-types="<?php echo implode(',', $type_classes); ?>">
                                 <?php if($imgProjets): ?>
                                 <div class="projet__img">
-                                    <img class="projet__img__img"
-                                            src="<?= $imgProjets['url']; ?>"
-                                            alt="<?= $imgProjets['alt']; ?>"
-                                    >
+                                    <img class="projet__img__img" src="<?= $imgProjets['url']; ?>" alt="<?= $imgProjets['alt']; ?>" itemprop="image">
 
-                                <?php endif; ?>                                <?php if (has_post_thumbnail()) : ?>
+                                <?php endif; ?>
+                                    <?php if (has_post_thumbnail()) : ?>
                                 </div>
                                     <div class="project-card__link">
-                                        <a href="<?php the_permalink(); ?>">
+                                        <a href="<?php the_permalink(); ?>"  itemprop="url" aria-label="Voir le projet" >
                                             <?php the_post_thumbnail('medium'); ?>
                                         </a>
                                     </div>
@@ -68,11 +66,11 @@ get_header(); ?>
 
                                 <section class="project-card__content">
 
-                                    <h3 class="project-card__title">
+                                    <h3 class="project-card__title" itemprop="name">
                                         <?php the_title(); ?>
                                     </h3>
 
-                                    <div class="project-card-exemple">
+                                    <div class="project-card-exemple" itemprop="description">
                                         <?php echo get_field('description__project'); ?>
                                     </div>
 

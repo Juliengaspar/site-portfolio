@@ -77,11 +77,11 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
     </div>
 
     <!-- Copyright -->
-    <div class="footer__bottom">
+    <section class="footer__bottom">
         <?php if ($footerCopyright): ?>
-            <p><?= esc_html($footerCopyright); ?></p>
+            <h3 class="footer__bottom__title"><?= $footerCopyright; ?></h3>
         <?php endif; ?>
-    </div>
+    </section>
 </footer>
 
 <?php wp_footer(); ?>

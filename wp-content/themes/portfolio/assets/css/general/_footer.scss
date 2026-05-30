@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    padding: 1rem;
+    padding: 2rem;
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -21,8 +21,9 @@
 
   // Logo
   .footer__logo {
-    max-width: 150px;
+    max-width: 50%;
     height: auto;
+    margin-left: 15%;
 
     img {
       width: 100%;
@@ -37,7 +38,7 @@
   // Info section
   .footer__info {
     .footer__title {
-      font-size: 1.25rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
       font-weight: 600;
     }
@@ -62,7 +63,7 @@
   // Navigation
   .footer__nav {
     .footer__nav-title {
-      font-size: 1.125rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
       font-weight: 600;
     }
@@ -146,11 +147,11 @@
   .footer__bottom {
     background-color: $principale__color__blue;
     text-align: center;
-    padding: 1rem;
+    padding: 3rem;
 
-    .copyright-text {
+    &__title {
       font-size: 0.875rem;
-      color: rgba($white, 0.8);
+      color: $white;
       margin: 0;
     }
   }
