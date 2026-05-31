@@ -1,9 +1,140 @@
 @use "../general/general" as *;
 @use "../general/general" as *;
 //mobile fist
+/* Filtres */
+.projects-filters {
+  text-align: left;
+  margin: 5% 0;
+
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid $light-gray;
+  padding: 10px 25px;
+  margin: 0 5px;
+  font-size: 1remx;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  border-color: $principale__color__blue;
+  background: $principale__color__blue;
+  color: $white;
+}
+.project-card-title-title {
+  color: $black;
+  font-size: 2rem;
+  text-align: center;
+}
+/* Grille */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+}
+
+/* Cartes projet */
+.project-card {display: flex;
+  flex-direction: column;
+  background: $light-gray;   // fond gris pour toute la carte
+  border-radius: 1rem;
+  padding: 1rem;             // espace intérieur autour de tout
+  transition: all 0.3s ease;
+  height: 100%;
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .15);
+  }
+  &__content{
+    flex: 1;                 // pousse le contenu pour occuper l'espace
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title{
+    font-size: 1.5rem;
+    text-align: center;
+
+    margin-bottom: 1rem;
+
+  }
+  &__exemple{
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+
+
+
+  }
+  &__link{
+    margin: 5% auto;
+    text-align: center;
+  }
+  &__btn {
+    display: inline-block;
+    background-color: $principale__color__blue;
+    color: $white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      background-color: $extre__light__blue;
+    }
+
+  }
+}
+
+
+.projet {
+  &__img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+
+
+    &__img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+.project-card__btn {
+
+}
+
+/* Badges */
+.project-card-badges {
+}
+
+.badge {
+
+}
 
 //tablette
 @media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card {
+    &__title {
+      font-size: 1.75rem;
+    }
+  }
 
 }
 
@@ -12,94 +143,19 @@
 
 @media (min-width: 1024px) {
 
-  /* Filtres */
-  .projects-filters {
-    text-align: left;
-    margin: 5% 0;
 
-  }
-
-  .filter-btn {
-    background: transparent;
-    border: 2px solid $light-gray;
-    padding: 10px 25px;
-    margin: 0 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s ease;
-  }
-
-  .filter-btn.active,
-  .filter-btn:hover {
-    background: $principale__color__blue;
-    border-color: $principale__color__blue;
-    color: $white;
-  }
-  .project-card-title-title {
-    color: $black;
-    font-size: 2rem;
-    text-align: center;
-  }
-  /* Grille */
   .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 
-  /* Cartes projet */
   .project-card {
-    background: $light-gray;
-    border-radius: 1rem;
-    overflow: hidden;
-    padding: 1rem;
-
-    display: flex;
-    flex-direction: column;
-
-    height: auto;
-    min-height: fit-content;
-
-    &__title{
-      text-align: center;
+    &__title {
       font-size: 2rem;
-      margin: 5% 0;
-    }
-    &__exemple{
-      font-size: 1rem;
-      margin: 2.5% auto;
     }
   }
 
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
 
-  .projet__img {
-    width: 100%;
 
-    &__img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-  }
-
-  .project-card-content {
-  }
-  .project-card__btn {
-
-  }
-
-  /* Badges */
-  .project-card-badges {
-  }
-
-  .badge {
-
-  }
 }
 
 

@@ -48,35 +48,31 @@ get_header(); ?>
                             }
                             ?>
 
-                            <article class="project-card <?php echo implode(' ', $type_classes); ?>" itemscope itemtype="https://schema.org/CreativeWork" itemprop="itemListElement"
-                                     data-types="<?php echo implode(',', $type_classes); ?>">
+                            <article class="project-card <?php echo implode(' ', $type_classes); ?>" itemscope itemtype="https://schema.org/CreativeWork" itemprop="itemListElement" data-types="<?php echo implode(',', $type_classes); ?>">
+                               <h2 class="sro">Liste de mes different projet</h2>
                                 <?php if($imgProjets): ?>
-                                <div class="projet__img">
-                                    <img class="projet__img__img" src="<?= $imgProjets['url']; ?>" alt="<?= $imgProjets['alt']; ?>" itemprop="image">
-
-                                <?php endif; ?>
-                                    <?php if (has_post_thumbnail()) : ?>
-                                </div>
-                                    <div class="project-card__link">
-                                        <a href="<?php the_permalink(); ?>"  itemprop="url" aria-label="Voir le projet" >
-                                            <?php the_post_thumbnail('medium'); ?>
-                                        </a>
+                                    <div class="projet__img">
+                                        <img class="projet__img__img" src="<?= $imgProjets['url']; ?>" alt="<?= $imgProjets['alt']; ?>" itemprop="image">
+                                    </div>
+                                <?php elseif (has_post_thumbnail()) : ?>
+                                    <div class="projet__img">
+                                        <?php the_post_thumbnail('medium', ['class' => 'projet__img__img', 'itemprop' => 'image']); ?>
                                     </div>
                                 <?php endif; ?>
 
                                 <section class="project-card__content">
-
                                     <h3 class="project-card__title" itemprop="name">
                                         <?php the_title(); ?>
                                     </h3>
 
-                                    <div class="project-card-exemple" itemprop="description">
+                                    <div class="project-card__exemple" itemprop="description">
                                         <?php echo get_field('description__project'); ?>
                                     </div>
-
-                                    <a href="<?php the_permalink(); ?>" class="project-card__btn btn">
+                                    <div class="project-card__link">
+                                    <a href="<?php the_permalink(); ?>" class="project-card__btn btn"  itemprop="url" aria-label="Voir le projet" >
                                         Découvrir
                                     </a>
+                                    </div>
                                 </section>
                             </article>
 

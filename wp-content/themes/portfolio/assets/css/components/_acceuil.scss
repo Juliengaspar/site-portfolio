@@ -194,7 +194,7 @@
 
       transition: background 0.2s ease;
       &:hover{
-        background-color: $principale__extrat__light__blue;
+        background-color: $light__blue;
       }
     }
     &__links {
@@ -215,7 +215,7 @@
     background-color: $principale__color__blue;
     text-decoration: none;
     &:hover{
-        background-color: $principale__extrat__light__blue;
+        background-color: $light__blue;
       text-decoration: underline;
 
     }
