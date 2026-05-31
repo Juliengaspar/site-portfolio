@@ -65,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 
                 <div class="form__group">
                     <label for="firstName" class="form__group__label">Prénom <span class="form__note">*</span></label>
-                    <input type="text" name="firstName" id="firstName" class="form__group__input" value="<?= esc_attr($_POST['firstName'] ?? '') ?>" placeholder="votre prenom">
+                    <input type="text" name="firstName" id="firstName" class="form__group__input" value="<?= esc_attr($_POST['firstName'] ?? '') ?>" placeholder="votre prénom">
                 </div>
 
                 <div class="form__group">
                     <label for="email" class="form__group__label">Email <span class="form__note">*</span></label>
-                    <input type="email" name="email" id="email" class="form__group__input" value="<?= esc_attr($_POST['email'] ?? '') ?>" placeholder="entrez votre adresse mail"  autocomplete="email" itemprop="email">
+                    <input type="email" name="email" id="email" class="form__group__input" value="<?= esc_attr($_POST['email'] ?? '') ?>" placeholder="votre adresse mail"  autocomplete="email" itemprop="email">
                 </div>
 
                 <div class="form__group">
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                 </div>
 
                 <div class="form__group">
-                    <label for="message" class="form__group__label">Message <span class="form__note">*</span></label>
+                    <label for="message" class="form__group__label">Message</label>
                     <textarea name="message" id="message" aria-required="true"><?= esc_textarea($_POST['message'] ?? '') ?></textarea>
                 </div>
 
@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                 <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>" class="contact-info__img" itemprop="image">
             <?php endif; ?>
 
-            <h3 itemprop="name">><?= get_field('title__reseaux__sociaux'); ?></h3>
+            <h3 itemprop="name"><?= get_field('title__reseaux__sociaux'); ?></h3>
 
             <ul class="icones"
 

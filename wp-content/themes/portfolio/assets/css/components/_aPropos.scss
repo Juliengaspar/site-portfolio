@@ -13,6 +13,7 @@
 }
 // TITRE
 #title__competence {
+  margin-bottom: 2rem;
   font-size:2rem;
   text-align: left;
   font-family: "Poppins", serif;
@@ -60,7 +61,7 @@
 
   &__description {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
 
     &__text {
       width: 100%;
@@ -92,7 +93,6 @@
 
 // Soft Skills (1 colonne sur mobile)
 .softSkillsContainer {
-  padding: 2rem 1rem;
 
   > h2 {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
@@ -207,13 +207,18 @@
 
     &__title {
       text-align: left;
+      margin-bottom: 4.5%;
     }
+    &__text{
+      line-height: 1.3;
+    }
+  }
+  .proflie__text p{
+    margin-bottom: 2.5%;
   }
 
   .softSkillsContainer {
     max-width: 1280px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
   }
 
   .softSkillsGrid {
@@ -277,12 +282,12 @@
     // Pour les sections paires (2, 4, 6, 8...)
     &:nth-child(even) {
       .parcours-item {
-        order: 2;
-        animation: slideInRight 0.5s ease;
+       //order: 2;
+       animation: slideInRight 0.5s ease;
       }
 
       .description {
-        order: 1;
+       // order: 1;
         animation: slideInLeft 0.5s ease;
       }
     }
@@ -321,6 +326,7 @@
       line-height: 1.6;
       font-size: 1rem;
       background-color: rgb(0 120 189 / 0.34);
+
     }
 
     // Style de la date

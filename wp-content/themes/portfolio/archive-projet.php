@@ -9,7 +9,7 @@ get_header(); ?>
         <section class="projects-archive" aria-labelledby="projects-title">
             <div class="container">
 
-                <h2 class="archive-title title" itemprop="headline" >Nos Projets</h2>
+                <h2 class="archive-title title" itemprop="headline" >Mes Projets</h2>
 
                 <!-- Filtres par type de projet -->
                 <div class="projects-filters" role="group" aria-label="Filtrer les projets">
@@ -74,8 +74,8 @@ get_header(); ?>
                                         <?php echo get_field('description__project'); ?>
                                     </div>
 
-                                    <a href="<?php the_permalink(); ?>" class="project-card__btn">
-                                        Decouvrir
+                                    <a href="<?php the_permalink(); ?>" class="project-card__btn btn">
+                                        Découvrir
                                     </a>
                                 </section>
                             </article>

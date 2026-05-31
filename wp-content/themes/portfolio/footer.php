@@ -30,9 +30,9 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
             <?php endif; ?>
 
             <?php if ($footerContact): ?>
-                <p class="footer__contact">
+                <div class="footer__contact">
                     <?= wp_kses_post($footerContact); ?>
-                </p>
+                </div>
             <?php endif; ?>
         </div>
 
