@@ -35,11 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
     }
 }
 ?>
-<main id="main" class="contact-page" itemscope itemtype="https://schema.org/ContactPage">
+<main id="main" class="contact-page main" itemscope itemtype="https://schema.org/ContactPage">
 
     <h2 class="contact-page__title title" itemprop="headline"><?= $title; ?></h2>
 
-    <section class="contact-page__container"  aria-labelledby="contact-form-title">
 
         <!-- FORMULAIRE -->
         <section class="contact-form" itemscope itemtype="https://schema.org/ContactPoint">
@@ -98,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
         </section>
 
         <!-- COORDONNÉES -->
+        <!--
         <aside class="contact-info" itemscope itemtype="https://schema.org/Organization">
 
             <?php $img = get_field('form__picture'); ?>
@@ -137,9 +137,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                     <span><?= get_field("adresse"); ?></span>
                 </li>
             </ul>
-        </aside>
+        </aside>-->
 
-    </section>
 
 </main>
 <?php get_footer(); ?>
