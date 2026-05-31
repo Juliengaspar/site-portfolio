@@ -121,7 +121,7 @@
                 <article class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
                     <section class="parcours-item">
                         <h3 class="parcours__carts__title" itemprop="name"><?= $filiere; ?></h3>
-                        <span class="parcours__carts__date date"   itemprop="date"> <?= $date; ?></span>
+                        <p class="parcours__carts__date date"   itemprop="date"> <?= $date; ?></p>
                         <p class="parcours__carts__ecole ecole"><?= $ecole; ?></p>
                     </section>
                         <div class="description"  itemprop="description"><?= $explication; ?></div>
