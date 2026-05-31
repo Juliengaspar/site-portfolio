@@ -33,9 +33,8 @@
   // Piste qui défile
   &__track {
     display: flex;
-    align-items: center;
-    gap: 2rem;
     width: max-content;
+    gap: 2rem;
 
     animation: scrollCompetence 20s linear infinite;
   }
@@ -51,8 +50,9 @@
 
   // Image responsive
   &__img {
+
     width: 8vw;
-    height: auto;
+    height: 8vw;
     object-fit: contain;
     display: block;
   }
@@ -80,7 +80,6 @@
 
 
 // ANIMATION INFINIE
-
 @keyframes scrollCompetence {
   from {
     transform: translateX(0);
