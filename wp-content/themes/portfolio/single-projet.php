@@ -25,35 +25,12 @@ get_header();
                 <div class="projet-hero__contenu">
                     <?php if($imgPage): ?>
 
-                        <img src="<?= $imgPage['url']; ?>" alt="<?= $imgPage['alt']; ?>" class="projet-hero__img">
+                        <img src="<?= $imgPage['url']; ?>" alt="<?= $imgPage['alt']; ?>" class="projet-hero__img" width="<?= $imgPage['width']; ?>" height="<?= $imgPage['height']; ?>">
 
                     <?php endif; ?>
                     <div class="projet-hero__description">
                         <?= $descriptionPage?>
                     </div>
-                </div>
-                <div class="projet-hero__container">
-
-                    <!-- Fil d'Ariane (breadcrumb) -->
-                    <nav class="breadcrumb" aria-label="Vous êtes ici :">
-                        <div class="container">
-                            <ol class="breadcrumb__list">
-                                <li class="breadcrumb__item">
-                                    <a href="<?php echo home_url(); ?>" class="breadcrumb__link">Accueil</a>
-                                </li>
-                                <li class="breadcrumb__item">
-                                    <a href="<?php echo get_post_type_archive_link('projet'); ?>" class="breadcrumb__link">
-                                        Projets
-                                    </a>
-                                </li>
-                                <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
-                                    <?php the_title(); ?>
-                                </li>
-                            </ol>
-                        </div>
-                    </nav>
-
-
                 </div>
             </header>
 
@@ -64,13 +41,6 @@ get_header();
 
                         <!-- Section principale : Description -->
                         <div class="projet-description">
-                            <div class="projet-section">
-                                <h2 class="projet-section__title">Contexte & Objectifs</h2>
-                                <div class="projet-section__content prose">
-                                    <?php the_content(); ?>
-                                </div>
-                            </div>
-
                             <!-- Champs personnalisés ACF ou avancés -->
                             <?php
                             $challenge = get_post_meta(get_the_ID(), 'challenge', true);
@@ -130,61 +100,6 @@ get_header();
                                 <?php endif;
                             endif; ?>
                         </div>
-
-                        <!-- Sidebar : Technologies & Compétences -->
-                        <aside class="projet-sidebar" aria-label="Informations techniques">
-
-                            <!-- Technologies utilisées -->
-                            <?php
-                            $technologies = get_post_meta(get_the_ID(), 'technologies', true);
-                            if ($technologies) :
-                                $tech_list = explode(',', $technologies);
-                                ?>
-                                <div class="sidebar-widget">
-                                    <h3 class="sidebar-widget__title">🛠️ Technologies utilisées</h3>
-                                    <div class="tags-list">
-                                        <?php foreach ($tech_list as $tech) : ?>
-                                            <span class="tag"><?php echo esc_html(trim($tech)); ?></span>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-
-                            <!-- Compétences / Rôle -->
-                            <?php
-                            $competences = get_post_meta(get_the_ID(), 'competences', true);
-                            if ($competences) :
-                                $comp_list = explode(',', $competences);
-                                ?>
-                                <div class="sidebar-widget">
-                                    <h3 class="sidebar-widget__title">✨ Compétences mobilisées</h3>
-                                    <ul class="skills-list">
-                                        <?php foreach ($comp_list as $comp) : ?>
-                                            <li><?php echo esc_html(trim($comp)); ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            <?php endif; ?>
-
-                            <!-- Liens utiles -->
-
-
-                            <!-- Partager -->
-                            <div class="sidebar-widget">
-                                <h3 class="sidebar-widget__title">📤 Partager</h3>
-                                <div class="share-buttons">
-                                    <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
-                                       class="share-btn share-btn--twitter" target="_blank" rel="noopener noreferrer">
-                                        Twitter
-                                    </a>
-                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
-                                       class="share-btn share-btn--linkedin" target="_blank" rel="noopener noreferrer">
-                                        LinkedIn
-                                    </a>
-                                </div>
-                            </div>
-
-                        </aside>
                     </div>
                 </div>
             </article>

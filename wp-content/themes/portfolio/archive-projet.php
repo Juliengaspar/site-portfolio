@@ -12,23 +12,46 @@ get_header(); ?>
                 <h2 class="archive-title title" itemprop="headline" >Mes Projets</h2>
 
                 <!-- Filtres par type de projet -->
-                <div class="projects-filters" role="group" aria-label="Filtrer les projets">
-                    <button class="filter-btn active" data-filter="all">Tous</button>
-                    <button class="filter-btn" data-filter="web">Web</button>
-                    <button class="filter-btn" data-filter="2d">2D</button>
-                    <button class="filter-btn" data-filter="3d">3D</button>
-                </div>
+<!--                <div class="projects-filters" role="group" aria-label="Filtrer les projets">-->
+<!--                    <button class="filter-btn active" data-filter="all">Tous</button>-->
+<!--                    <button class="filter-btn" data-filter="web">Web</button>-->
+<!--                    <button class="filter-btn" data-filter="2d">2D</button>-->
+<!--                    <button class="filter-btn" data-filter="3d">3D</button>-->
+<!--               </div>-->
+               <div class="projects-filters" role="group" aria-label="Filtrer les projets">
+               <a href="?type=all" class="filter-btn">Tous</a>
+               <a href="?type=web" class="filter-btn">Web</a>
+               <a href="?type=2d" class="filter-btn">2D</a>
+               <a href="?type=3d" class="filter-btn">3D</a>
+               </div>
+
+                <noscript>
+                    <div class="no-js-message">
+                        Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
+                    </div>
+                </noscript>
 
                 <!-- Grille des projets -->
                 <div class="projects-grid" id="projects-grid" itemscope itemtype="https://schema.org/ItemList">
                     <?php
-                    // Requête pour récupérer tous les projets
+                    $type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : 'all';
+
                     $args = array(
-                            'post_type' => 'projet',
+                            'post_type'      => 'projet',
                             'posts_per_page' => -1,
-                            'orderby' => 'date',
-                            'order' => 'DESC'
+                            'orderby'        => 'date',
+                            'order'          => 'DESC'
                     );
+
+                    if ($type !== 'all') {
+                        $args['tax_query'] = array(
+                                array(
+                                        'taxonomy' => 'type_projet',
+                                        'field'    => 'slug',
+                                        'terms'    => $type,
+                                ),
+                        );
+                    }
 
                     $projects_query = new WP_Query($args);
 

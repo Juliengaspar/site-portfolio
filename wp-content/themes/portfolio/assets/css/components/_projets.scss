@@ -1,5 +1,4 @@
 @use "../general/general" as *;
-@use "../general/general" as *;
 //mobile fist
 /* Filtres */
 .projects-filters {
@@ -9,6 +8,7 @@
 }
 
 .filter-btn {
+  text-transform: none;
   background: transparent;
   border: 2px solid $light-gray;
   padding: 10px 25px;
