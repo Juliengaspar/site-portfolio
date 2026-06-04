@@ -341,6 +341,7 @@ $acceuilLink = get_field('link__site', 'option');
 </nav><!--
 //appeler la fonction pour afficher Menu de navigation custom
 //on a plus de contrôle à 100%  avec cet methode et plus facile a le structure-->
+//TODO verifier ce code
 <?php if(!is_front_page()): ?>
 <nav>
     ss

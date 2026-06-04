@@ -1,5 +1,7 @@
 <?php
 
+use controllers\ContactForm;
+
 include ('core/theme/configuration.php');
 
 // Gutenberg est le nouvel éditeur de contenu propre à Wordpress
@@ -43,13 +45,8 @@ function dw_asset(string $file): string {
 // Déclaration des menus dans wordpress
 function enregistrer_tous_menus() {
     register_nav_menus([
-        // Version Française
-        'header-fr' => 'Header - Français',
-        'footer-fr' => 'Footer - Français',
-
-        // Version Anglaise
-        'header-en' => 'Header - English',
-        'footer-en' => 'Footer - English',
+        'header' => 'Menu principal', // un seul emplacement pour les deux langues
+        'footer' => 'Footer principal',
     ]);
 }
 add_action('after_setup_theme', 'enregistrer_tous_menus');
