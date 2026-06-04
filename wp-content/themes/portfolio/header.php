@@ -291,6 +291,28 @@ $acceuilLink = get_field('link__site', 'option');
 <nav class="navigation__bars"> <!-- Menu de navigation par Wordpress -->
     <h2 class="sro">Menu de navigation</h2>
     <section>
+
+        <?php
+        // Vérifie que Polylang est actif pour éviter les erreurs
+        if ( function_exists('pll_the_languages') ) {
+            // Récupère les informations de toutes les langues
+            $languages = pll_the_languages( array( 'raw' => 1 ) );
+
+            // Parcours les langues disponibles
+            if ( ! empty( $languages ) ) {
+                echo '<div class="polylang-custom-switcher">';
+                foreach ( $languages as $lang ) {
+                    // Classe CSS si c'est la langue active
+                    $active_class = $lang['current_lang'] ? 'active' : '';
+                    echo '<a href="' . esc_url( $lang['url'] ) . '" class="lang-link ' . esc_attr( $active_class ) . '">';
+                    echo '<img src="' . esc_url( $lang['flag'] ) . '" alt="' . esc_attr( $lang['slug'] ) . '">';
+                    // echo esc_html( $lang['name'] ); // Optionnel: Décommentez pour afficher le nom de la langue
+                    echo '</a>';
+                }
+                echo '</div>';
+            }
+        }
+        ?>
         <?php if ($headerImg): ?>
             <div class="footer__logo">
                 <img src="<?= esc_url($headerImg['url']); ?>" alt="<?= esc_attr($headerImg['alt'] ?: 'Logo du site'); ?>" loading="lazy">

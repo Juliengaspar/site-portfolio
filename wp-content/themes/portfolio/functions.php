@@ -89,13 +89,13 @@ function hepl_execute_contact_form()
 
 //charger la fonction de dommaine
 //charger les traduction existantes
-load_theme_textdomain('hepl-trad', get_template_directory() . '/locales');
-//Crée un endroits ou il y a tous les traduction
-function __hepl($translation): ?string
-{
+load_theme_textdomain(
+    'portfolio-trad',
+    get_template_directory() . '/locales'
+);//Crée un endroits ou il y a tous les traduction
+function __portfolio($translation): ?string{
     //fonction lancer en arriers plans
-    return __($translation, 'hepl-trad');
-}
+    return __($translation, 'portfolio-trad');}
 function custom_mime_types($mimes) {
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
