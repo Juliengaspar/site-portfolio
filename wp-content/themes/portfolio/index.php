@@ -22,11 +22,36 @@ $description = get_field('descriptions');
             </div>
 
         <div class="profile__image">
-            <?php if ($photoProfile): ?>
-                <img src="<?= esc_url($photoProfile['url']); ?>" alt="<?= esc_attr($photoProfile['alt'] ?: 'Photo de profil'); ?>" loading="lazy" width="<?= esc_attr($photoProfile['width']); ?>" itemprop="image">
-            <?php endif; ?>
-        </div>
+            <div class="profile__image">
+                <?php if ($photoProfile): ?>
 
+                    <img
+                            src="<?= esc_url(wp_get_attachment_image_url($photoProfile['ID'], 'square-medium')); ?>"
+
+                            srcset="
+                <?= esc_url(wp_get_attachment_image_url($photoProfile['ID'], 'square-small')); ?> 400w,
+                <?= esc_url(wp_get_attachment_image_url($photoProfile['ID'], 'square-medium')); ?> 800w,
+                <?= esc_url(wp_get_attachment_image_url($photoProfile['ID'], 'square-large')); ?> 1200w
+            "
+
+                            sizes="(max-width: 768px) 90vw,
+                   (max-width: 1200px) 50vw,
+                   400px"
+
+                            alt="<?= esc_attr($photoProfile['alt'] ?: 'Photo de profil'); ?>"
+
+                            loading="lazy"
+                            decoding="async"
+
+                            width="<?= esc_attr($photoProfile['width']); ?>"
+                            height="<?= esc_attr($photoProfile['height']); ?>"
+
+                            itemprop="image"
+                    >
+
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -43,7 +68,12 @@ $description = get_field('descriptions');
                     <section class="liste-projets__projet"  itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
                         <div class="liste-projets__img">
                             <?php if($image): ?>
-                                <img class="img" src="<?= esc_url($image['url']); ?>" alt="<?= esc_attr($image['alt']); ?>" itemprop="image" width="<?= esc_attr($image['width']); ?>" height="<?= esc_attr($image['height']); ?>">
+                                <img class="img" src="<?= esc_url($image['url']); ?>" alt="<?= esc_attr($image['alt']); ?>" itemprop="image" width="<?= esc_attr($image['width']); ?>" height="<?= esc_attr($image['height']); ?>"
+                                srcset="
+                                <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-small')); ?> 400w,
+                                <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-medium')); ?> 800w,
+                                <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-large')); ?> 1200w
+                                " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px"
                             <?php endif; ?>
                         </div>
                         <h4 class="liste-projets__singel-title" itemprop="name"><?= $titleProjet; ?></h4>

@@ -15,7 +15,12 @@ class ContactForm
     protected array $data;
     //L’url de la page précedante (referrer)
     protected string $previousUrl;
-    public function __construct(array $config, array $_POST)
+    public function __construct(array $config, array $data)
     {
+        $this->config = $config;
+        $this->data = $data;
+        $this->previousUrl = wp_get_referer() ?: home_url();
     }
+
+
 }

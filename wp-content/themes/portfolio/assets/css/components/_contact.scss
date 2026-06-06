@@ -22,7 +22,10 @@ $transition: all 0.3s ease;
 // ==========================
 // PAGE CONTACT
 // ==========================
-
+.honeypot{
+  position:absolute;
+  left:-9999px;
+}
 .contact-page {
 
 

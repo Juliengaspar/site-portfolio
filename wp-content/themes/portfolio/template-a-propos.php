@@ -24,7 +24,12 @@
                     if ($image) :
                         ?>
                         <div class="photo_profile">
-                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" itemprop="image">
+                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" itemprop="image"
+                                 srcset="
+                                <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-small')); ?> 400w,
+                                <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-medium')); ?> 800w,
+                                <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-large')); ?> 1200w
+                                " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px" >
                         </div>
                     <?php endif; ?>
                 </div>
@@ -120,11 +125,15 @@
                     ?>
                 <article class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
                     <section class="parcours-item">
-                        <h3 class="parcours__carts__title" itemprop="name"><?= $filiere; ?></h3>
-                        <p class="parcours__carts__date date"   itemprop="date"> <?= $date; ?></p>
-                        <p class="parcours__carts__ecole ecole"><?= $ecole; ?></p>
+                        <h3 class="parcours__carts__title" itemprop="name">  <?= esc_html($filiere); ?></h3>
+                        <time class="parcours__carts__date date" itemprop="dateCreated">
+                            <?= esc_html($date); ?>
+                        </time>
+                        <p class="parcours__carts__ecole ecole"><?= esc_html($ecole); ?></p>
                     </section>
-                        <div class="description"  itemprop="description"><?= $explication; ?></div>
+                    <div class="description" itemprop="description">
+                        <?= wp_kses_post($explication); ?>
+                    </div>
                 </article>
                 <?php endwhile; ?>
             </section>
@@ -148,7 +157,12 @@
                     <?php endif; ?>
                     <?php if( $image_loisir ): ?>
                         <div class="passion__image">
-                            <img src="<?php echo esc_url($image_loisir['url']); ?>" alt="<?php echo esc_attr($image_loisir['alt']); ?>">
+                            <img src="<?php echo esc_url($image_loisir['url']); ?>" alt="<?php echo esc_attr($image_loisir['alt']); ?>"
+                            srcset="
+                            <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-small')); ?> 400w,
+                            <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-medium')); ?> 800w,
+                            <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-large')); ?> 1200w
+                            " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px" >
                         </div>
                     <?php else: ?>
                         <div class="passion__image">

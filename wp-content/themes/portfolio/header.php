@@ -272,16 +272,19 @@ $acceuilLink = get_field('link__site', 'option');
 ?>
 <!doctype html>
 <html lang="fr">
+<?php wp_head(); ?>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Création d’un site portfolio réalisé avec WordPress dans le cadre du cours de design web de deuxième année à la Haute École de la Province de Liège (HEPL)." />
-    <meta name="keywords" content="référencement,SEO,balise meta keywords, help, portfolio, julien, gaspar, woordpresse, developeur, UX, UI, ">
+    <meta  content="référencement,SEO,balise meta keywords, help, portfolio, julien, gaspar, woordpresse, developeur, UX, UI, ">
     <title><?php wp_title('|', true, 'right'); bloginfo('name'); ?></title>
     <meta name="author" content="Julien Gaspar">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?php wp_title('|', true, 'right'); ?>">
+    <meta property="og:url" content="<?= home_url(); ?>">
+    <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <link rel="stylesheet" type="text/css" href="<?=dw_asset('css')?>">
     <script src="<?= dw_asset('js')?>"  defer type="module" ></script>
 
@@ -315,8 +318,15 @@ $acceuilLink = get_field('link__site', 'option');
         ?>
         <?php if ($headerImg): ?>
             <div class="footer__logo">
-                <img src="<?= esc_url($headerImg['url']); ?>" alt="<?= esc_attr($headerImg['alt'] ?: 'Logo du site'); ?>" loading="lazy">
-            </div>
+                <a
+                        href="<?= esc_url(home_url('/')); ?>"
+                        class="site-logo"
+                        aria-label="Retour à l'accueil">
+
+                    <img
+                            src="<?= esc_url($headerImg['url']); ?>"
+                            alt="<?= esc_attr($headerImg['alt']); ?>">
+                </a>            </div>
         <?php endif; ?>
             <?php if (!empty($acceuilLink)) : ?>
                 <h3 class="nav__title sro">lien Navigatiion
@@ -338,24 +348,4 @@ $acceuilLink = get_field('link__site', 'option');
         ]);
         ?>
     </section>
-</nav><!--
-//appeler la fonction pour afficher Menu de navigation custom
-//on a plus de contrôle à 100%  avec cet methode et plus facile a le structure-->
-//TODO verifier ce code
-<?php if(!is_front_page()): ?>
-<nav>
-    ss
-    <h2>Fil d'ariane</h2>
-    <ul>
-        <li>s
-            <a href="<?= home_url() ?>">Accueil</a>
-            ->
-            <p><?= get_the_title() ?></p>
-        </li>
-    </ul>
 </nav>
-<?php endif; ?>
-<?php
-//affiche les 2 lange
-//pll_the_languages(['show_flags'=>1, 'show_name'=>0]);
-?>

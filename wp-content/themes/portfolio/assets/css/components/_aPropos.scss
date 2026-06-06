@@ -1,17 +1,92 @@
 @use "../general/general" as *;
 
+.parcours {
+
+  &__carts {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 2rem 0;
+    background-color: $principale__color__blue;
+    color: $white;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    > * {
+      padding: 1.5rem;
+    }
+
+    .parcours-item {
+
+      h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -0.5rem;
+          left: 0;
+          width: 40px;
+          height: 2px;
+          background: rgba(255, 255, 255, 0.5);
+          transition: width 0.3s ease;
+        }
+      }
+
+      &:hover h3::after {
+        width: 100%;
+      }
+    }
+
+    .date {
+      display: inline-block;
+      width: fit-content;
+      margin: 1rem 0;
+      padding: 0.4rem 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .ecole {
+      margin-top: 0.5rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .description {
+      background-color: $light__blue;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+  }
+}
 
 .proflie {
   display: block;
   align-content: center;
   text-align: center;
   justify-content: center;
+  margin: 5% auto;
 
   &__title {
 
   }
+  &__image{
+
+  }
+  &__image img{
+    width: 100%;
+  }
 }
-// TITRE
 #title__competence {
   margin-bottom: 2rem;
   font-size:2rem;
@@ -21,7 +96,6 @@
   width: 80%;
 }
 
-// SECTION COMPETENCES
 .competences {
   width: 100%;
   overflow: hidden;
@@ -30,7 +104,6 @@
   border-radius: 2rem;
   position: relative;
 
-  // Piste qui défile
   &__track {
     display: flex;
     width: max-content;
@@ -39,7 +112,6 @@
     animation: scrollCompetence 20s linear infinite;
   }
 
-  // Carte image
   &__item {
     flex-shrink: 0;
     background-color: $white;
@@ -48,7 +120,6 @@
 
   }
 
-  // Image responsive
   &__img {
 
     width: 8vw;
@@ -74,12 +145,11 @@
 
   img {
     max-width: 100%;
-    border-radius: 18px;
+    border-radius: 1rem;
   }
 }
 
 
-// ANIMATION INFINIE
 @keyframes scrollCompetence {
   from {
     transform: translateX(0);
@@ -90,7 +160,6 @@
   }
 }
 
-// Soft Skills (1 colonne sur mobile)
 .softSkillsContainer {
 
   > h2 {
@@ -110,7 +179,7 @@
 
 .softSkill {
   background: $white;
-  border-radius: 12px;
+  border-radius: 0.8rem;
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: all 0.3s ease;
@@ -155,7 +224,6 @@
   }
 }
 
-// Passion (mobile)
 .passion__content__description {
   display: grid;
   gap: 2rem;
@@ -168,18 +236,23 @@
 
 }
 
-// TABLETTE (min-width: 768px)
+// TABLETTE
 @media (min-width: 768px) {
   .softSkillsGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
+  .parcours {
 
-  .parcours__card {
-    max-width: 80%;
-    margin: 0 auto;
+    &__carts {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: stretch;
+
+
+    }
   }
+
 
   .passion__content__description {
     display: grid;
@@ -188,9 +261,7 @@
   }
 }
 
-// ============================================
-// DESKTOP (min-width: 1024px)
-// ============================================
+// DESKTOP
 @media (min-width: 1024px) {
   .about__me section{
     margin-bottom: 5%;
@@ -199,10 +270,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    max-width: 1280px;
     margin: 5% auto;
 
-    padding: 0 2rem;
 
     &__title {
       text-align: left;
@@ -242,7 +311,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 3rem;
-      max-width: 1200px;
       margin: 0 auto;
 
       &__text {
@@ -258,95 +326,22 @@
     }
   }
 
-  .parcours__carts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 5% 0;
-    background-color: $principale__color__blue;
-    color: $white;
-    border-radius: 1rem;
+  .parcours {
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    &__carts {
+      margin: 3rem 0;
 
-      &::before {
-        transform: scaleX(1);
-      }
-    }
-
-    .date {
-    }
-
-    // Pour les sections paires (2, 4, 6, 8...)
-    &:nth-child(even) {
-      .parcours-item {
-       //order: 2;
-       animation: slideInRight 0.5s ease;
-      }
-
+      .parcours-item,
       .description {
-       // order: 1;
-        animation: slideInLeft 0.5s ease;
+        padding: 2rem;
+      }
+
+      .parcours-item h3 {
+        font-size: 1.6rem;
       }
     }
 
 
-    .parcours-item {
-
-
-
-      h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        position: relative;
-        display: inline-block;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -5px;
-          left: 0;
-          width: 40px;
-          height: 2px;
-          background: rgba(255, 255, 255, 0.5);
-          transition: width 0.3s ease;
-        }
-      }
-
-      &:hover h3::after {
-        width: 100%;
-      }
-    }
-
-    // Style de la description
-    .description {
-      line-height: 1.6;
-      font-size: 1rem;
-      background-color: $light__blue;
-
-    }
-
-    // Style de la date
-    .date {
-      display: block;
-      width: 20%;
-      color: $white;
-      font-size: 0.9rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      margin: 0.5rem 0;
-    }
-
-    // Style de l'école
-    .ecole {
-      color: rgba(255, 255, 255, 0.9);
-      margin-top: 0.5rem;
-    }
-
-    // Style de base pour les enfants
     > * {
       padding: 1rem;
     }
@@ -377,7 +372,6 @@
     }
   }
   .parcours {
-    max-width: 1280px;
     margin: 0 auto;
 
     &__timeline {

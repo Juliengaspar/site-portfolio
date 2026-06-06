@@ -2,6 +2,37 @@
 
 <?php get_header(); ?>
 <?php
+use controllers\ContactForm;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $form = new ContactForm(
+            [
+                    'nonce_field' => 'contact_nonce',
+                    'identifier' => 'contact_form'
+            ],
+            $_POST
+    );
+
+    $form
+            ->sanitize([
+                    'lastName' => 'text_field',
+                    'firstName' => 'text_field',
+                    'email' => 'email',
+                    'message' => 'textarea_field'
+            ])
+            ->validate([
+                    'lastName' => ['required'],
+                    'firstName' => ['required'],
+                    'email' => ['required', 'email'],
+                    'message' => ['required']
+            ])
+            ->send(
+                    fn($data) => 'Nouveau message',
+                    fn($data) => $data['message']
+            )
+            ->feedback();
+}
 $title = get_the_title();
 // Traitement du formulaire
 $success = '';
@@ -37,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 ?>
 <main id="main" class="contact-page main" itemscope itemtype="https://schema.org/ContactPage">
 
-    <h2 class="contact-page__title title" itemprop="headline"><?= $title; ?></h2>
+    <?php get_template_part('templates/componements/contact/contact-header.php'); ?>
 
 
         <!-- FORMULAIRE -->
@@ -53,12 +84,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
             <?php endif; ?>
 
             <form  action="#"  method="post" class="form" novalidate aria-label="Formulaire de contact">
+                <?php wp_nonce_field('contact_form', 'contact_nonce'); ?>
 
+                <div class="honeypot" aria-hidden="true">
+                    <label for="website">
+                        Ne pas remplir ce champ
+                    </label>
+
+                    <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off">
+                </div>
                 <div class="form__group">
                     <label for="lastName" class="form__group__label">Nom <span class="form__note">*</span></label>
                     <input type="text" name="lastName" id="lastName" class="form__group__input" value="<?= esc_attr($_POST['lastName'] ?? '') ?>" placeholder="Votre nom de famille">
                     <?php if (isset($errors['lastName'])): ?>
-                        <span class="error"><?= $errors['lastName']; ?></span>
+                        <span class="error"><?= esc_html($errors['lastName']); ?></span>
                     <?php endif; ?>
                 </div>
 
