@@ -6,11 +6,31 @@ body{
 
 .main{
   padding: 5%;
-  margin: 2.5% 0;
+  margin: 25% 0;
+}
+.navigation__bars {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+  padding: 1rem;
+
+  background: $background;
+
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
+
+
 .title {
-    font-size: $big__title;
+    margin: 5% auto;
+    font-size: 3rem;
     background-color: $black;
     color: $white;
 
@@ -27,6 +47,7 @@ body{
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 2.5%;
+  margin-top: 5%;
 }
 /* ============================================
    HEADER & NAVIGATION
@@ -44,15 +65,13 @@ body{
   justify-content: space-between;
   align-items: center;
 
-  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px) saturate(180%);
 
-  padding: 1rem 3rem;
+  padding: 0 3rem;
 
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 
   transition: all 0.3s ease;
-  margin-top: 1%;
 
   // Scroll effect (optionnel)
   &.scrolled {
@@ -135,47 +154,36 @@ body{
     }
   }
 }
-/* Tablette */
-@media (max-width: 1023px) {
 
-
-  .navigation__bars {
-    flex-direction: column;
-    padding: 0.75rem 1rem;
-    gap: 0.75rem;
-  }
-
-  .footer__logo {
-    img {
-      height: 40px;
-    }
-  }
-
-  .ul-container ul {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li a {
-      font-size: 0.875rem;
-    }
-  }
-}
 
 /* Mobile */
-@media (max-width: 768px) {
+@media (min-width: 768px){
+.main{
+  padding: 5%;
+  margin: 2.5% 0;
+}
   .navigation__bars {
-    position: relative;
-    backdrop-filter: none;
-    background:$background;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+}
+
+  .footer__logo img {
+    height: 60px;
   }
 
-  .ul-container ul {
-    gap: 0.75rem;
+  .ul-container {
+    width: auto;
+    gap: 1.25rem;
 
-    li a {
-      font-size: 0.8125rem;
-      padding: 0.375rem 0;
+    a {
+      font-size: 0.95rem;
     }
   }
 
@@ -198,4 +206,37 @@ body{
 
 .navigation__bars {
   animation: fadeInDown 0.5s ease forwards;
+}
+/* Tablette */
+@media (min-width: 1024px) {
+  .main{
+    padding: 5%;
+    margin: 2.5% 0;
+  }
+.title{
+  font-size: $big__title;
+}
+
+  .navigation__bars {
+    display: flex;
+    flex-direction: row;
+    margin: 1% auto;
+    padding: 2rem 3rem;
+
+  }
+
+  .footer__logo {
+    img {
+      height: 70px;
+    }
+  }
+
+  .ul-container {
+    gap: 2rem;
+
+    a {
+      font-size: 1rem;
+    }
+
+  }
 }

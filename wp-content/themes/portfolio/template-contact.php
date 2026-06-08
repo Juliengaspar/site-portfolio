@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 }
 ?>
 <main id="main" class="contact-page main" itemscope itemtype="https://schema.org/ContactPage">
+    <h2 class="title"><?= get_the_title() ?></h2>
 
     <?php get_template_part('templates/componements/contact/contact-header.php'); ?>
 
@@ -98,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                             tabindex="-1"
                             autocomplete="off">
                 </div>
-                <div class="form__group">
+                <div class="form__group" id="champs_name">
                     <label for="lastName" class="form__group__label">Nom <span class="form__note">*</span></label>
                     <input type="text" name="lastName" id="lastName" class="form__group__input" value="<?= esc_attr($_POST['lastName'] ?? '') ?>" placeholder="Votre nom de famille">
                     <?php if (isset($errors['lastName'])): ?>
@@ -106,17 +107,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                     <?php endif; ?>
                 </div>
 
-                <div class="form__group">
+                <div class="form__group" id="champs_first_name">
                     <label for="firstName" class="form__group__label">Prénom <span class="form__note">*</span></label>
                     <input type="text" name="firstName" id="firstName" class="form__group__input" value="<?= esc_attr($_POST['firstName'] ?? '') ?>" placeholder="votre prénom">
                 </div>
 
-                <div class="form__group">
+                <div class="form__group" id="champs_email">
                     <label for="email" class="form__group__label">Email <span class="form__note">*</span></label>
                     <input type="email" name="email" id="email" class="form__group__input" value="<?= esc_attr($_POST['email'] ?? '') ?>" placeholder="votre adresse mail"  autocomplete="email" itemprop="email">
                 </div>
 
-                <div class="form__group">
+                <div class="form__group" id="champs_subject">
                     <label for="subjectMessage" class="form__group__label" aria-label="Sujet du message">Sujet</label>
                     <select name="subjectMessage" id="subjectMessage">
                         <option>Collaboration</option>
@@ -126,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
                     </select>
                 </div>
 
-                <div class="form__group">
+                <div class="form__group" id="champs_message">
                     <label for="message" class="form__group__label">Message</label>
                     <textarea name="message" id="message" aria-required="true"><?= esc_textarea($_POST['message'] ?? '') ?></textarea>
                 </div>
