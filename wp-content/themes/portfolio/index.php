@@ -11,6 +11,12 @@ $description = get_field('descriptions');
 ?>
 <?php get_header(); ?>
     <main class="main" itemscope itemtype="https://schema.org/Person">
+
+        <noscript>
+            <div class="no-js-message">
+                Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
+            </div>
+        </noscript>
 <h2 class="title__page title"  itemprop="name"><?=  get_field('title__page')?></h2>
 <section class="profile" aria-labelledby="profile-title">
     <h3 id="profile-title" class="sr-only">

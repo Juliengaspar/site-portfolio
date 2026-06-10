@@ -238,4 +238,23 @@
   .related-card {
     width: auto;
   }
+  .one__redirections {
+    display: inline-block;
+    width: auto;
+    padding: 1rem;
+    text-align: left;
+    background-color: $principale__color__blue;
+    border-radius: 0.5rem;
+    margin: 1rem auto;
+
+    &:hover {
+      background-color: $light__blue;
+    }
+
+    &__link {
+      color: $white;
+      text-decoration: none;
+      padding: 1rem;
+    }
+  }
 }

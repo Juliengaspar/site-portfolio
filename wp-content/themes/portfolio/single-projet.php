@@ -15,6 +15,7 @@ get_header();
             $titlePage = get_field('title__projet');
             $imgPage = get_field('projet__img');
             $descriptionPage = get_field('projet__description');
+            $linkProjet = get_field('redirection__projet__ligne');
             ?>
         <h2 class="singel__projet__title title"><?= $titlePage ?></h2>
         <article id="post-<?php the_ID(); ?>" <?php post_class('projet'); ?>itemscope itemtype="https://schema.org/CreativeWork">
@@ -73,6 +74,11 @@ get_header();
                         </div>
                     </section>
                 </section>
+                <?php if ($linkProjet) :?>
+            <div class="one__redirections">
+                <a href="<?= $linkProjet['url']  ?>" class="one__redirections__link" title="<?= $linkProjet['title'] ?>"><?= $linkProjet['title'] ?></a>
+            </div>
+                <?php endif; ?>
         </article>
             <?php endif;
             wp_reset_postdata(); ?>

@@ -67,6 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 }
 ?>
 <main id="main" class="contact-page main" itemscope itemtype="https://schema.org/ContactPage">
+
+    <noscript>
+        <div class="no-js-message">
+            Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
+        </div>
+    </noscript>
     <h2 class="title"><?= get_the_title() ?></h2>
 
     <?php get_template_part('templates/componements/contact/contact-header.php'); ?>

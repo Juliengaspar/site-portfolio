@@ -41,49 +41,21 @@ console.log('test');
             });
         });
 
-        // Fonction de filtrage AJAX
-        function filterProjects(category) {
-            const xhr = new XMLHttpRequest();
-            const url = new URL(window.location.href);
+        const projets = document.querySelectorAll('.projet');
 
-            if (category === 'all') {
-                url.searchParams.delete('filter');
-            } else {
-                url.searchParams.set('filter', category);
-            }
-
-            xhr.open('GET', url);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = xhr.responseText;
-
-                    const newGrid = tempDiv.querySelector('.grid-projets');
-                    const oldGrid = document.querySelector('.grid-projets');
-
-                    if (newGrid && oldGrid) {
-                        oldGrid.innerHTML = newGrid.innerHTML;
-                    }
-                }
-            };
-            xhr.send();
-        }
-
-        // Gérer le bouton retour/précédent
-        window.addEventListener('popstate', function() {
-            const url = new URL(window.location.href);
-            const filter = url.searchParams.get('filter') || 'all';
-
-            filterLinks.forEach(link => {
-                const linkFilter = link.getAttribute('data-filter');
-                if (linkFilter === filter) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-
-            filterProjects(filter);
         });
+
+        projets.forEach(projet => {
+            observer.observe(projet);
+        });
+
+
+
     });
 })();

@@ -28,6 +28,7 @@
 }
 
 .profile {
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -69,7 +70,9 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
 
   &__projets__title {
     grid-column: 1 / -1;

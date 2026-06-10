@@ -2,6 +2,12 @@
 
 <?php get_header(); ?>
 <main id="main" class="about__me main"     itemscope itemtype="https://schema.org/Person">
+
+    <noscript>
+        <div class="no-js-message">
+            Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
+        </div>
+    </noscript>
     <?php
     $titlePage = get_field('title__page');
     $AbouteMeTitle = get_field('title__a__propos');
