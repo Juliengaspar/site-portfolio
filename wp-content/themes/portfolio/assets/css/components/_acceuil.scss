@@ -11,10 +11,14 @@
   position: absolute;
   left: -9999px;
 }
-
+.main{
+  padding: 5%;
+}
 // ----------------------
 // MOBILE FIRST
 // ----------------------
+
+
 
 .hero {
   text-align: center;
@@ -267,8 +271,10 @@
 
   .liste-projets {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: stretch;
     gap: 5rem;
     padding: 5%;
+    max-width: 1300px;
 
     &__projets__title {
       font-size: 2rem;
@@ -278,8 +284,24 @@
       font-size: 3rem;
     }
   }
+  .liste-projets__projet {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .liste-projets__projet-description {
+    flex-grow: 1;
+  }
+
+  .liste-projets__btn {
+    margin-top: auto;
+  }
 
   .redirections {
     width: 25%;
+    &__link{
+      padding: 1rem 4rem;
+    }
   }
 }

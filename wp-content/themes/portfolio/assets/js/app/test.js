@@ -58,4 +58,12 @@ console.log('test');
 
 
     });
+    const burger = document.querySelector('.burger-menu');
+    const menu = document.querySelector('.navigation-menu');
+
+    if (burger && menu) {
+        burger.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    }
 })();

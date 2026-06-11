@@ -55,7 +55,7 @@ body{
 
 /* Structure principale */
 .navigation__bars {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -101,6 +101,41 @@ body{
       transform: scale(1.02);
     }
   }
+}
+
+.burger-menu {
+  display: block;
+  font-size: 2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.navigation-menu {
+  display: none;
+}
+
+.navigation-menu.active {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 100%;
+
+  background: $background;
+  padding: 1rem;
+}
+
+.navigation-menu.active .ul-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ul-container a {
+  white-space: nowrap;
 }
 
 // MENU
@@ -177,16 +212,43 @@ body{
   .footer__logo img {
     height: 60px;
   }
-
-  .ul-container {
-    width: auto;
-    gap: 1.25rem;
-
-    a {
-      font-size: 0.95rem;
-    }
+  /* Cache la checkbox */
+  .menu-toggle {
+    display: none;
   }
 
+  /* Bouton burger */
+  .burger-menu {
+    font-size: 2rem;
+    cursor: pointer;
+    display: block;
+    padding: 0.5rem;
+  }
+
+  /* Menu caché sur mobile */
+  .navigation-menu {
+    display: none;
+  }
+
+  /* Affichage quand la checkbox est cochée */
+  .menu-toggle:checked ~ .navigation-menu {
+    display: block;
+    width: 100%;
+    background: $background;
+    padding: 1rem 0;
+  }
+
+  /* Menu vertical mobile */
+  .menu-toggle:checked ~ .navigation-menu .ul-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .ul-container a {
+    white-space: nowrap;
+  }
 
 }
 
@@ -216,11 +278,17 @@ body{
 .title{
   font-size: $big__title;
 }
+  .burger-menu {
+    display: none;
+  }
 
+  .navigation-menu {
+    display: block;
+  }
   .navigation__bars {
+    position: sticky;
     display: flex;
     flex-direction: row;
-    margin: 1% auto;
     padding: 2rem 3rem;
 
   }

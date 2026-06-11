@@ -64,9 +64,21 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
             <h3><?= $footerFollowTitle ?></h3>
 
                 <div class="footer__liste__folowing__contenu">
-            <?php foreach ($footerFollowimgs as $footerFollowimg) : ?>
-                    <img class="liste__folowing__img" src="<?= $footerFollowimg['url']; ?>" alt="<?= $footerFollowimg['alt']; ?>" title="<?= $footerFollowimg['title']; ?>" itemprop="image">
-            <?php endforeach; ?>
+                    <?php if (!empty($footerFollowimgs) && is_array($footerFollowimgs)) : ?>
+
+                        <?php foreach ($footerFollowimgs as $footerFollowimg) : ?>
+
+                            <img
+                                    class="liste__folowing__img"
+                                    src="<?= esc_url($footerFollowimg['url']); ?>"
+                                    alt="<?= esc_attr($footerFollowimg['alt']); ?>"
+                                    title="<?= esc_attr($footerFollowimg['title']); ?>"
+                                    itemprop="image"
+                            >
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
                 </div>
         </section>
 
@@ -78,7 +90,7 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
         <?php if ($footerCopyright): ?>
             <h3 class="footer__bottom__title">
                 <span itemprop="copyrightNotice">
-                    <?= esc_html($footerCopyright); ?>
+                    <?=$footerCopyright ?>
                 </span>
             </h3>
         <?php endif; ?>

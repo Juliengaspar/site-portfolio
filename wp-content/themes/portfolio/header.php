@@ -337,7 +337,12 @@ $acceuilLink = get_field('link__site', 'option');
                 </h3>
             <?php endif; ?>
     </section>
-    <section>
+    <!--<input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+    <label for="menu-toggle" class="burger-menu">
+        ☰
+    </label>-->
+    <section class="navigation-menu">
        <h2 class="sro">Liste navigation</h2>
         <?php
         wp_nav_menu([
