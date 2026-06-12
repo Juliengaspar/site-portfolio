@@ -227,6 +227,10 @@
     &__image img {
       max-width: 320px;
     }
+    &__img{
+      width: 100%;
+      height: auto;
+    }
   }
 
   .liste-projets {

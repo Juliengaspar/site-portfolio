@@ -14,8 +14,8 @@
       margin-bottom: 1rem;
     }
   }
-  &__image{
-    width: 50%;
+  &__img{
+    width: 70%;
     height: auto;
     margin: 5% auto;
   }
@@ -279,7 +279,12 @@
       max-width: 70ch;
       line-height: 1.8;
     }
+    &__img{
+      width: 100%;
+      height: auto;
+    }
   }
+
 
   .passion__content__description {
 

@@ -228,6 +228,14 @@
       flex: 1;
       padding: 2rem;
     }
+    &__description h2{
+      font-size: 2rem;
+      color: $white;
+    }
+    &__description li{
+      margin-left: 5%;
+      list-style: disc;
+    }
   }
 
   .related-grid {
