@@ -27,12 +27,12 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
         <!-- Infos -->
         <div class="footer__info">
             <?php if ($footerTitle): ?>
-                <h2 class="footer__title" itemprop="name"><?= $footerTitle; ?></h2>
+                <h2 class="footer__title" itemprop="name"><?= esc_html($footerTitle); ?></h2>
             <?php endif; ?>
 
             <?php if ($footerContact): ?>
                 <div class="footer__contact">
-                    <?= $footerContact; ?>
+                    <?= wp_kses_post($footerContact); ?>
                 </div>
             <?php endif; ?>
         </div>
@@ -40,7 +40,7 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
         <!-- Navigation -->
         <nav class="footer__nav" aria-label="Navigation du footer">
             <?php if ($footerTitleLinks): ?>
-                <h2 class="footer__nav-title"><?= $footerTitleLinks; ?></h2>
+                <h2 class="footer__nav-title"><?=  esc_html($footerTitleLinks); ?></h2>
             <?php endif; ?>
 
             <?php
@@ -56,12 +56,12 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
         <?php if ($footerButton): ?>
             <div class="footer__cta">
                 <a class="footer__button" href="<?= esc_url($footerButton['url']); ?>" target="<?= $footerButton['target'] ?: '_self'; ?>" title="<?= $footerButton['title']; ?>"  itemprop="url">
-                    <?= $footerButton['title']; ?>
+                    <?= esc_html($footerButton['title']); ?>
                 </a>
             </div>
         <?php endif; ?>
         <section class="footer__liste__folowing">
-            <h3><?= $footerFollowTitle ?></h3>
+            <h3><?= esc_html($footerFollowTitle) ?></h3>
 
                 <div class="footer__liste__folowing__contenu">
                     <?php if (!empty($footerFollowimgs) && is_array($footerFollowimgs)) : ?>
@@ -90,7 +90,7 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
         <?php if ($footerCopyright): ?>
             <h3 class="footer__bottom__title">
                 <span itemprop="copyrightNotice">
-                    <?=$footerCopyright ?>
+                    <?= esc_html($footerCopyright); ?>
                 </span>
             </h3>
         <?php endif; ?>

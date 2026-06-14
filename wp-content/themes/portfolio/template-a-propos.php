@@ -14,12 +14,12 @@
     $AbouteMeText = get_field('description__a__propos');
 
     ?>
-        <h2 class="about__me__title title"><?= $titlePage?></h2>
+        <h2 class="about__me__title title"><?= esc_html($titlePage); ?></h2>
 
         <section class="proflie">
             <div>
-            <h3 class="proflie__title subtitle" itemprop="name"><?= $AbouteMeTitle ?></h3>
-            <div class="proflie__text" itemprop="description"><?= $AbouteMeText ?></div>
+            <h3 class="proflie__title subtitle" itemprop="name"><?= esc_html($AbouteMeTitle); ?></h3>
+            <div class="proflie__text" itemprop="description"><?= wp_kses_post($AbouteMeText); ?></div>
             </div>
                 <div class="proflie__image">
                     <!-- Image d'introduction -->
@@ -132,9 +132,9 @@
                 <article class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
                     <section class="parcours-item">
                         <h3 class="parcours__carts__title" itemprop="name">  <?= esc_html($filiere); ?></h3>
-                        <time class="parcours__carts__date date" itemprop="dateCreated">
+                        <p class="parcours__carts__date date" itemprop="dateCreated">
                             <?= esc_html($date); ?>
-                        </time>
+                        </p>
                         <p class="parcours__carts__ecole ecole"><?= esc_html($ecole); ?></p>
                     </section>
                     <div class="description" itemprop="description">
@@ -155,11 +155,11 @@
 
             <section class="passion__content">
                 <?php if( $titre ): ?>
-                    <h2 class="passion__content__subtile subtitle" ><?=$titre; ?></h2>
+                    <h2 class="passion__content__subtile subtitle" ><?= esc_html($titre); ?></h2>
                 <?php endif; ?>
                 <div class="passion__content__description">
                     <?php if( $description ): ?>
-                        <div class="passion__content__description__text"     itemprop="description"><?php echo wp_kses_post($description); ?></div>
+                        <div class="passion__content__description__text" itemprop="description"><?php echo wp_kses_post($description); ?></div>
                     <?php endif; ?>
                     <?php if( $image_loisir ): ?>
                         <div class="passion__image">

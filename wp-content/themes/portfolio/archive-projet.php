@@ -75,7 +75,7 @@ get_header(); ?>
                                <h2 class="sro">Liste de mes different projet</h2>
                                 <?php if($imgProjets): ?>
                                     <div class="projet__img">
-                                        <img class="projet__img__img" src="<?= $imgProjets['url']; ?>" alt="<?= $imgProjets['alt']; ?>" itemprop="image">
+                                        <img class="projet__img__img" src="<?= esc_url($imgProjets['url']); ?>" alt="<?= esc_attr($imgProjets['alt']); ?>" itemprop="image">
                                     </div>
                                 <?php elseif (has_post_thumbnail()) : ?>
                                     <div class="projet__img">

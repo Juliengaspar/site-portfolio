@@ -25,7 +25,7 @@ get_header();
 
                 <div class="projet-hero__contenu">
                     <?php if($imgPage): ?>
-                        <img src="<?= $imgPage['url']; ?>" alt="<?= $imgPage['alt']; ?>" class="projet-hero__img" width="<?= $imgPage['width']; ?>" height="<?= $imgPage['height']; ?>"   itemprop="image">
+                        <img src="<?= esc_url($imgPage['url']); ?>" alt="<?= esc_attr($imgPage['alt']); ?>" class="projet-hero__img" width="<?= $imgPage['width']; ?>" height="<?= $imgPage['height']; ?>"   itemprop="image">
                     <?php endif; ?>
                     <?php if ($descriptionPage) : ?>
                         <div class="projet-hero__description" itemprop="description">
@@ -76,7 +76,7 @@ get_header();
                 </section>
                 <?php if ($linkProjet) :?>
             <div class="one__redirections">
-                <a href="<?= $linkProjet['url']  ?>" class="one__redirections__link" title="<?= $linkProjet['title'] ?>"><?= $linkProjet['title'] ?></a>
+                <a href="<?= esc_url($linkProjet['url']);  ?>" class="one__redirections__link" title="<?= esc_attr($linkProjet['title']); ?>"><?= esc_attr($linkProjet['title']); ?></a>
             </div>
                 <?php endif; ?>
         </article>

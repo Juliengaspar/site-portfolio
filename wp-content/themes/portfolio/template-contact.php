@@ -146,50 +146,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['envoyer'])) {
 
             </form>
         </section>
-
-        <!-- COORDONNÉES -->
-        <!--
-        <aside class="contact-info" itemscope itemtype="https://schema.org/Organization">
-
-            <?php $img = get_field('form__picture'); ?>
-            <?php if ($img): ?>
-                <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>" class="contact-info__img" itemprop="image">
-            <?php endif; ?>
-
-            <h3 itemprop="name"><?= get_field('title__reseaux__sociaux'); ?></h3>
-
-            <ul class="icones"
-
-            <?php $img = get_field('form__picture'); ?>
-            <?php if ($img): ?>
-                <img src="<?= esc_url($img['url']); ?>" alt="<?= esc_attr($img['alt']); ?>" class="contact-info__img" itemprop="image">
-        <?php endif; ?>
-
-            <h3><?= get_field('title__reseaux__sociaux'); ?></h3>
-
-            <ul class="icones">
-                <li id="email" class="icones__liste" itemprop="email">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#email"></use>
-                    </svg>
-                    <span><?= get_field("email"); ?></span>
-                </li>
-                <li id="tel" class="icones__liste">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#Icone__tel"></use>
-                    </svg>
-                    <span><?= get_field("number__tel"); ?></span>
-                </li>
-
-                <li id="adresse" class="icones__liste">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#Icone__adresse"></use>
-                    </svg>
-                    <span><?= get_field("adresse"); ?></span>
-                </li>
-            </ul>
-        </aside>-->
-
-
 </main>
 <?php get_footer(); ?>
