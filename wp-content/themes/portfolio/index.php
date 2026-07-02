@@ -63,7 +63,7 @@ $description = get_field('descriptions');
 
            <?php if( have_rows('liste__projets') ): ?>
 
-            <section class="liste-projets" itemscope itemtype="https://schema.org/ItemList">
+            <ul class="liste-projets" itemscope itemtype="https://schema.org/ItemList">
                 <h3 class="liste-projets__projets__title" itemprop="name"><?= $titleListeProjet ?></h3>
                 <?php while( have_rows('liste__projets') ): the_row();
                     $titleProjet = get_sub_field('title__projet');
@@ -71,7 +71,7 @@ $description = get_field('descriptions');
                     $image = get_sub_field('projet__img');
                     $liensProjet = get_sub_field('link__projet');
                     ?>
-                    <section class="liste-projets__projet"  itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
+                    <li class="liste-projets__projet"  itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
                         <div class="liste-projets__img">
                             <?php if($image): ?>
                                 <img class="img" src="<?= esc_url($image['url']); ?>" alt="<?= esc_attr($image['alt']); ?>" itemprop="image" width="<?= esc_attr($image['width']); ?>" height="<?= esc_attr($image['height']); ?>"
@@ -89,7 +89,7 @@ $description = get_field('descriptions');
                                 <a href="<?= $liensProjet['url']; ?>" title="<?= $liensProjet['title']; ?>" class="liste-projets__links" itemprop="url" aria-label="Découvrir le projet"><?= $liensProjet['title']; ?></a>
                             </div>
                         <?php endif; ?>
-                    </section>
+                    </li>
                 <?php endwhile; ?>
 
         <?php else: ?>
@@ -97,7 +97,7 @@ $description = get_field('descriptions');
             <p>Aucun projet trouvé.</p>
 
         <?php endif; ?>
-    </section>
+    </ul>
         <section>
             <h2 class="redirections btn">
 

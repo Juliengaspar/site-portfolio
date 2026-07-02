@@ -1,8 +1,10 @@
 <?php
 $footerImg = get_field('logo__footer__img', 'option');
 $footerTitle = get_field('title__footer', 'option');
-$footerContact = get_field('contact__footer', 'option');
 $footerTitleLinks = get_field('title__navigations', 'option');
+$adresse = get_field('footer_adresse', 'option');
+$telephone = get_field('footer_telephone', 'option');
+$email = get_field('footer_email', 'option');
 $footerButton = get_field('contact__link__button', 'option');
 $footerCopyright = get_field('copyright__footer', 'option');
 $footerFollowTitle = get_field('title__folow', 'option');
@@ -29,12 +31,29 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
             <?php if ($footerTitle): ?>
                 <h2 class="footer__title" itemprop="name"><?= esc_html($footerTitle); ?></h2>
             <?php endif; ?>
+            <div class="footer__contact">
 
-            <?php if ($footerContact): ?>
-                <div class="footer__contact">
-                    <?= wp_kses_post($footerContact); ?>
-                </div>
-            <?php endif; ?>
+                <?php if($adresse): ?>
+                    <p><?= $adresse; ?></p>
+                <?php endif; ?>
+
+                <?php if($telephone): ?>
+                    <p>
+                        <a href="tel:<?= preg_replace('/[^0-9+]/', '', $telephone); ?>">
+                            <?= $telephone; ?>
+                        </a>
+                    </p>
+                <?php endif; ?>
+
+                <?php if($email): ?>
+                    <p>
+                        <a href="mailto:<?= esc_attr($email); ?>">
+                            <?= $email; ?>
+                        </a>
+                    </p>
+                <?php endif; ?>
+
+            </div>
         </div>
 
         <!-- Navigation -->

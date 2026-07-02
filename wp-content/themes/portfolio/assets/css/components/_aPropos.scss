@@ -149,18 +149,20 @@
   }
 
   &__item {
-    flex-shrink: 0;
-    background-color: $white;
-    border-radius: 1rem;
-    padding: 1rem;
+    flex: 0 0 80px; /* Ne pas rétrécir, ne pas grandir, base de 80px */
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
   }
 
   &__img {
 
-    width: 8vw;
-    height: 8vw;
-    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     display: block;
   }
 }
@@ -200,7 +202,6 @@
 
   > h2 {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
-    text-align: center;
     margin-bottom: 2rem;
   }
 }
@@ -219,11 +220,6 @@
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  }
 }
 
 .softSkill__imageWrapper {

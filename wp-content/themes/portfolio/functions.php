@@ -169,6 +169,28 @@ function creer_taxonomie_type_projet() {
 }
 add_action('init', 'creer_taxonomie_type_projet');
 
+function register_messages_cpt() {
+
+    register_post_type('messages',
+        array(
+            'labels' => array(
+                'name' => 'Messages',
+                'singular_name' => 'Message',
+                'menu_name' => 'Messages',
+                'add_new' => 'Ajouter',
+                'add_new_item' => 'Ajouter un message',
+                'edit_item' => 'Modifier le message',
+                'view_item' => 'Voir le message',
+            ),
+            'public' => false,
+            'show_ui' => true,
+            'menu_icon' => 'dashicons-email',
+            'supports' => array('title', 'editor'),
+        )
+    );
+}
+add_action('init', 'register_messages_cpt');
+
 add_image_size('sqaure-small', 400, 400, true );//nom /size/recadrage;
 add_image_size('sqaure-medium', 800, 800, true );//nom /size/recadrage;
 add_image_size('sqaure-large', 1200, 1200, true );//nom /size/recadrage;

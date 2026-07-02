@@ -9,7 +9,7 @@ get_header(); ?>
         <section class="projects-archive" aria-labelledby="projects-title">
             <div class="container">
 
-                <h2 class="archive-title title" itemprop="headline" >Mes Projets</h2>
+                <h2 class="archive-title title" itemprop="headline" >Mes réalisations</h2>
 
                 <!-- Filtres par type de projet -->
 <!--                <div class="projects-filters" role="group" aria-label="Filtrer les projets">-->
@@ -18,12 +18,38 @@ get_header(); ?>
 <!--                    <button class="filter-btn" data-filter="2d">2D</button>-->
 <!--                    <button class="filter-btn" data-filter="3d">3D</button>-->
 <!--               </div>-->
-               <div class="projects-filters" role="group" aria-label="Filtrer les projets">
-               <a href="?type=all" class="filter-btn">Tous</a>
-               <a href="?type=web" class="filter-btn">Web</a>
-               <a href="?type=2d" class="filter-btn">2D</a>
-               <a href="?type=3d" class="filter-btn">3D</a>
-               </div>
+                <div class="projects-filters" role="group" aria-label="Filtrer les projets">
+
+                    <?php
+                    $current = $_GET['type'] ?? 'all';
+                    ?>
+
+                    <a href="?type=all"
+                       class="filter-btn <?= $current === 'all' ? 'active' : ''; ?>">
+                        Tous
+                    </a>
+
+                    <?php
+                    $terms = get_terms(array(
+                            'taxonomy'   => 'type_projet',
+                            'hide_empty' => true,
+                    ));
+
+                    if (!is_wp_error($terms)) :
+                        foreach ($terms as $term) :
+                            ?>
+
+                            <a href="?type=<?= esc_attr($term->slug); ?>"
+                               class="filter-btn <?= $current === $term->slug ? 'active' : ''; ?>">
+                                <?= esc_html($term->name); ?>
+                            </a>
+
+                        <?php
+                        endforeach;
+                    endif;
+                    ?>
+
+                </div>
 
                 <noscript>
                     <div class="no-js-message">
@@ -93,7 +119,7 @@ get_header(); ?>
                                     </div>
                                     <div class="project-card__link">
                                     <a href="<?php the_permalink(); ?>" class="project-card__btn btn"  itemprop="url" aria-label="Voir le projet" >
-                                        Découvrir
+                                        Voir le projet →
                                     </a>
                                     </div>
                                 </section>

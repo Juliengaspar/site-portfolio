@@ -25,8 +25,6 @@
                     <!-- Image d'introduction -->
                     <?php
                     $image = get_field('photo_profile');
-                    // var_dump($image); // temporaire pour voir ce qu'il y a dans le fichiers
-
                     if ($image) :
                         ?>
                         <div class="photo_profile">
@@ -44,7 +42,7 @@
 
     <!-- Compétences -->
     <section class="competenceSection"   aria-labelledby="title__competence">
-        <h2 class="competenceSection__title" id="title__competence" >
+        <h2 class="subtitle competenceSection__title" id="title__hardSkills">
             Mes hard skills
         </h2>
         <?php $galerie = get_field('galerie__picture__competence'); ?>
@@ -57,7 +55,7 @@
                     <!-- Première série -->
                     <?php foreach ($galerie as $image) : ?>
                         <div class="competences__item">
-                            <img class="competences__img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            <img class="competences__img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" loading="lazy>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -65,7 +63,7 @@
         <?php endif; ?>
     </section>
     <section class="softSkillsContainer" aria-labelledby="title__softskills">
-        <h2 class="subtitle" id="title__competence">
+        <h2 class="subtitle" id="title__softSkills">
             Mes soft skills
         </h2>
         <?php
@@ -90,7 +88,7 @@
                             <div class="softSkill__imageWrapper">
                                 <img
                                         src="<?= esc_url($imgSkill['url']) ?>"
-                                        alt="<?= esc_attr($imgSkill['alt'] ?? 'Icône pour ' . $titleSkill) ?>"
+                                        alt="<?= esc_attr($imgSkill['alt']) ?>"
                                         class="softSkill__img"
                                         loading="lazy"
                                         itemprop="image"
@@ -132,9 +130,9 @@
                 <article class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
                     <section class="parcours-item">
                         <h3 class="parcours__carts__title" itemprop="name">  <?= esc_html($filiere); ?></h3>
-                        <p class="parcours__carts__date date" itemprop="dateCreated">
+                        <span class="parcours__carts__date date" itemprop="dateCreated">
                             <?= esc_html($date); ?>
-                        </p>
+                        </span>
                         <p class="parcours__carts__ecole ecole"><?= esc_html($ecole); ?></p>
                     </section>
                     <div class="description" itemprop="description">
@@ -180,6 +178,47 @@
                 </div>
             </section>
         </section>
+
+    <section class="social-section sectionMargin" aria-labelledby="social-title">
+        <?php
+        $reseauxSociauxTitle = get_field('reseaux__sociaux__title');
+        ?>
+        <h2 id="social-title" class="subtitle"><?= $reseauxSociauxTitle?></h2>
+
+        <?php if( have_rows('social_links') ) : // Vérifie si le répéteur ACF existe et contient des lignes ?>
+
+            <div class="social-links">
+                <?php while( have_rows('social_links') ) : the_row();
+                    $name = get_sub_field('social_name');
+                    $url  = get_sub_field('social_url');
+                    $icon = get_sub_field('social_icon'); // Tableau ACF (url, alt, id...)
+                    ?>
+                    <a href="<?= esc_url($url); ?>"
+                       class="social-link"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="<?= esc_attr($name); ?>"
+                       title="<?= esc_attr($name); ?>">
+
+                        <?php if( $icon && !empty($icon['url']) ) : ?>
+                            <img src="<?= esc_url($icon['url']); ?>"
+                                 alt="<?= esc_attr($icon['alt'] ?: $name); ?>"
+                                 width="40"
+                                 height="40"
+                                 loading="lazy"
+                                 class="social-link__icon">
+                        <?php else : ?>
+                            <!-- Fallback texte si l'image n'est pas chargée -->
+                            <span class="social-link__text"><?= esc_html($name); ?></span>
+                        <?php endif; ?>
+                    </a>
+                <?php endwhile; ?>
+            </div>
+
+        <?php endif; ?>
+        <p>aucun réseaux disponible</p>
+    </section>
+
 </main>
 
 <?php get_footer(); ?>

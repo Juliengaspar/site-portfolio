@@ -11,6 +11,7 @@
   position: absolute;
   left: -9999px;
 }
+
 .main{
   padding: 5%;
 }
@@ -85,7 +86,8 @@
   }
 
   &__singel-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight:700;
     text-align: center;
     margin: 1rem auto;
   }
@@ -127,9 +129,15 @@
     text-decoration: none;
     font-size: 0.9rem;
     transition: background 0.2s ease;
+    box-shadow:
+            0 15px 40px rgba(0,0,0,.08);
+
 
     &:hover {
       background-color: $light__blue;
+      transform:translateY(-2px);
+      box-shadow:
+              0 25px 50px rgba(0,0,0,.15);
     }
   }
 
@@ -139,8 +147,12 @@
     text-align: center;
     color: white;
     text-decoration: none;
-    padding: 0.5rem;
     margin: 5% auto;
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    font-weight:600;
 
     &:hover {
       text-decoration: underline;
@@ -255,13 +267,20 @@
 @media (min-width: 1024px) {
   .profile {
     &__content {
-      justify-content: space-between;
-      gap: 4rem;
-      margin: 5% auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      width:100%;
+      margin:1% auto;
     }
+
 
     &__content__description {
       padding: 2rem;
+      max-width:550px;
+      width:100%;
+      margin-bottom: auto;
 
       h2 {
         font-size: 2rem;
@@ -289,6 +308,11 @@
     }
   }
   .liste-projets__projet {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.08);
+
+    transition: .3s;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -305,7 +329,7 @@
   .redirections {
     width: 25%;
     &__link{
-      padding: 1rem 4rem;
+      padding: 1rem 2rem;
     }
   }
 }

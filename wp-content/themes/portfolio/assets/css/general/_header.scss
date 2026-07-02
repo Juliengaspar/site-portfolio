@@ -2,6 +2,7 @@
 //pour tous les page
 body{
   background-color: $background;
+    font-family: helvetica, arial, sans-serif;
 }
 
 .main{
@@ -29,16 +30,12 @@ body{
 
 
 .title {
-    margin: 5% auto;
     font-size: 3rem;
     background-color: $black;
     color: $white;
-
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
     text-align: center;
-
-    padding: 2%;
+    padding: 1%;
 
 }
 
@@ -289,6 +286,7 @@ body{
     position: sticky;
     display: flex;
     flex-direction: row;
+
     padding: 2rem 3rem;
 
   }

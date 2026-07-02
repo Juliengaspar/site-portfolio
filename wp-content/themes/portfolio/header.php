@@ -290,32 +290,48 @@ $acceuilLink = get_field('link__site', 'option');
 
 </head>
 <body>
-<h1 class="sro"><?= get_the_title()?> - Wordpresse Demon 201</h1>
+<h1 class="sro"><?= get_the_title()?></h1>
 <nav class="navigation__bars"> <!-- Menu de navigation par Wordpress -->
     <h2 class="sro">Menu de navigation</h2>
     <section>
 
-        <?php
-        // Vérifie que Polylang est actif pour éviter les erreurs
-        if ( function_exists('pll_the_languages') ) {
-            // Récupère les informations de toutes les langues
-            $languages = pll_the_languages( array( 'raw' => 1 ) );
+        <?php if ( function_exists('pll_the_languages') ) : ?>
 
-            // Parcours les langues disponibles
-            if ( ! empty( $languages ) ) {
-                echo '<div class="polylang-custom-switcher">';
-                foreach ( $languages as $lang ) {
-                    // Classe CSS si c'est la langue active
-                    $active_class = $lang['current_lang'] ? 'active' : '';
-                    echo '<a href="' . esc_url( $lang['url'] ) . '" class="lang-link ' . esc_attr( $active_class ) . '">';
-                    echo '<img src="' . esc_url( $lang['flag'] ) . '" alt="' . esc_attr( $lang['slug'] ) . '">';
-                    // echo esc_html( $lang['name'] ); // Optionnel: Décommentez pour afficher le nom de la langue
-                    echo '</a>';
-                }
-                echo '</div>';
-            }
-        }
-        ?>
+            <nav class="language-switcher" aria-label="Sélecteur de langue">
+                <ul class="language-switcher__list">
+
+                    <?php
+                    $languages = pll_the_languages(['raw' => 1]);
+
+                    if ( ! empty($languages) ) :
+                        foreach ( $languages as $lang ) :
+
+                            $is_active = ! empty($lang['current_lang']) ? 'is-active' : '';
+                            ?>
+
+                            <li class="language-switcher__item">
+                                <a class="language-switcher__link <?php echo esc_attr($is_active); ?>"
+                                   href="<?php echo esc_url($lang['url']); ?>"
+                                   aria-current="<?php echo $is_active ? 'page' : 'false'; ?>">
+
+                                    <img
+                                            class="language-switcher__flag"
+                                            src="<?php echo esc_url($lang['flag']); ?>"
+                                            alt="<?php echo esc_attr($lang['name']); ?>"
+                                            loading="lazy"
+                                    >
+                                </a>
+                            </li>
+
+                        <?php
+                        endforeach;
+                    endif;
+                    ?>
+
+                </ul>
+            </nav>
+
+        <?php endif; ?>
         <?php if ($headerImg): ?>
             <div class="footer__logo">
                 <a
