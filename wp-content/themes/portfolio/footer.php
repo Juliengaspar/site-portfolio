@@ -102,6 +102,37 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
         </section>
 
     </div>
+            <div>
+                <?php if (have_rows('footer_reseaux')) : ?>
+
+                    <?php while (have_rows('footer_reseaux')) : the_row();
+
+                        $footerFollowimg = get_sub_field('image');
+                        $footerFollowlink = get_sub_field('Link');
+
+                        if ($footerFollowimg && $footerFollowlink) :
+                            ?>
+
+                            <a
+                                    href="<?= esc_url($footerFollowlink['url']); ?>"
+                                    target="<?= esc_attr($footerFollowlink['target']); ?>"
+                            >
+                                <img
+                                        class="liste__folowing__img"
+                                        src="<?= esc_url($footerFollowimg['url']); ?>"
+                                        alt="<?= esc_attr($footerFollowimg['alt']); ?>"
+                                        title="<?= esc_attr($footerFollowimg['title']); ?>"
+                                >
+                            </a>
+
+                        <?php
+                        endif;
+
+                    endwhile;
+
+                endif;
+                ?>
+            </div>
 
     <!-- Copyright -->
 

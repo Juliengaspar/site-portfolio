@@ -1,67 +1,78 @@
-// ============================================
-// SELECTEUR DE LANGUES (drapeaux Polylang)
-// ============================================
+
 @use "./general" as *;
+//mobile first
+.language-switcher {
+  display: inline-block;       // ou flex selon le contexte parent
+}
 
-
-.polylang-custom-switcher {
+.language-switcher__list {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-left: 1.5rem; // espace par rapport au menu
-  order: 3; // place les drapeaux après le menu (si besoin, ajustez selon votre layout)
+  gap: 0.5rem;                // espacement entre les drapeaux
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-  .lang-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+.language-switcher__item {
+  // aucun style particulier
+}
 
-    img {
-      display: block;
-      width: auto;
-      height: 28px;   // taille standard des drapeaux
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
-    }
+.language-switcher__link {
+  display: block;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
 
-    &:hover {
-      transform: scale(1.05);
-      opacity: 0.85;
-    }
+  // État actif (langue courante)
+  &.is-active {
+    border-bottom-color: currentColor;   // ou une couleur personnalisée
+  }
 
-    &.active {
-      img {
-        box-shadow: 0 0 0 2px $black, 0 0 0 4px rgba(0, 0, 0, 0.1);
-      }
-    }
+  // Effet au survol / focus (optionnel)
+  &:hover,
+  &:focus-visible {
+    opacity: 0.8;
   }
 }
 
-/* Adaptation pour les écrans moyens (tablette) */
-@media (max-width: 1023px) {
-  .polylang-custom-switcher {
-    margin-left: 1rem;
-    gap: 0.5rem;
+.language-switcher__flag {
+  display: block;
+  width: 24px;               // taille mobile
+  height: auto;              // conserve les proportions
+  object-fit: cover;
+  border-radius: 3px;        // léger arrondi
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
 
-    .lang-link img {
-      height: 24px;
-    }
+  // léger effet au survol
+  .language-switcher__link:hover & {
+    transform: scale(1.05);
   }
 }
 
-/* Adaptation pour mobile : on peut déplacer les drapeaux sous le menu ou à droite */
-@media (max-width: 768px) {
-  .navigation__bars {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0.75rem 1rem;
-  }
 
-  .polylang-custom-switcher {
-    justify-content: flex-end;  // aligne à droite sur mobile
-    margin: 0.5rem 0 0 0;
-    order: 4;
+//  TABLETTE (≥ 768px)
+
+@media (min-width: 768px) {
+  .language-switcher__list {
     gap: 0.75rem;
+  }
+
+  .language-switcher__flag {
+    width: 30px;
+  }
+}
+
+
+//  DESKTOP (≥ 1024px)
+
+@media (min-width: 1024px) {
+  .language-switcher__list {
+    gap: 1rem;
+  }
+
+  .language-switcher__flag {
+    width: 36px;
   }
 }

@@ -295,6 +295,17 @@ $acceuilLink = get_field('link__site', 'option');
     <h2 class="sro">Menu de navigation</h2>
     <section>
 
+        <?php if ($headerImg): ?>
+            <div class="footer__logo">
+                <a
+                        href="<?= esc_url(home_url('/')); ?>"
+                        class="site-logo"
+                        aria-label="Retour à l'accueil">
+
+                    <img
+                            src="<?= esc_url($headerImg['url']); ?>"
+                            alt="<?= esc_attr($headerImg['alt']); ?>">
+                </a>            </div>
         <?php if ( function_exists('pll_the_languages') ) : ?>
 
             <nav class="language-switcher" aria-label="Sélecteur de langue">
@@ -332,17 +343,6 @@ $acceuilLink = get_field('link__site', 'option');
             </nav>
 
         <?php endif; ?>
-        <?php if ($headerImg): ?>
-            <div class="footer__logo">
-                <a
-                        href="<?= esc_url(home_url('/')); ?>"
-                        class="site-logo"
-                        aria-label="Retour à l'accueil">
-
-                    <img
-                            src="<?= esc_url($headerImg['url']); ?>"
-                            alt="<?= esc_attr($headerImg['alt']); ?>">
-                </a>            </div>
         <?php endif; ?>
             <?php if (!empty($acceuilLink)) : ?>
                 <h3 class="nav__title sro">lien Navigatiion
