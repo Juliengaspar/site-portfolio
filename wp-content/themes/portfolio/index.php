@@ -1,5 +1,6 @@
 <?php /* Template Name: Homepage */?>
 <?php
+$titlepage = get_field('title__page');
 $titleListeProjet = get_field('title__projet');
 $isteProjet = get_field('liste__projets');
 $photoProfile = get_field('img__profile');
@@ -10,21 +11,18 @@ $description = get_field('descriptions');
 
 ?>
 <?php get_header(); ?>
-    <main class="main" itemscope itemtype="https://schema.org/Person">
+    <main class="main" id="primary" itemscope itemtype="https://schema.org/Person">
+        <?php if ( $titlePage ) : ?>
+<h2 class="title__page title"  itemprop="name"><?=  esc_html($titlePage);?></h2>
+<?php endif; ?>
 
-        <noscript>
-            <div class="no-js-message">
-                Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
-            </div>
-        </noscript>
-<h2 class="title__page title"  itemprop="name"><?=  get_field('title__page')?></h2>
 <section class="profile" aria-labelledby="profile-title">
     <h3 id="profile-title" class="sr-only">
     <?= $name?>
     </h3>
     <div class="profile__content">
             <div class="profile__content__description" itemprop="description">
-             <?= ($description); ?>
+             <?= wp_kses_post($description); ?>
             </div>
 
         <div class="profile__image">
@@ -64,12 +62,13 @@ $description = get_field('descriptions');
            <?php if( have_rows('liste__projets') ): ?>
 
             <ul class="liste-projets" itemscope itemtype="https://schema.org/ItemList">
-                <h3 class="liste-projets__projets__title" itemprop="name"><?= $titleListeProjet ?></h3>
+                <h2 class="liste-projets__projets__title" itemprop="name"><?=esc_html($titleListeProjet); ?></h2>
                 <?php while( have_rows('liste__projets') ): the_row();
                     $titleProjet = get_sub_field('title__projet');
                     $descriptionProjet = get_sub_field('description__projet');
                     $image = get_sub_field('projet__img');
                     $liensProjet = get_sub_field('link__projet');
+                    $listeSkills = get_sub_field('liste__skill');
                     ?>
                     <li class="liste-projets__projet"  itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
                         <div class="liste-projets__img">
@@ -82,11 +81,14 @@ $description = get_field('descriptions');
                                 " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px"
                             <?php endif; ?>
                         </div>
-                        <h4 class="liste-projets__singel-title" itemprop="name"><?= $titleProjet; ?></h4>
-                        <p class="liste-projets__projet-description" itemprop="description"><?= $descriptionProjet; ?></p>
+                        <h3 class="liste-projets__singel-title" itemprop="name"><?= $titleProjet; ?></h3>
+                        <div class="liste-projets__projet-description" itemprop="description">
+                            <?= $descriptionProjet; ?>
+                            <?= $listeSkills; ?>
+                        </div>
                         <?php if($liensProjet): ?>
                             <div class="liste-projets__btn">
-                                <a href="<?= $liensProjet['url']; ?>" title="<?= $liensProjet['title']; ?>" class="liste-projets__links" itemprop="url" aria-label="Découvrir le projet"><?= $liensProjet['title']; ?></a>
+                                <a href="<?=esc_url($liensProjet['url']); ?>" title="<?= $liensProjet['title']; ?>" class="liste-projets__links" itemprop="url"><?= $liensProjet['title']; ?></a>
                             </div>
                         <?php endif; ?>
                     </li>
@@ -98,8 +100,7 @@ $description = get_field('descriptions');
 
         <?php endif; ?>
     </ul>
-        <section>
-            <h2 class="redirections btn">
+            <div class="redirections btn">
 
                 <?php
                 $lien = get_field('link__all__projet');
@@ -107,13 +108,12 @@ $description = get_field('descriptions');
 
                 <?php if($lien): ?>
 
-                    <a href="<?=$lien['url']?>"  title=" <?= $lien['title']; ?>" class="redirections__link">
+                    <a href="<?= esc_url($lien['url']);?>"  title=" <?= $lien['title']; ?>" class="redirections__link">
                         <?= $lien['title']; ?>
                     </a>
 
                 <?php endif; ?>
 
-            </h2>
-        </section>
+            </div>
 </main>
 <?php get_footer(); ?>

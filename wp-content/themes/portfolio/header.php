@@ -289,8 +289,18 @@ $acceuilLink = get_field('link__site', 'option');
     <script src="<?= dw_asset('js')?>"  defer type="module" ></script>
 
 </head>
-<body>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<noscript>
+    <div class="no-js-message">
+        Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
+    </div>
+</noscript>
 <h1 class="sro"><?= get_the_title()?></h1>
+<!-- LIEN D'ÉVITEMENT : apparaît au premier tabulat -->
+<a class="skip-link" href="#primary">
+    <?php _e( 'Aller au contenu principal', 'votretheme' ); ?>
+</a>
 <nav class="navigation__bars"> <!-- Menu de navigation par Wordpress -->
     <h2 class="sro">Menu de navigation</h2>
     <section>

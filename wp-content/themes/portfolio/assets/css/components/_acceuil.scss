@@ -14,6 +14,8 @@
 
 .main{
   padding: 5%;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 // ----------------------
 // MOBILE FIRST
@@ -33,6 +35,7 @@
 }
 
 .profile {
+  margin-top: 4rem;
 
   &__content {
     display: flex;
@@ -48,8 +51,11 @@
     border-radius: 1rem;
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 3rem;
       margin-bottom: 1rem;
+    }
+    p{
+      font-size: 1.5rem;
     }
   }
 
@@ -62,6 +68,7 @@
       height: auto;
       border-radius: 20px;
       object-fit: cover;
+
     }
   }
 }
@@ -107,9 +114,13 @@
     border-radius: 12px;
 
     img {
+      object-fit: cover;
       width: 100%;
       height: auto;
       display: block;
+      &__hover{
+
+      }
     }
   }
 
@@ -121,7 +132,7 @@
 
   &__btn {
     margin-top: auto;
-    width: auto;
+    width: 100%;
     text-align: center;
     background-color: $primary;
     color: white;
@@ -129,10 +140,6 @@
     text-decoration: none;
     font-size: 0.9rem;
     transition: background 0.2s ease;
-    box-shadow:
-            0 15px 40px rgba(0,0,0,.08);
-
-
     &:hover {
       background-color: $light__blue;
       transform:translateY(-2px);
@@ -278,7 +285,7 @@
 
     &__content__description {
       padding: 2rem;
-      max-width:550px;
+      max-width:700px;
       width:100%;
       margin-bottom: auto;
 
