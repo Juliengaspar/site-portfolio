@@ -1,15 +1,35 @@
+<?php /* Template Name: Projet */?>
+
 <?php
 get_header(); ?>
 <?php
 
 ?>
 
+
     <main id="main" class="site-main main" role="main" itemscope itemtype="https://schema.org/CollectionPage">
 
         <section class="projects-archive" aria-labelledby="projects-title">
             <div class="container">
+                <?php
+                $page_id = get_the_ID(); // ou $post->ID
+                var_dump( get_field('description_projet', $page_id) );
+                $descriptionPage = get_field('description_projet', $page_id);
+                ?>
 
-                <h2 class="archive-title title" itemprop="headline" >Mes réalisations</h2>
+
+                <h2 class="archive-title title" itemprop="headline">Découvrez mes projets.</h2>
+                <p class="text" itemprop="headline">
+                    <?php esc_html_e(
+                            'Découvrez mes projets en développement web, design graphique et modélisation 3D.',
+                            'portfolio'
+                    ); ?>
+                </p>
+                <?php if ( $descriptionPage ) : ?>
+                    <div><?php echo wp_kses_post( $descriptionPage ); ?></div>
+                <?php else : ?>
+                    <p>Aucune description renseignée.</p>
+                <?php endif; ?>
 
                 <!-- Filtres par type de projet -->
 <!--                <div class="projects-filters" role="group" aria-label="Filtrer les projets">-->
@@ -51,11 +71,6 @@ get_header(); ?>
 
                 </div>
 
-                <noscript>
-                    <div class="no-js-message">
-                        Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
-                    </div>
-                </noscript>
 
                 <!-- Grille des projets -->
                 <div class="projects-grid" id="projects-grid" itemscope itemtype="https://schema.org/ItemList">
@@ -79,58 +94,82 @@ get_header(); ?>
                         );
                     }
 
-                    $projects_query = new WP_Query($args);
+                    $projects_query = new WP_Query($args); ?>
 
-                    if ($projects_query->have_posts()) :
-                        while ($projects_query->have_posts()) : $projects_query->the_post();
-                            $imgProjets = get_field('img__project');
+<?php if ($projects_query->have_posts()) : ?>
+                    <?php while ($projects_query->have_posts()) : $projects_query->the_post(); ?>
+                    <?php
+                    $imgProjets = get_field('img__project');
+                    $project_types = get_the_terms(get_the_ID(), 'type_projet');
+                    $type_classes = array();
+                    if ($project_types && !is_wp_error($project_types)) {
+                        foreach ($project_types as $type) {
+                            $type_classes[] = strtolower($type->name);
+                        }
+                    }
+                    ?>
 
+                    <article class="project-card <?php echo implode(' ', $type_classes); ?>" itemscope itemtype="https://schema.org/CreativeWork" itemprop="itemListElement" data-types="<?php echo implode(',', $type_classes); ?>">
 
-                            // Récupérer les types de projet
-                            $project_types = get_the_terms(get_the_ID(), 'type_projet');
-                            $type_classes = array();
+                        <!-- Titre caché pour accessibilité -->
+                        <h2 class="sro">Liste de mes différents projets</h2>
 
-                            if ($project_types && !is_wp_error($project_types)) {
-                                foreach ($project_types as $type) {
-                                    $type_classes[] = strtolower($type->name);
-                                }
-                            }
-                            ?>
+                        <!-- Image du projet -->
+                        <?php if ($imgProjets) : ?>
+                            <div class="projet__img">
+                                <img class="projet__img__img"
+                                     src="<?= esc_url($imgProjets['url']); ?>"
+                                     alt="<?= esc_attr($imgProjets['alt']); ?>"
+                                     itemprop="image"
+                                     srcset="
+                            <?= esc_url(wp_get_attachment_image_url($imgProjets['ID'], 'square-small')); ?> 400w,
+                            <?= esc_url(wp_get_attachment_image_url($imgProjets['ID'], 'square-medium')); ?> 800w,
+                            <?= esc_url(wp_get_attachment_image_url($imgProjets['ID'], 'square-large')); ?> 1200w
+                            " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px"
+                                >
+                            </div>
+                        <?php elseif (has_post_thumbnail()) : ?>
+                            <div class="projet__img">
+                                <?php the_post_thumbnail('medium', ['class' => 'projet__img__img', 'itemprop' => 'image']); ?>
+                            </div>
+                        <?php endif; ?>
 
-                            <article class="project-card <?php echo implode(' ', $type_classes); ?>" itemscope itemtype="https://schema.org/CreativeWork" itemprop="itemListElement" data-types="<?php echo implode(',', $type_classes); ?>">
-                               <h2 class="sro">Liste de mes different projet</h2>
-                                <?php if($imgProjets): ?>
-                                    <div class="projet__img">
-                                        <img class="projet__img__img" src="<?= esc_url($imgProjets['url']); ?>" alt="<?= esc_attr($imgProjets['alt']); ?>" itemprop="image">
-                                    </div>
-                                <?php elseif (has_post_thumbnail()) : ?>
-                                    <div class="projet__img">
-                                        <?php the_post_thumbnail('medium', ['class' => 'projet__img__img', 'itemprop' => 'image']); ?>
-                                    </div>
-                                <?php endif; ?>
+                        <section class="project-card__content">
+                            <h3 class="project-card__title" itemprop="name">
+                                <?php the_title(); ?>
+                            </h3>
 
-                                <section class="project-card__content">
-                                    <h3 class="project-card__title" itemprop="name">
-                                        <?php the_title(); ?>
-                                    </h3>
+                            <div class="project-card__exemple" itemprop="description">
+                                <?php echo wp_kses_post(get_field('description__project')); ?>
+                            </div>
 
-                                    <div class="project-card__exemple" itemprop="description">
-                                        <?php echo get_field('description__project'); ?>
-                                    </div>
-                                    <div class="project-card__link">
-                                    <a href="<?php the_permalink(); ?>" class="project-card__btn btn"  itemprop="url" aria-label="Voir le projet" >
-                                        Voir le projet →
-                                    </a>
-                                    </div>
-                                </section>
-                            </article>
+                            <!-- ===== AJOUT DU RÉPÉTEUR TECHNOLOGIES ===== -->
+                            <?php if (have_rows('liste__technologies')) : ?>
+                                <ul class="project-techs" aria-label="Technologies utilisées pour ce projet">
+                                    <?php while (have_rows('liste__technologies')) : the_row();
+                                        // Récupération du sous-champ "technologies" (texte simple)
+                                        $tech_name = get_sub_field('technologies');
+                                        if ($tech_name) : ?>
+                                            <li class="project-tech"><?= $tech_name; ?></li>
+                                        <?php endif; ?>
+                                    <?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <!-- ===== FIN AJOUT ===== -->
 
-                        <?php endwhile;
-                        wp_reset_postdata();
-                    else : ?>
-                        <p class="no-projects">Aucun projet trouvé.</p>
+                            <div class="project-card__link">
+                                <a href="<?php the_permalink(); ?>" class="project-card__btn btn" itemprop="url" aria-label="Voir le projet">
+                                    Voir les détails →
+                                </a>
+                            </div>
+                        </section>
+                    </article>
+
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                    <?php else : ?>
+                    <p class="no-projects">Aucun projet trouvé.</p>
                     <?php endif; ?>
-                </div>
             </div>
         </section>
 

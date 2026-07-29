@@ -43,6 +43,11 @@
   -webkit-line-clamp:2;
   overflow:hidden;
   margin-bottom: 2.5%;
+  background:white;
+
+  border:1px solid #ececec;
+  box-shadow:
+          0 2px 12px rgba(0,0,0,.06);
 }
 
 .project-card-title-title {
@@ -68,7 +73,7 @@
   height: 100%;
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, .15);
+    box-shadow:  0 15px 40px rgba(0,0,0,.12);;
   }
   &__content{
     flex: 1;                 // pousse le contenu pour occuper l'espace
@@ -87,6 +92,7 @@
     line-height: 1.6;
     margin-bottom: 1rem;
     flex: 1;
+    -webkit-line-clamp:3;
 
 
 
@@ -145,7 +151,38 @@
 .badge {
 
 }
+.project-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1rem 0;
+  padding: 0;
+  list-style: none;
 
+  .project-tech {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #333;
+
+    img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    // Vous pouvez utiliser votre couleur primaire pour les tags "actifs"
+    &:nth-child(odd) {
+      background: rgba($primary, 0.1);
+      color: $primary;
+    }
+  }
+}
 //tablette
 @media (min-width: 768px) {
   .projects-grid {

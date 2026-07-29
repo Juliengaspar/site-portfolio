@@ -2,12 +2,6 @@
 
 <?php get_header(); ?>
 <main id="main" class="about__me main"     itemscope itemtype="https://schema.org/Person">
-
-    <noscript>
-        <div class="no-js-message">
-            Pour profiter pleinement des fonctionnalités du site, veuillez activer JavaScript.
-        </div>
-    </noscript>
     <?php
     $titlePage = get_field('title__page');
     $AbouteMeTitle = get_field('title__a__propos');
@@ -16,12 +10,12 @@
     ?>
         <h2 class="about__me__title title"><?= esc_html($titlePage); ?></h2>
 
-        <section class="proflie">
+        <section class="profile">
             <div>
-            <h3 class="proflie__title subtitle" itemprop="name"><?= esc_html($AbouteMeTitle); ?></h3>
-            <div class="proflie__text" itemprop="description"><?= wp_kses_post($AbouteMeText); ?></div>
+            <h3 class="profile__title subtitle" itemprop="name"><?= esc_html($AbouteMeTitle); ?></h3>
+            <div class="profile__text" itemprop="description"><?= wp_kses_post($AbouteMeText); ?></div>
             </div>
-                <div class="proflie__image">
+                <div class="profile__image">
                     <!-- Image d'introduction -->
                     <?php
                     $image = get_field('photo_profile');
@@ -46,20 +40,31 @@
             Mes hard skills
         </h2>
         <?php $galerie = get_field('galerie__picture__competence'); ?>
-
         <?php if ($galerie) : ?>
-            <div class="competences">
+           <?php $galerie_double = array_merge($galerie, $galerie); // double la liste
+           ?>
+            <div class="competences" aria-hidden="true">
 
                 <div class="competences__track">
 
                     <!-- Première série -->
                     <?php foreach ($galerie as $image) : ?>
                         <div class="competences__item">
-                            <img class="competences__img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" loading="lazy>
+                            <img class="competences__img" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt'] ?: 'Logo de compétence'); ?>" loading="lazy"
+                                 width="<?php echo esc_attr($image['width']); ?>"
+                                height="<?php echo esc_attr($image['height']); ?>"
+                                 srcset="
+                            <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-small')); ?> 400w,
+                            <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-medium')); ?> 800w,
+                            <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-large')); ?> 1200w
+                            " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px"
+                            >
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
+        <?php else : ?>
+        <p class="error">Aucune compétence technique à afficher</p>
         <?php endif; ?>
     </section>
     <section class="softSkillsContainer" aria-labelledby="title__softskills">
@@ -127,20 +132,22 @@
                     $ecole = get_sub_field('name__school');
                     $explication = get_sub_field('explication--parcours');
                     ?>
-                <article class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
-                    <section class="parcours-item">
+                <ul class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
+                    <li class="parcours-item">
                         <h3 class="parcours__carts__title" itemprop="name">  <?= esc_html($filiere); ?></h3>
                         <span class="parcours__carts__date date" itemprop="dateCreated">
                             <?= esc_html($date); ?>
                         </span>
                         <p class="parcours__carts__ecole ecole"><?= esc_html($ecole); ?></p>
-                    </section>
-                    <div class="description" itemprop="description">
+                    </li>
+                    <li class="description" itemprop="description">
                         <?= wp_kses_post($explication); ?>
-                    </div>
-                </article>
+                    </li>
+                </ul>
                 <?php endwhile; ?>
             </section>
+        <?php else : ?>
+    <p class="error">Aucun parcours pour le moment</p>
         <?php endif; ?>
 
         <!-- Passions -->
@@ -183,7 +190,9 @@
         <?php
         $reseauxSociauxTitle = get_field('reseaux__sociaux__title');
         ?>
-        <h2 id="social-title" class="subtitle"><?= $reseauxSociauxTitle?></h2>
+        <?php if ($reseauxSociauxTitle) :?>
+        <h2 id="social-title" class="subtitle"><?= esc_html($reseauxSociauxTitle);?></h2>
+        <?php endif; ?>
 
         <?php if( have_rows('social_links') ) : // Vérifie si le répéteur ACF existe et contient des lignes ?>
 
@@ -203,8 +212,8 @@
                         <?php if( $icon && !empty($icon['url']) ) : ?>
                             <img src="<?= esc_url($icon['url']); ?>"
                                  alt="<?= esc_attr($icon['alt'] ?: $name); ?>"
-                                 width="40"
-                                 height="40"
+                                 width="<?= esc_attr($icon['width']); ?>"
+                                 height="<?= esc_attr($icon['height']); ?>"
                                  loading="lazy"
                                  class="social-link__icon">
                         <?php else : ?>

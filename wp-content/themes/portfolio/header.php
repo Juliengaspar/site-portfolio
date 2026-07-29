@@ -297,10 +297,6 @@ $acceuilLink = get_field('link__site', 'option');
     </div>
 </noscript>
 <h1 class="sro"><?= get_the_title()?></h1>
-<!-- LIEN D'ÉVITEMENT : apparaît au premier tabulat -->
-<a class="skip-link" href="#primary">
-    <?php _e( 'Aller au contenu principal', 'votretheme' ); ?>
-</a>
 <nav class="navigation__bars"> <!-- Menu de navigation par Wordpress -->
     <h2 class="sro">Menu de navigation</h2>
     <section>

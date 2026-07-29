@@ -14,7 +14,7 @@
 
 .main{
   padding: 5%;
-  max-width: 1440px;
+ // max-width: 1440px;
   margin: 0 auto;
 }
 // ----------------------
@@ -288,6 +288,10 @@
       max-width:700px;
       width:100%;
       margin-bottom: auto;
+      background-color: $black;
+      color: $white;
+      border-radius: 1rem;
+      text-align: center;
 
       h2 {
         font-size: 2rem;
