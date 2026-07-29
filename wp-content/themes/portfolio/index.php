@@ -16,17 +16,17 @@ $description = get_field('descriptions');
 <h2 class="title__page title"  itemprop="name"><?=  esc_html($titlePage);?></h2>
 <?php endif; ?>
 
-<section class="profile" aria-labelledby="profile-title">
-    <h3 id="profile-title" class="sr-only">
+<section class="hero" aria-labelledby="profile-title">
+    <h3 id="profile-title" class="sro">
     <?= $name?>
     </h3>
-    <div class="profile__content">
-            <div class="profile__content__description" itemprop="description">
+    <div class="hero__content">
+            <div class="hero__content__description" itemprop="description">
              <?= wp_kses_post($description); ?>
             </div>
 
-        <div class="profile__image">
-            <div class="profile__image">
+        <div class="hero__image">
+            
                 <?php if ($photoProfile): ?>
 
                     <img
@@ -54,7 +54,6 @@ $description = get_field('descriptions');
                     >
 
                 <?php endif; ?>
-            </div>
         </div>
     </div>
 </section>
@@ -84,7 +83,20 @@ $description = get_field('descriptions');
                         <h3 class="liste-projets__singel-title" itemprop="name"><?= $titleProjet; ?></h3>
                         <div class="liste-projets__projet-description" itemprop="description">
                             <?= $descriptionProjet; ?>
-                            <?= $listeSkills; ?>
+                            <?php echo $listeSkills; ?>
+                            <?php if( have_rows('technologies') ): ?>
+
+                            <ul class="project-techs" aria-label="Technologies utilisées pour ce projet">
+                                <?php while( have_rows('technologies')): the_row();
+                                    $name = get_sub_field('nom_technologie');
+                                    if( $name ) :?>
+                                       <li class="project-tech"> <?= $name ?></li>
+                                 <?php endif; ?>
+            <?php
+                                endwhile; ?>
+                            </ul>
+                            <?php endif; ?>
+
                         </div>
                         <?php if($liensProjet): ?>
                             <div class="liste-projets__btn">

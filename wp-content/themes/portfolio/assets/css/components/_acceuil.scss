@@ -34,7 +34,7 @@
   }
 }
 
-.profile {
+.hero {
   margin-top: 4rem;
 
   &__content {
@@ -232,7 +232,7 @@
 // ----------------------
 
 @media (min-width: 768px) {
-  .profile {
+  .hero {
     &__content {
       flex-direction: row;
       align-items: center;
@@ -272,39 +272,47 @@
 // ----------------------
 
 @media (min-width: 1024px) {
-  .profile {
-    &__content {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+  .hero {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5rem;
+    margin: 5% auto;
+    padding: 0;
 
-      width:100%;
-      margin:1% auto;
+    &__content {
+      display: flex;
+      align-items: flex-start;      // aligne les enfants en haut
+      justify-content: center;      // centre horizontalement l'ensemble
+      gap: 1rem;                   // espace entre texte et image
+      width: 100%;
+      margin: 0 auto;              // centrage horizontal
     }
 
 
     &__content__description {
+      flex: 1 1 45%;               // prend environ 45% de la largeur
+      max-width: 50%;              // ne dépasse pas la moitié
       padding: 2rem;
-      max-width:700px;
-      width:100%;
-      margin-bottom: auto;
-      background-color: $black;
-      color: $white;
-      border-radius: 1rem;
-      text-align: center;
 
       h2 {
         font-size: 2rem;
       }
     }
+    &__image {
+      flex: 1 1 45%;               // environ 45%
+      max-width: 50%;
+      text-align: center;          // centre l'image horizontalement
 
-    &__image img {
-      width: 350px;
+      img {
+        max-width: 100%;           // l'image s'adapte à son conteneur
+        height: auto;
+        // conservez border-radius, object-fit, etc.
+      }
     }
   }
 
   .liste-projets {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     align-items: stretch;
     gap: 5rem;
     padding: 5%;
