@@ -79,7 +79,7 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
                 </a>
             </div>
         <?php endif; ?>
-        <section class="footer__liste__folowing">
+       <!-- <section class="footer__liste__folowing">
             <h3><?= esc_html($footerFollowTitle) ?></h3>
 
                 <div class="footer__liste__folowing__contenu">
@@ -99,7 +99,7 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
 
                     <?php endif; ?>
                 </div>
-        </section>
+        </section>-->
 
     </div>
             <div>
@@ -139,9 +139,9 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
     <section class="footer__bottom">
         <?php if ($footerCopyright): ?>
             <h3 class="footer__bottom__title">
-                <span itemprop="copyrightNotice">
-                    <?= esc_html($footerCopyright); ?>
-                </span>
+                <div itemprop="copyrightNotice">
+                    <?= $footerCopyright; ?>
+                </div>
             </h3>
         <?php endif; ?>
     </section>

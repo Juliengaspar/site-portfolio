@@ -84,6 +84,8 @@
           color: $white;
           text-decoration: none;
           display: inline-block;
+          border-bottom: 1px solid transparent;
+
 
           &:hover {
             color: $white;
@@ -154,7 +156,7 @@
   .footer__bottom {
     background-color: $principale__color__blue;
     text-align: center;
-    padding: 3rem;
+    padding: 1.5rem;
 
     &__title {
       font-size: 0.875rem;
