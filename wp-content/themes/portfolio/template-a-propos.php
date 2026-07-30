@@ -21,8 +21,8 @@
                     $image = get_field('photo_profile');
                     if ($image) :
                         ?>
-                        <div class="photo_profile">
-                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" itemprop="image" class="proflie__img"
+                        <div class="profile__img">
+                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" itemprop="image" class="profile__img__img"
                                  srcset="
                                 <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-small')); ?> 400w,
                                 <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-medium')); ?> 800w,

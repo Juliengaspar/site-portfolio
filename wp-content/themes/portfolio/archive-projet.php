@@ -19,12 +19,12 @@ get_header(); ?>
 
 
                 <h2 class="archive-title title" itemprop="headline">Découvrez mes projets.</h2>
-                <p class="text" itemprop="headline">
-                    <?php esc_html_e(
-                            'Découvrez mes projets en développement web, design graphique et modélisation 3D.',
-                            'portfolio'
-                    ); ?>
-                </p>
+<!--                <p class="text" itemprop="headline">-->
+<!--                    --><?php //esc_html_e(
+//                            'Découvrez mes projets en développement web, design graphique et modélisation 3D.',
+//                            'portfolio'
+//                    ); ?>
+<!--                </p>-->
                 <?php if ( $descriptionPage ) : ?>
                     <div><?php echo wp_kses_post( $descriptionPage ); ?></div>
                 <?php else : ?>
