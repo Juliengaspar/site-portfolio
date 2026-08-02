@@ -144,7 +144,7 @@
                         <span class="parcours__carts__date date" itemprop="dateCreated">
                             <?= esc_html($date); ?>
                         </span>
-                        <p class="parcours__carts__ecole ecole"><?= esc_html($ecole); ?></p>
+                        <div class="parcours__carts__ecole ecole"><?= wp_kses_post($ecole); ; ?></div>
                     </li>
                     <li class="description" itemprop="description">
                         <?= wp_kses_post($explication); ?>

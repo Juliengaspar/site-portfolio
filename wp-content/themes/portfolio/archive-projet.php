@@ -28,7 +28,7 @@ get_header(); ?>
                 <?php if ( $descriptionPage ) : ?>
                     <div><?php echo wp_kses_post( $descriptionPage ); ?></div>
                 <?php else : ?>
-                    <p>Aucune description renseignée.</p>
+<!--                    <p>Aucune description renseignée.</p>-->
                 <?php endif; ?>
 
                 <!-- Filtres par type de projet -->

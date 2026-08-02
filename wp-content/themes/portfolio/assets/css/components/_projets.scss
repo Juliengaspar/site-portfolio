@@ -182,6 +182,11 @@
       color: $primary;
     }
   }
+  abbr[title] {
+    text-decoration: none;
+    border-bottom: none;
+    cursor: inherit;
+  }
 }
 //tablette
 @media (min-width: 768px) {

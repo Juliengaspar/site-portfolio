@@ -17,15 +17,20 @@ get_header();
             $descriptionPage = get_field('projet__description');
             $linkProjet = get_field('redirection__projet__ligne');
             ?>
-        <h2 class="singel__projet__title title"><?= $titlePage ?></h2>
+        <h2 class="singel__projet__title title"><?= esc_html($titlePage) ?></h2>
         <article id="post-<?php the_ID(); ?>" <?php post_class('projet'); ?>itemscope itemtype="https://schema.org/CreativeWork">
             <!-- Hero Section avec titre et contexte -->
-            <header class="projet-hero" aria-labelledby="projet-title">
                 <h3 id="projet-title" class="projet-hero__title" itemprop="name"><?php echo esc_html($titlePage ?: get_the_title()); ?></h3>
-
                 <div class="projet-hero__contenu">
                     <?php if($imgPage): ?>
-                        <img src="<?= esc_url($imgPage['url']); ?>" alt="<?= esc_attr($imgPage['alt']); ?>" class="projet-hero__img" width="<?= $imgPage['width']; ?>" height="<?= $imgPage['height']; ?>"   itemprop="image">
+                        <img src="<?= esc_url($imgPage['url']); ?>"
+                             alt="<?= esc_attr($imgPage['alt']); ?>"
+                             class="projet-hero__img"
+                             width="<?= $imgPage['width']; ?>"
+                             height="<?= $imgPage['height']; ?>"
+                             loading="lazy"
+                             decoding="async"
+                             itemprop="image">
                     <?php endif; ?>
                     <?php if ($descriptionPage) : ?>
                         <div class="projet-hero__description" itemprop="description">
@@ -33,7 +38,6 @@ get_header();
                         </div>
                     <?php endif; ?>
                 </div>
-            </header>
 
 
             <!-- Projets similaires -->
@@ -42,7 +46,7 @@ get_header();
                     'post_type' => 'projet',
                     'posts_per_page' => 3,
                     'post__not_in' => array(get_the_ID()),
-                    'orderby' => 'rand'
+                    'orderby' => 'date'
             );
 
 
@@ -51,38 +55,30 @@ get_header();
 
             if ($related->have_posts()) : ?>
                 <section class="projets-similaires" aria-labelledby="related-title">
-                    <section id="related-title" class="container">
-                        <h2 id="related-title" class="section-title">Projets similaires</h2>
-                        <div class="related-grid">
+                    <h2 id="related-title" class="section-title">Projets similaires</h2>
                             <?php while ($related->have_posts()) : $related->the_post(); ?>
-                                <article class="related-card">
-                                    <?php if (has_post_thumbnail()) : ?>
-                                        <div class="related-card__image">
-                                            <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="related-card__content">
+                                <ul class="related-card related-grid">
+                                    <li class="related-card__content">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <div class="related-card__image">
+                                                <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
+                                            </div>
+                                        <?php endif; ?>
+                        <div class="related-card__image">
                                         <h3 class="related-card__title">
                                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                         </h3>
-                                        <a href="<?php the_permalink(); ?>" class="related-card__link">
+                                        <a href="<?php the_permalink(); ?>" class="related-card__link"
+                                           aria-label="Découvrir le projet : <?php the_title_attribute(); ?>">
                                             Découvrir →
                                         </a>
-                                    </div>
-                                </article>
+                                    </li>
+                                </ul>
                             <?php endwhile; ?>
-                        </div>
-                    </section>
                 </section>
-                <?php if ($linkProjet) :?>
-            <div class="one__redirections">
-                <a href="<?= esc_url($linkProjet['url']);  ?>" class="one__redirections__link" title="<?= esc_attr($linkProjet['title']); ?>"><?= esc_attr($linkProjet['title']); ?></a>
-            </div>
-                <?php endif; ?>
         </article>
             <?php endif;
             wp_reset_postdata(); ?>
-
         <?php endwhile; ?>
 
     </main>
