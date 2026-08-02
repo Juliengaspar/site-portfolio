@@ -13,7 +13,6 @@ get_header(); ?>
             <div class="container">
                 <?php
                 $page_id = get_the_ID(); // ou $post->ID
-                var_dump( get_field('description_projet', $page_id) );
                 $descriptionPage = get_field('description_projet', $page_id);
                 ?>
 

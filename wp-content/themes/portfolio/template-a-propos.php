@@ -8,9 +8,9 @@
     $AbouteMeText = get_field('description__a__propos');
 
     ?>
-        <h2 class="about__me__title title"><?= esc_html($titlePage); ?></h2>
+        <h2 class="about__me__title title" itemprop="name"><?= esc_html($titlePage); ?></h2>
 
-        <section class="profile">
+        <section class="profile" aria-labelledby="profile-title">
             <div>
             <h3 class="profile__title subtitle" itemprop="name"><?= esc_html($AbouteMeTitle); ?></h3>
             <div class="profile__text" itemprop="description"><?= wp_kses_post($AbouteMeText); ?></div>
@@ -27,14 +27,20 @@
                                 <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-small')); ?> 400w,
                                 <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-medium')); ?> 800w,
                                 <?= esc_url(wp_get_attachment_image_url($image['ID'], 'square-large')); ?> 1200w
-                                " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px" >
+                                " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px"
+                                 loading="lazy"
+                                 fetchpriority="high"
+                                 width="<?= esc_attr($image['width']); ?>"
+                                 height="<?= esc_attr($image['height']); ?>"
+                            >
+
                         </div>
                     <?php endif; ?>
                 </div>
         </section>
 
 
-    <!-- Compétences -->
+    <!-- Hard Skills -->
     <section class="competenceSection"   aria-labelledby="title__competence">
         <h2 class="subtitle competenceSection__title" id="title__hardSkills">
             Mes hard skills
@@ -127,8 +133,10 @@
 
         <!-- Parcours scolaire -->
         <?php if( have_rows('liste__parcours') ): ?>
-
-                <h2 class="parcours__subtitle subtitle"><?php the_field('parcours__title'); ?></h2>
+            <?php
+                $parcoursTitle = get_field('parcours__title');
+            ?>
+                <h2 class="parcours__subtitle subtitle"><?= esc_html($parcoursTitle); ?></h2>
             <section class="parcours" aria-labelledby="parcours-title">
 
                 <?php while( have_rows('liste__parcours') ): the_row();
@@ -138,18 +146,16 @@
                     $ecole = get_sub_field('name__school');
                     $explication = get_sub_field('explication--parcours');
                     ?>
-                <ul class="parcours__carts" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
-                    <li class="parcours-item">
-                        <h3 class="parcours__carts__title" itemprop="name">  <?= esc_html($filiere); ?></h3>
-                        <span class="parcours__carts__date date" itemprop="dateCreated">
-                            <?= esc_html($date); ?>
-                        </span>
-                        <div class="parcours__carts__ecole ecole"><?= wp_kses_post($ecole); ; ?></div>
-                    </li>
-                    <li class="description" itemprop="description">
-                        <?= wp_kses_post($explication); ?>
-                    </li>
-                </ul>
+                    <article class="parcours-item" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
+                        <section class="parcours-item__header">
+                            <h3 class="parcours-item__title" itemprop="name"><?= esc_html($filiere); ?></h3>
+                            <span class="parcours-item__date date" itemprop="dateCreated"><?= esc_html($date); ?></span>
+                            <div class="parcours-item__school ecole" itemprop="educationalOrganization"><?= wp_kses_post($ecole); ?></div>
+                        </section>
+                        <div class="parcours-item__description" itemprop="description">
+                            <?= wp_kses_post($explication); ?>
+                        </div>
+                    </article>
                 <?php endwhile; ?>
             </section>
         <?php else : ?>
@@ -164,32 +170,30 @@
             $image_loisir = get_field('hobbies__image');
             ?>
 
-            <section class="passion__content">
-                <?php if( $titre ): ?>
-                    <h2 class="passion__content__subtile subtitle" ><?= esc_html($titre); ?></h2>
-                <?php endif; ?>
+            <div class="passion__content">
                 <div class="passion__content__description">
-                    <?php if( $description ): ?>
-                        <div class="passion__content__description__text" itemprop="description"><?php echo wp_kses_post($description); ?></div>
+                    <?php if ( $description ) : ?>
+                        <div class="passion__content__description__text" itemprop="description"><?= wp_kses_post($description); ?></div>
                     <?php endif; ?>
-                    <?php if( $image_loisir ): ?>
+                    <?php if ( $image_loisir ) : ?>
                         <div class="passion__image">
-                            <img src="<?php echo esc_url($image_loisir['url']); ?>" alt="<?php echo esc_attr($image_loisir['alt']); ?>"
-                            srcset="
-                            <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-small')); ?> 400w,
-                            <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-medium')); ?> 800w,
-                            <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-large')); ?> 1200w
-                            " sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw,   400px" >
+                            <img src="<?= esc_url($image_loisir['url']); ?>"
+                                 alt="<?= esc_attr($image_loisir['alt']); ?>"
+                                 srcset="
+                                <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-small')); ?> 400w,
+                                <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-medium')); ?> 800w,
+                                <?= esc_url(wp_get_attachment_image_url($image_loisir['ID'], 'square-large')); ?> 1200w
+                             "
+                                 sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 400px"
+                                 loading="lazy">
                         </div>
-                    <?php else: ?>
+                    <?php else : ?>
                         <div class="passion__image">
-                            <p  class="passion__image__error">
-                                Image manquante : Vérifiez le champ ACF "hobbies__image"
-                            </p>
+                            <p class="passion__image__error">Image manquante : Vérifiez le champ ACF "hobbies__image"</p>
                         </div>
                     <?php endif; ?>
                 </div>
-            </section>
+            </div>
         </section>
 
     <section class="social-section sectionMargin" aria-labelledby="social-title">

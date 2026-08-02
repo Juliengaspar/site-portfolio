@@ -1,4 +1,16 @@
 @use "../general/general" as *;
+
+.about__me {
+  section {
+    margin-bottom: 3rem;
+  }
+}
+
+.subtitle {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 1.5rem;
+}
+
 .profile {
   display: block;
   margin: 2rem auto;
@@ -12,14 +24,15 @@
       margin-bottom: 1rem;
     }
   }
-  &__img{
+  &__img {
     width: 100%;
-    height: auto;
     max-width: 100%;
     margin: 5% auto;
-    &__img{
+    img {
       width: 100%;
       height: auto;
+      display: block;
+      border-radius: 1rem;
     }
   }
 }
@@ -43,94 +56,116 @@
   }
 }
 
-.parcours {
+.parcours-section {
+  padding: 3rem 1.5rem;
+  background: $light-gray; // variable définie dans _general
+  border-radius: 1.5rem;
+  margin: 3rem 0;
 
-  &__carts {
-
-    .description {
-      line-height: 1.8;
-      text-align: left;
-
-      p {
-        margin-bottom: 1rem;
-      }
-    }
+  .parcours__subtitle {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 2.5rem;
+    color: $black;
   }
 }
+
 .parcours {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-  &__carts {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin: 2rem 0;
-    background-color: $principale__color__blue;
-    color: $white;
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: all 0.3s ease;
+.parcours-item {
+  background: $principale__color__blue;
+  color: $white;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  margin: 5% auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.4rem;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.4);
+      transition: width 0.35s ease;
+      border-radius: 2px;
     }
+  }
 
+  &:hover &__title::after {
+    width: 100%;
+  }
 
-    .parcours-item {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+  &__date {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0.5rem 0 0.3rem 0;
+    letter-spacing: 0.3px;
+  }
 
-      h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        position: relative;
-        display: inline-block;
+  &__school {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 0.2rem;
 
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -0.5rem;
-          left: 0;
-          width: 40px;
-          height: 2px;
-          background: rgba(255, 255, 255, 0.5);
-          transition: width 0.3s ease;
-        }
-      }
-
-      &:hover h3::after {
-        width: 100%;
-      }
-    }
-
-    .date {
-      display: inline-block;
-      width: fit-content;
-      margin: 1rem 0;
-      padding: 0.4rem 1rem;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 2rem;
-      font-size: 0.9rem;
-    }
-
-    .ecole {
-      margin-top: 0.5rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-    .ecole a {
-      text-decoration: none;
+    a {
       color: $white;
+      text-decoration: none;
+
     }
+    &__school a{
 
-
-    .description {
-      line-height: 1.7;
-      font-size: 1rem;
     }
   }
-}
 
+  &__description {
+    line-height: 1.7;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.95);
+
+    p {
+      margin-bottom: 0.75rem;
+      &:last-child { margin-bottom: 0; }
+    }
+
+
+  }
+}
 #title__competence {
   margin-bottom: 2rem;
   font-size:2rem;
@@ -250,25 +285,6 @@
   text-align: left;
 }
 
-.parcours {
-  padding: 3rem 1.5rem;
-  background: $light-gray;
-
-  &__title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  &__timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-}
-
-
-
 // TABLETTE
 @media (min-width: 768px) {
   .profile {
@@ -297,17 +313,46 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  .parcours {
-
-    &__carts {
-      padding: 1rem;
-      grid-template-columns: repeat(2, 1fr);
-      align-items: stretch;
-
-
-    }
+  .parcours-section {
+    padding: 4rem 2.5rem;
+    margin: 4rem 0;
   }
 
+  .parcours {
+    gap: 2rem;
+  }
+
+  .parcours-item {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+
+    &__header {
+      border-bottom: none;
+      border-right: 2px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 0;
+      padding-right: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__date {
+      font-size: 0.9rem;
+      padding: 0.4rem 1.2rem;
+    }
+
+    &__description {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      padding-left: 0.5rem;
+    }
+
+  }
 
   .passion__content__description {
     display: grid;
@@ -357,14 +402,47 @@
     }
   }
 
+  .parcours-section {
+    padding: 5rem 4rem;
+    margin: 5rem auto;
+    max-width: 1300px;
+    border-radius: 2rem;
+  }
+
   .parcours {
+    gap: 2.5rem;
+  }
 
-    &__carts {
+  .parcours-item {
+    padding: 2.5rem 3rem;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 3rem;
+    border-radius: 1.5rem;
 
-      .description {
-        max-width: 75ch;
-        line-height: 1.85;
-      }
+    &__header {
+      padding-right: 2.5rem;
+      border-right-width: 3px;
+    }
+
+    &__title {
+      font-size: 1.8rem;
+      &::after { height: 4px; }
+    }
+
+    &__date {
+      font-size: 1rem;
+      padding: 0.4rem 1.5rem;
+      margin: 0.75rem 0 0.4rem 0;
+    }
+
+    &__school {
+      font-size: 1.1rem;
+    }
+
+    &__description {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      padding-left: 1rem;
     }
   }
 
