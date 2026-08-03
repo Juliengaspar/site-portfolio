@@ -18,6 +18,9 @@ function contact_validate_fields($data) {
     if (empty($data['message'])) {
         $errors['message'] = 'Le message est obligatoire.';
     }
+    if ( empty($data['rgpd']) ) {
+        $errors['rgpd'] = 'Vous devez accepter la politique de confidentialité pour envoyer ce formulaire.';
+    }
     // On peut ajouter d'autres validations (longueur, etc.)
 
     return $errors;

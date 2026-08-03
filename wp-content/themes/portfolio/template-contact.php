@@ -19,7 +19,9 @@ $textePage = get_field("text__form");
 
             <!-- Affichage du message de succès -->
             <?php if ( ! empty( $result['success'] ) ) : ?>
-                <p class="form__success" role="status"><?= esc_html( $result['success'] ); ?></p>
+                <div class="form__success" role="status">
+                    <p><?= esc_html( $result['success'] ); ?></p>
+                </div>
             <?php endif; ?>
 
             <!-- Affichage des erreurs globales -->
@@ -37,42 +39,47 @@ $textePage = get_field("text__form");
                 </div>
 
                 <!-- Nom -->
-                <div class="form__group <?= isset($result['errors']['lastName']) ? 'has-error' : ''; ?>" id="champs_name">
+                <div class="form__group <?= isset($result['errors']['lastName']) ? 'has-error' : ''; ?>">
                     <label for="lastName" class="form__group__label">Nom <span class="form__note">*</span></label>
-                    <input type="text" name="lastName" id="lastName" class="form__group__input" aria-required="true"
+                    <input type="text" name="lastName" id="lastName" class="form__group__input"
+                           aria-required="true" required
                            value="<?= esc_attr($result['values']['lastName'] ?? '') ?>"
-                           placeholder="Votre nom de famille">
+                           placeholder="Votre nom de famille"
+                           autocomplete="family-name">
                     <?php if (isset($result['errors']['lastName'])) : ?>
                         <span class="error"><?= esc_html($result['errors']['lastName']); ?></span>
                     <?php endif; ?>
                 </div>
 
                 <!-- Prénom -->
-                <div class="form__group <?= isset($result['errors']['firstName']) ? 'has-error' : ''; ?>" id="champs_first_name">
+                <div class="form__group <?= isset($result['errors']['firstName']) ? 'has-error' : ''; ?>">
                     <label for="firstName" class="form__group__label">Prénom <span class="form__note">*</span></label>
-                    <input type="text" name="firstName" id="firstName" class="form__group__input" aria-required="true"
+                    <input type="text" name="firstName" id="firstName" class="form__group__input"
+                           aria-required="true" required
                            value="<?= esc_attr($result['values']['firstName'] ?? '') ?>"
-                           placeholder="votre prénom">
+                           placeholder="votre prénom"
+                           autocomplete="given-name">
                     <?php if (isset($result['errors']['firstName'])) : ?>
                         <span class="error"><?= esc_html($result['errors']['firstName']); ?></span>
                     <?php endif; ?>
                 </div>
-
                 <!-- Email -->
-                <div class="form__group <?= isset($result['errors']['email']) ? 'has-error' : ''; ?>" id="champs_email">
+                <div class="form__group <?= isset($result['errors']['email']) ? 'has-error' : ''; ?>">
                     <label for="email" class="form__group__label">Email <span class="form__note">*</span></label>
-                    <input type="email" name="email" id="email" class="form__group__input" aria-required="true"
+                    <input type="email" name="email" id="email" class="form__group__input"
+                           aria-required="true" required
                            value="<?= esc_attr($result['values']['email'] ?? '') ?>"
-                           placeholder="votre adresse mail" autocomplete="email" itemprop="email">
+                           placeholder="votre adresse mail"
+                           autocomplete="email" itemprop="email">
                     <?php if (isset($result['errors']['email'])) : ?>
                         <span class="error"><?= esc_html($result['errors']['email']); ?></span>
                     <?php endif; ?>
                 </div>
 
                 <!-- Sujet -->
-                <div class="form__group" id="champs_subject">
-                    <label for="subjectMessage" class="form__group__label">Sujet</label>
-                    <select name="subjectMessage" id="subjectMessage">
+                <div class="form__group">
+                    <label for="subject" class="form__group__label">Sujet</label>
+                    <select name="subject" id="subject" class="form__group__input">
                         <option value="Collaboration" <?= selected($result['values']['subject'] ?? '', 'Collaboration', false); ?>>Collaboration</option>
                         <option value="Informations" <?= selected($result['values']['subject'] ?? '', 'Informations', false); ?>>Informations</option>
                         <option value="Emploi" <?= selected($result['values']['subject'] ?? '', 'Emploi', false); ?>>Emploi</option>
@@ -81,11 +88,27 @@ $textePage = get_field("text__form");
                 </div>
 
                 <!-- Message -->
-                <div class="form__group <?= isset($result['errors']['message']) ? 'has-error' : ''; ?>" id="champs_message">
+                <div class="form__group <?= isset($result['errors']['message']) ? 'has-error' : ''; ?>">
                     <label for="message" class="form__group__label">Message <span class="form__note">*</span></label>
-                    <textarea name="message" id="message" aria-required="true"><?= esc_textarea($result['values']['message'] ?? '') ?></textarea>
+                    <textarea name="message" id="message" class="form__group__input"
+                              aria-required="true" required
+                              placeholder="Votre message..."><?= esc_textarea($result['values']['message'] ?? '') ?></textarea>
                     <?php if (isset($result['errors']['message'])) : ?>
                         <span class="error"><?= esc_html($result['errors']['message']); ?></span>
+                    <?php endif; ?>
+                </div>
+
+                <!-- RGPD (AJOUTÉ) -->
+                <div class="form__group form__group--checkbox <?= isset($result['errors']['rgpd']) ? 'has-error' : ''; ?>">
+                    <label for="rgpd" class="form__group__label checkbox-label">
+                        <input type="checkbox" name="rgpd" id="rgpd" value="1"
+                                <?= checked(1, $result['values']['rgpd'] ?? 0, false); ?>
+                               aria-required="true" required>
+                        J'accepte que mes données soient utilisées pour me recontacter.
+                        <a href="<?= esc_url(home_url('/politique-confidentialite')); ?>" target="_blank">Politique de confidentialité</a>
+                    </label>
+                    <?php if (isset($result['errors']['rgpd'])) : ?>
+                        <span class="error"><?= esc_html($result['errors']['rgpd']); ?></span>
                     <?php endif; ?>
                 </div>
 

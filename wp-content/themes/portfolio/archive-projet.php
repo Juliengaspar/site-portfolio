@@ -11,10 +11,7 @@ get_header(); ?>
 
         <section class="projects-archive" aria-labelledby="projects-title">
             <div class="container">
-                <?php
-                $page_id = get_the_ID(); // ou $post->ID
-                $descriptionPage = get_field('description_projet', $page_id);
-                ?>
+
 
 
                 <h2 class="archive-title title" itemprop="headline">Découvrez mes projets.</h2>
@@ -24,12 +21,6 @@ get_header(); ?>
 //                            'portfolio'
 //                    ); ?>
 <!--                </p>-->
-                <?php if ( $descriptionPage ) : ?>
-                    <div><?php echo wp_kses_post( $descriptionPage ); ?></div>
-                <?php else : ?>
-<!--                    <p>Aucune description renseignée.</p>-->
-                <?php endif; ?>
-
                 <!-- Filtres par type de projet -->
 <!--                <div class="projects-filters" role="group" aria-label="Filtrer les projets">-->
 <!--                    <button class="filter-btn active" data-filter="all">Tous</button>-->
@@ -149,7 +140,7 @@ get_header(); ?>
                                         // Récupération du sous-champ "technologies" (texte simple)
                                         $tech_name = get_sub_field('technologies');
                                         if ($tech_name) : ?>
-                                            <li class="project-tech"><?= $tech_name; ?></li>
+                                            <li class="project-tech"><?= wp_kses_post($tech_name); ?></li>
                                         <?php endif; ?>
                                     <?php endwhile; ?>
                                 </ul>

@@ -11,6 +11,9 @@ $white: rgb(255 255 255);
 $error-color: #e74c3c;
 $success-color: #27ae60;
 
+$success: #00d26a;
+$error: #ff4d4d;
+
 $big__title : 5rem;
 $semi__big__title : 3rem;
 $text : 1rem;
@@ -18,13 +21,25 @@ $text : 1rem;
 $didot__famile: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif;
 $didot__Cormorant__Garamond: Cormorant Garamond;
 $primary: #2f5aff;
+$primary-light: #3399ff;
+$primary-dark: #003d99;
 $light-gray: #D9D9D9;
 $text: #111;
-$primary: #2f5aff;
 $text: #111;
 $bg-card: #f0f0f0;
 $card: #f0f0f0;
 $radius: 20px;
+$border-radius: 12px;
+
+
+
+$card-bg: #162033;
+$text: #ffffff;
+$text-secondary: #d8e3ff;
+
+
+
+$transition: all 0.3s ease;
 
 
 .sro, .hidden , .sr-only{

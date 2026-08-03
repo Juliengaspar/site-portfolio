@@ -36,8 +36,9 @@ function portfolio_handle_contact_form() {
         'lastName'  => contact_get_safe_post_value('lastName'),
         'firstName' => contact_get_safe_post_value('firstName'),
         'email'     => contact_get_safe_post_value('email'),
-        'subject'   => contact_get_safe_post_value('subjectMessage', 'Autre'),
+        'subject'   => contact_get_safe_post_value('subject', 'Autre'),
         'message'   => contact_get_safe_post_textarea('message'),
+        'rgpd'      => isset($_POST['rgpd']) && $_POST['rgpd'] === '1',
     ];
 
     $result['values'] = $data; // pour réaffichage
@@ -53,6 +54,8 @@ function portfolio_handle_contact_form() {
     $mail_sent = contact_send_email($data, $config);
 
     if (!$mail_sent) {
+        // Log de l'erreur pour le développeur
+        error_log('Échec d\'envoi du formulaire de contact : ' . print_r($data, true));
         $result['errors']['global'] = 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement.';
         return $result;
     }
