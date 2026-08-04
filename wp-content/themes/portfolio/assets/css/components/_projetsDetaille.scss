@@ -3,7 +3,12 @@
 /* =========================
    MOBILE FIRST (BASE)
 ========================= */
-
+.single-projet__title {
+  font-size: $semi__big__title; // Assure-toi que cette variable existe
+  text-align: center;
+  margin: 2rem 1rem;
+  color: $black;
+}
 .projet-hero {
 
   &__title {
@@ -23,7 +28,6 @@
 
   &__img {
     width: 100%;
-    max-width: 100%;
     height: auto;
     object-fit: cover;
 
@@ -32,35 +36,53 @@
 
     border: 2px solid rgba(0, 191, 255, 0.4);
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(0, 191, 255, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
   }
 
   &__description {
     width: 100%;
-    background: linear-gradient(
-            145deg,
-            rgba(15, 23, 42, 0.95),
-            rgba(30, 41, 59, 0.95)
-    );
-
+    background: $principale__color__blue;
     padding: 1.5rem;
     border-radius: 20px;
 
-    border: 1px solid rgba(0, 191, 255, 0.2);
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25),
-    0 0 15px rgba(0, 191, 255, 0.15);
-
     p,
-    ul {
+    ul,
+    li{
       margin-bottom: 1rem;
       line-height: 1.7;
       color: $white;
     }
+    ul {
+      padding-left: 1.5rem;
+      li {
+        list-style: disc;
+      }
+    }
   }
 }
-
+.projet-redirection {
+  text-align: center;
+  margin: 2rem 0;
+  .btn-primary {
+    display: inline-block;
+    background: $principale__color__blue;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+    &:hover {
+      background: $extre__light__blue;
+      transform: translateY(-2px);
+    }
+  }
+}
 
 .projet-section {
   background: #111827;
@@ -104,27 +126,33 @@
 }
 
 .related-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+  padding: 0;
+  list-style: none;
 }
 
 .related-card {
-  display: inline-block;
-  background: $black;
-  color: $white;
-  border-radius: .5rem;
-  width: 100%;
-  border: 1px solid rgba(0, 191, 255, 0.2);
+  background: $principale__color__blue;
+  border-radius: 1rem;
   padding: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba($principale__color__blue, 0.15);
 
-  transition: .3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
   }
-
+  &__link-wrapper {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+  }
   &__title a {
     color: white;
     text-decoration: none;
@@ -134,7 +162,26 @@
     color: #00bfff;
     font-weight: 600;
   }
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: $black;
+  }
+
+  &__cta {
+    color: $principale__color__blue;
+    font-weight: 600;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__content{
+    margin:  0 5%;
+  }
 }
+
+
 
 /* =========================
    TABLETTE
@@ -156,20 +203,22 @@
     }
 
     &__img {
+      flex: 1;
       width: 50%;
       max-width: 500px;
     }
 
     &__description {
+      flex: 1;
       width: 50%;
     }
   }
 
-
+  .projet-redirection{
+    text-align: left;
+  }
   .related-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .related-card {
@@ -238,9 +287,13 @@
     }
   }
 
+  .projet-redirection{
+    text-align: left;
+  }
+
   .related-grid {
-    flex-direction: row;
-    gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
   .related-card {
