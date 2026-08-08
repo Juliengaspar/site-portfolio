@@ -11,11 +11,11 @@ $textePage = get_field("text__form");
 
         <?php get_template_part('templates/componements/contact/contact-header.php'); ?>
 
-        <section class="contact-form" itemscope itemtype="https://schema.org/ContactPoint">
             <header class="contact-form__header">
                 <h3 class="contact-form__title" itemprop="name"><?= esc_html($titlePage); ?></h3>
-                <p class="contact-form__description" itemprop="description"><?= wp_kses_post($textePage); ?></p>
+                <div class="contact-form__description" itemprop="description"><?= wp_kses_post($textePage); ?></div>
             </header>
+        <section class="contact-form" itemscope itemtype="https://schema.org/ContactPoint">
 
             <!-- Affichage du message de succès -->
             <?php if ( ! empty( $result['success'] ) ) : ?>

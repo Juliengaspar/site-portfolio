@@ -30,6 +30,7 @@ body{
 
 
 .title {
+  text-transform: capitalize;
     font-size: 3rem;
     border: 1px solid $black;
     color: $black;
@@ -171,7 +172,7 @@ body{
     }
   }
 
-  // Dernier bouton
+ /* // Dernier bouton
   li:last-child {
     background-color: $black;
     padding: 0.7rem 1.2rem;
@@ -186,6 +187,8 @@ body{
       border-bottom: 1px solid $white;
     }
   }
+  */
+
 }
 
 

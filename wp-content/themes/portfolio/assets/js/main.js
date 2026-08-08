@@ -1,6 +1,7 @@
 console.log('test');
 // JavaScript amélioré avec progressive enhancement
 (function() {
+
     // Vérifier si JS est activé
     document.documentElement.classList.add('js-enabled');
 
@@ -67,3 +68,21 @@ console.log('test');
         });
     }
 })();
+
+document.querySelectorAll(".voir-plus").forEach(button => {
+
+
+    button.addEventListener("click", () => {
+        console.log(document.querySelectorAll(".voir-plus"));
+        const description = button.previousElementSibling;
+
+        description.classList.toggle("open");
+
+        button.textContent =
+            description.classList.contains("open")
+                ? "Voir moins"
+                : "Voir plus";
+
+    });
+
+});

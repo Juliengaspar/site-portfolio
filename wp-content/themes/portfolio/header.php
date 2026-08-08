@@ -286,6 +286,9 @@ $acceuilLink = get_field('link__site', 'option');
     <meta property="og:url" content="<?= home_url(); ?>">
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <link rel="stylesheet" type="text/css" href="<?=dw_asset('css')?>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="<?= dw_asset('js')?>"  defer type="module" ></script>
 
 </head>
@@ -330,13 +333,8 @@ $acceuilLink = get_field('link__site', 'option');
                                 <a class="language-switcher__link <?php echo esc_attr($is_active); ?>"
                                    href="<?php echo esc_url($lang['url']); ?>"
                                    aria-current="<?php echo $is_active ? 'page' : 'false'; ?>">
-
-                                    <img
-                                            class="language-switcher__flag"
-                                            src="<?php echo esc_url($lang['flag']); ?>"
-                                            alt="<?php echo esc_attr($lang['name']); ?>"
-                                            loading="lazy"
-                                    >
+                                    <?php echo esc_attr($lang['name']); ?>
+                                  
                                 </a>
                             </li>
 

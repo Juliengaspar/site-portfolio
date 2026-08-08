@@ -38,9 +38,10 @@
   // Info section
   .footer__info {
     .footer__title {
+      color: $primary;
       font-size: 2rem;
       margin-bottom: 1rem;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .footer__contact {
@@ -65,9 +66,11 @@
   // Navigation
   .footer__nav {
     .footer__nav-title {
+      text-transform: uppercase;
+      color: $primary;
       font-size: 2rem;
       margin-bottom: 1rem;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .footer__menu {
@@ -80,11 +83,9 @@
 
         a {
           text-transform: uppercase;
-
           color: $white;
           text-decoration: none;
           display: inline-block;
-          border-bottom: 1px solid transparent;
 
 
           &:hover {
@@ -98,11 +99,19 @@
 
   // Bouton CTA
   .footer__cta {
+    &__title{
+      text-transform: uppercase;
+      color: $primary;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 400;
+      text-align: left;
+    }
     .footer__button {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: $principale__color__blue;
+      background-color: $primary;
       color: white;
       text-decoration: none;
       padding: 0.75rem 1.5rem;

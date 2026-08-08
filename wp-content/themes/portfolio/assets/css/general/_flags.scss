@@ -3,6 +3,11 @@
 //mobile first
 .language-switcher {
   display: inline-block;       // ou flex selon le contexte parent
+  margin-left: 10%;
+  &__link{
+    text-decoration: none;
+    color: $black;
+  }
 }
 
 .language-switcher__list {
@@ -26,6 +31,7 @@
 
   // État actif (langue courante)
   &.is-active {
+    color: $primary;
     border-bottom-color: currentColor;   // ou une couleur personnalisée
   }
 
@@ -36,20 +42,6 @@
   }
 }
 
-.language-switcher__flag {
-  display: block;
-  width: 24px;               // taille mobile
-  height: auto;              // conserve les proportions
-  object-fit: cover;
-  border-radius: 3px;        // léger arrondi
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s;
-
-  // léger effet au survol
-  .language-switcher__link:hover & {
-    transform: scale(1.05);
-  }
-}
 
 
 //  TABLETTE (≥ 768px)
@@ -72,7 +64,4 @@
     gap: 1rem;
   }
 
-  .language-switcher__flag {
-    width: 36px;
-  }
 }

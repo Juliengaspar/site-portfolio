@@ -17,7 +17,8 @@ $error: #ff4d4d;
 $big__title : 5rem;
 $semi__big__title : 3rem;
 $text : 1rem;
-
+$titleFamile : Poppin , sans-serif;
+$texteFamile : inter, sans-serif;
 $didot__famile: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif;
 $didot__Cormorant__Garamond: Cormorant Garamond;
 $primary: #2f5aff;
@@ -40,6 +41,15 @@ $text-secondary: #d8e3ff;
 
 
 $transition: all 0.3s ease;
+
+// _general.scss
+$black: #1a1a1a;
+$white: #ffffff;
+$primary: #0077b6;        // bleu principal
+$light__blue: #48cae4;    // bleu clair (hover)
+$card: #f8f9fa;
+$radius: 16px;
+$font-family: 'Inter', sans-serif; // ou votre police
 
 
 .sro, .hidden , .sr-only{

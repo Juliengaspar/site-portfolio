@@ -79,7 +79,7 @@ get_header();
                                         </h3>
                                         <a href="<?php the_permalink(); ?>" class="related-card__link"
                                            aria-label="Découvrir le projet : <?php the_title_attribute(); ?>">
-                                            <?=the_title_attribute()?> →
+                                            Découvrir le projet →
                                         </a>
                                     </li>
                             <?php endwhile; ?>

@@ -5,6 +5,7 @@ $footerTitleLinks = get_field('title__navigations', 'option');
 $adresse = get_field('footer_adresse', 'option');
 $telephone = get_field('footer_telephone', 'option');
 $email = get_field('footer_email', 'option');
+$footerContacteTitleButton = get_field('contact__title', 'option');
 $footerButton = get_field('contact__link__button', 'option');
 $footerCopyright = get_field('copyright__footer', 'option');
 $footerFollowTitle = get_field('title__folow', 'option');
@@ -73,11 +74,14 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
 
         <!-- Bouton -->
         <?php if ($footerButton): ?>
-            <div class="footer__cta">
+            <section class="footer__cta">
+        <?php if ($footerContacteTitleButton): ?>
+            <h2 class="footer__cta__title"><?=  esc_html($footerContacteTitleButton); ?></h2>
+        <?php endif; ?>
                 <a class="footer__button" href="<?= esc_url($footerButton['url']); ?>" target="<?= $footerButton['target'] ?: '_self'; ?>" title="<?= $footerButton['title']; ?>"  itemprop="url">
                     <?= esc_html($footerButton['title']); ?>
                 </a>
-            </div>
+            </section>
         <?php endif; ?>
        <!-- <section class="footer__liste__folowing">
             <h3><?= esc_html($footerFollowTitle) ?></h3>

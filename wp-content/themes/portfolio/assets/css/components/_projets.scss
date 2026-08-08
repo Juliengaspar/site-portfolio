@@ -160,26 +160,21 @@
   list-style: none;
 
   .project-tech {
+    background: rgba($primary, 0.1);
+    color: $principale__color__blue;
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    background: #f0f0f0;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 500;
-    color: #333;
+    border: 1px solid beige;
 
     img {
       width: 16px;
       height: 16px;
       object-fit: contain;
-    }
-
-    // Vous pouvez utiliser votre couleur primaire pour les tags "actifs"
-    &:nth-child(odd) {
-      background: rgba($primary, 0.1);
-      color: $primary;
     }
   }
   abbr[title] {
