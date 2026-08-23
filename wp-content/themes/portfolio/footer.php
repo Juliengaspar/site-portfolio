@@ -83,28 +83,6 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
                 </a>
             </section>
         <?php endif; ?>
-       <!-- <section class="footer__liste__folowing">
-            <h3><?= esc_html($footerFollowTitle) ?></h3>
-
-                <div class="footer__liste__folowing__contenu">
-                    <?php if (!empty($footerFollowimgs) && is_array($footerFollowimgs)) : ?>
-
-                        <?php foreach ($footerFollowimgs as $footerFollowimg) : ?>
-
-                            <img
-                                    class="liste__folowing__img"
-                                    src="<?= esc_url($footerFollowimg['url']); ?>"
-                                    alt="<?= esc_attr($footerFollowimg['alt']); ?>"
-                                    title="<?= esc_attr($footerFollowimg['title']); ?>"
-                                    itemprop="image"
-                            >
-
-                        <?php endforeach; ?>
-
-                    <?php endif; ?>
-                </div>
-        </section>-->
-
     </div>
             <div>
                 <?php if (have_rows('footer_reseaux')) : ?>
