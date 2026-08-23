@@ -48,45 +48,47 @@ get_header();
                 </div>
             <?php endif; ?>
 
-            <!-- Projets similaires -->
-            <?php
-            $related_args = array(
-                    'post_type' => 'projet',
-                    'posts_per_page' => 3,
-                    'post__not_in' => array(get_the_ID()),
-                    'orderby' => 'date',
-                    'order'=> 'DESC'
-            );
+<!--            Projets similaires -->
+<!--            --><?php
+//            $related_args = array(
+//                    'post_type' => 'projet',
+//                    'posts_per_page' => 3,
+//                    'post__not_in' => array(get_the_ID()),
+//                    'orderby' => 'date',
+//                    'order'=> 'DESC'
+//            );
+//
+//
+//
+//            $related = new WP_Query($related_args);
+//
+//            if ($related->have_posts()) : ?>
+<!--                <section class="projets-similaires" aria-labelledby="related-title">-->
+<!--                    <h2 id="related-title" class="section-title">Projets similaires</h2>-->
+<!--                                <ul class="related-card related-grid">-->
+<!--                            --><?php //while ($related->have_posts()) : $related->the_post(); ?>
+<!--                                    <li class="related-card__content">-->
+<!--                                        --><?php //if (has_post_thumbnail()) : ?>
+<!--                                            <div class="related-card__image">-->
+<!--                                                --><?php //the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
+<!--                                            </div>-->
+<!--                                        --><?php //endif; ?>
+<!--                        <div class="related-card__image">-->
+<!--                                        <h3 class="related-card__title">-->
+<!--                                            <a href="--><?php //the_permalink(); ?><!--">--><?php //the_title(); ?><!--</a>-->
+<!--                                        </h3>-->
+<!--                                        <a href="--><?php //the_permalink(); ?><!--" class="related-card__link"-->
+<!--                                           aria-label="Découvrir le projet : --><?php //the_title_attribute(); ?><!--">-->
+<!--                                            Découvrir le projet →-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                            --><?php //endwhile; ?>
+<!--                                </ul>-->
+<!--                </section>-->
+<!--        </article>-->
+<!--            --><?php //endif;
 
 
-
-            $related = new WP_Query($related_args);
-
-            if ($related->have_posts()) : ?>
-                <section class="projets-similaires" aria-labelledby="related-title">
-                    <h2 id="related-title" class="section-title">Projets similaires</h2>
-                                <ul class="related-card related-grid">
-                            <?php while ($related->have_posts()) : $related->the_post(); ?>
-                                    <li class="related-card__content">
-                                        <?php if (has_post_thumbnail()) : ?>
-                                            <div class="related-card__image">
-                                                <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
-                                            </div>
-                                        <?php endif; ?>
-                        <div class="related-card__image">
-                                        <h3 class="related-card__title">
-                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                        </h3>
-                                        <a href="<?php the_permalink(); ?>" class="related-card__link"
-                                           aria-label="Découvrir le projet : <?php the_title_attribute(); ?>">
-                                            Découvrir le projet →
-                                        </a>
-                                    </li>
-                            <?php endwhile; ?>
-                                </ul>
-                </section>
-        </article>
-            <?php endif;
             wp_reset_postdata(); ?>
         <?php endwhile; ?>
 

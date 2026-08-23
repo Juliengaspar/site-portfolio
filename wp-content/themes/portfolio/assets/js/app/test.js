@@ -80,8 +80,8 @@ document.querySelectorAll(".voir-plus").forEach(button => {
 
         button.textContent =
             description.classList.contains("open")
-                ? "Voir moins"
-                : "Voir plus";
+                ? "Moins -"
+                : "Plus +";
 
     });
 

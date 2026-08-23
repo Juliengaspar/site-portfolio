@@ -35,23 +35,23 @@ $footerFollowimgs = get_field('galerie__folow', 'option');
             <div class="footer__contact">
 
                 <?php if($adresse): ?>
-                    <p><?= $adresse; ?></p>
+                    <div><?= $adresse; ?></div>
                 <?php endif; ?>
 
                 <?php if($telephone): ?>
-                    <p>
+                    <div>
                         <a href="tel:<?= preg_replace('/[^0-9+]/', '', $telephone); ?>">
-                            <?= $telephone; ?>
+                            <?= wp_kses_post($telephone); ?>
                         </a>
-                    </p>
+                    </div>
                 <?php endif; ?>
 
                 <?php if($email): ?>
-                    <p>
+                    <div>
                         <a href="mailto:<?= esc_attr($email); ?>">
-                            <?= $email; ?>
+                            <?= wp_kses_post($email); ?>
                         </a>
-                    </p>
+                    </div>
                 <?php endif; ?>
 
             </div>

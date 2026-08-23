@@ -235,7 +235,7 @@
             </div>
 
         <?php endif; ?>
-        <p>aucun réseaux disponible</p>
+        <p>aucun réseau disponible</p>
     </section>
 
 </main>

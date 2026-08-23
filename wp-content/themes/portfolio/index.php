@@ -56,11 +56,11 @@ $description = get_field('hero__description');
                             src="<?= get_template_directory_uri(); ?>/assets/icons/SVG/<?= esc_attr($icone); ?>.svg"
                             alt=""
                             aria-hidden="true"
-                            class="hero__features-icon" ;
+                            class="hero__features-icon"
                     >
                 <?php endif; ?>
 
-                <p><?= $title ?></p>
+                <div class="hero__features__text"><?= wp_kses_post($title) ?></div>
                 <?php endwhile; ?>
 
                 <?php else: ?>
@@ -140,7 +140,7 @@ $description = get_field('hero__description');
                                 </div>
 
                                 <button class="voir-plus" aria-expanded="false">
-                                    Voir plus
+                                    Plus +
                                 </button>
 
                             </div>
@@ -157,7 +157,7 @@ $description = get_field('hero__description');
                             </ul>
                             <?php endif; ?>
                             <div class="liste-projets__btn">
-                                <a href="<?=esc_url($liensProjet['url']); ?>" title="<?= esc_attr($liensProjet['title']); ?>" class="liste-projets__links" itemprop="url">Voir le projet </a><span>&rarr;</span>
+                                <a href="<?=esc_url($liensProjet['url']); ?>" title="<?= esc_attr($liensProjet['title']); ?>" class="liste-projets__links" itemprop="url"><?= esc_attr($liensProjet['title']);  ?></a><span>&rarr;</span>
                             </div>
                         </div>
                             </section>

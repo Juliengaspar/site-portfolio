@@ -56,6 +56,13 @@
         &:hover {
           border-bottom: 1px solid $white;
         }
+        &::before{
+          //content: "";
+          //background-image: url("../../icons/icone__tel.svg");
+          //background-repeat: no-repeat;
+          //background-size: contain;
+          //background-position: center;
+        }
       }
     }
     .footer__contact li{

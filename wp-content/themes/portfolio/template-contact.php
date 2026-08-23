@@ -33,13 +33,13 @@ $textePage = get_field("text__form");
                 <?php wp_nonce_field('contact_form', 'contact_nonce'); ?>
 
                 <!-- Honeypot -->
-                <div class="honeypot" aria-hidden="true">
+                <div id="honeypot" class="honeypot sro" aria-hidden="true">
                     <label for="website">Ne pas remplir ce champ</label>
                     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                 </div>
 
                 <!-- Nom -->
-                <div class="form__group <?= isset($result['errors']['lastName']) ? 'has-error' : ''; ?>">
+                <div id="name" class="form__group <?= isset($result['errors']['lastName']) ? 'has-error' : ''; ?>">
                     <label for="lastName" class="form__group__label">Nom <span class="form__note">*</span></label>
                     <input type="text" name="lastName" id="lastName" class="form__group__input"
                            aria-required="true" required
@@ -52,7 +52,7 @@ $textePage = get_field("text__form");
                 </div>
 
                 <!-- Prénom -->
-                <div class="form__group <?= isset($result['errors']['firstName']) ? 'has-error' : ''; ?>">
+                <div id="firstName"  class="form__group <?= isset($result['errors']['firstName']) ? 'has-error' : ''; ?>">
                     <label for="firstName" class="form__group__label">Prénom <span class="form__note">*</span></label>
                     <input type="text" name="firstName" id="firstName" class="form__group__input"
                            aria-required="true" required
@@ -64,7 +64,7 @@ $textePage = get_field("text__form");
                     <?php endif; ?>
                 </div>
                 <!-- Email -->
-                <div class="form__group <?= isset($result['errors']['email']) ? 'has-error' : ''; ?>">
+                <div id="email" class="form__group <?= isset($result['errors']['email']) ? 'has-error' : ''; ?>">
                     <label for="email" class="form__group__label">Email <span class="form__note">*</span></label>
                     <input type="email" name="email" id="email" class="form__group__input"
                            aria-required="true" required
@@ -77,7 +77,7 @@ $textePage = get_field("text__form");
                 </div>
 
                 <!-- Sujet -->
-                <div class="form__group">
+                <div id="Sujet" class="form__group">
                     <label for="subject" class="form__group__label">Sujet</label>
                     <select name="subject" id="subject" class="form__group__input">
                         <option value="Collaboration" <?= selected($result['values']['subject'] ?? '', 'Collaboration', false); ?>>Collaboration</option>
@@ -88,7 +88,7 @@ $textePage = get_field("text__form");
                 </div>
 
                 <!-- Message -->
-                <div class="form__group <?= isset($result['errors']['message']) ? 'has-error' : ''; ?>">
+                <div id="messaging" class="form__group <?= isset($result['errors']['message']) ? 'has-error' : ''; ?>">
                     <label for="message" class="form__group__label">Message <span class="form__note">*</span></label>
                     <textarea name="message" id="message" class="form__group__input"
                               aria-required="true" required

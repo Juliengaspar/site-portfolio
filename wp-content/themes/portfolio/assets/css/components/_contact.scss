@@ -284,4 +284,43 @@ textarea {
   #champs_name, #champs_message{
     grid-column: 1 / 3;
   }
+  // Nom
+  #name {
+    grid-column: 1;
+  }
+
+  // Prénom
+  #firstName {
+    grid-column: 2;
+  }
+
+  // Email → toute la largeur
+  #email {
+    grid-column: 1 / -1;
+  }
+
+  // Sujet → colonne gauche
+  #Sujet {
+    grid-column: 1;
+  }
+
+  // Message → colonne droite
+  #messaging {
+    grid-column: 2;
+  }
+
+  // RGPD → toute la largeur
+  .form__group--checkbox {
+    grid-column: 1 / -1;
+  }
+
+  // Texte "* Champs obligatoires"
+  .form__note {
+    grid-column: 1 / -1;
+  }
+
+  // Bouton → toute la largeur
+  .btn-submit {
+    grid-column: 1 / -1;
+  }
 }

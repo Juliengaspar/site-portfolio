@@ -82,7 +82,7 @@
   }
 
   &__title{
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
 
     margin-bottom: 1rem;
@@ -93,6 +93,12 @@
     margin-bottom: 1rem;
     flex: 1;
     -webkit-line-clamp:3;
+
+
+
+  }
+  &__exemple p{
+font-size: 1.25rem;
 
 
 
@@ -167,7 +173,7 @@
     gap: 0.3rem;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
     border: 1px solid beige;
 
@@ -191,7 +197,7 @@
 
   .project-card {
     &__title {
-      font-size: 1.75rem;
+      font-size: 2rem;
     }
   }
 
